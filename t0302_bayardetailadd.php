@@ -116,6 +116,10 @@ ft0302_bayardetailadd.validateRequired = <?php echo json_encode(CLIENT_VALIDATE)
 ft0302_bayardetailadd.lists["x_iuran_id"] = <?php echo $t0302_bayardetail_add->iuran_id->Lookup->toClientList() ?>;
 ft0302_bayardetailadd.lists["x_iuran_id"].options = <?php echo JsonEncode($t0302_bayardetail_add->iuran_id->lookupOptions()) ?>;
 ft0302_bayardetailadd.autoSuggests["x_iuran_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+ft0302_bayardetailadd.lists["x_Periode1"] = <?php echo $t0302_bayardetail_add->Periode1->Lookup->toClientList() ?>;
+ft0302_bayardetailadd.lists["x_Periode1"].options = <?php echo JsonEncode($t0302_bayardetail_add->Periode1->options(FALSE, TRUE)) ?>;
+ft0302_bayardetailadd.lists["x_Periode2"] = <?php echo $t0302_bayardetail_add->Periode2->Lookup->toClientList() ?>;
+ft0302_bayardetailadd.lists["x_Periode2"].options = <?php echo JsonEncode($t0302_bayardetail_add->Periode2->options(FALSE, TRUE)) ?>;
 
 // Form object for search
 </script>
@@ -166,7 +170,11 @@ ft0302_bayardetailadd.createAutoSuggest({"id":"x_iuran_id","forceSelect":false})
 		<label id="elh_t0302_bayardetail_Periode1" for="x_Periode1" class="<?php echo $t0302_bayardetail_add->LeftColumnClass ?>"><?php echo $t0302_bayardetail->Periode1->caption() ?><?php echo ($t0302_bayardetail->Periode1->Required) ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
 		<div class="<?php echo $t0302_bayardetail_add->RightColumnClass ?>"><div<?php echo $t0302_bayardetail->Periode1->cellAttributes() ?>>
 <span id="el_t0302_bayardetail_Periode1">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode1" name="x_Periode1" id="x_Periode1" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode1->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode1->EditValue ?>"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode1" data-value-separator="<?php echo $t0302_bayardetail->Periode1->displayValueSeparatorAttribute() ?>" id="x_Periode1" name="x_Periode1"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode1->selectOptionListHtml("x_Periode1") ?>
+	</select>
+</div>
 </span>
 <?php echo $t0302_bayardetail->Periode1->CustomMsg ?></div></div>
 	</div>
@@ -176,7 +184,11 @@ ft0302_bayardetailadd.createAutoSuggest({"id":"x_iuran_id","forceSelect":false})
 		<label id="elh_t0302_bayardetail_Periode2" for="x_Periode2" class="<?php echo $t0302_bayardetail_add->LeftColumnClass ?>"><?php echo $t0302_bayardetail->Periode2->caption() ?><?php echo ($t0302_bayardetail->Periode2->Required) ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
 		<div class="<?php echo $t0302_bayardetail_add->RightColumnClass ?>"><div<?php echo $t0302_bayardetail->Periode2->cellAttributes() ?>>
 <span id="el_t0302_bayardetail_Periode2">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode2" name="x_Periode2" id="x_Periode2" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode2->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode2->EditValue ?>"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode2" data-value-separator="<?php echo $t0302_bayardetail->Periode2->displayValueSeparatorAttribute() ?>" id="x_Periode2" name="x_Periode2"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode2->selectOptionListHtml("x_Periode2") ?>
+	</select>
+</div>
 </span>
 <?php echo $t0302_bayardetail->Periode2->CustomMsg ?></div></div>
 	</div>

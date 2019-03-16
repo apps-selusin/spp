@@ -55,12 +55,12 @@ ft0302_bayardetaillist.validateRequired = <?php echo json_encode(CLIENT_VALIDATE
 ft0302_bayardetaillist.lists["x_iuran_id"] = <?php echo $t0302_bayardetail_list->iuran_id->Lookup->toClientList() ?>;
 ft0302_bayardetaillist.lists["x_iuran_id"].options = <?php echo JsonEncode($t0302_bayardetail_list->iuran_id->lookupOptions()) ?>;
 ft0302_bayardetaillist.autoSuggests["x_iuran_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+ft0302_bayardetaillist.lists["x_Periode1"] = <?php echo $t0302_bayardetail_list->Periode1->Lookup->toClientList() ?>;
+ft0302_bayardetaillist.lists["x_Periode1"].options = <?php echo JsonEncode($t0302_bayardetail_list->Periode1->options(FALSE, TRUE)) ?>;
+ft0302_bayardetaillist.lists["x_Periode2"] = <?php echo $t0302_bayardetail_list->Periode2->Lookup->toClientList() ?>;
+ft0302_bayardetaillist.lists["x_Periode2"].options = <?php echo JsonEncode($t0302_bayardetail_list->Periode2->options(FALSE, TRUE)) ?>;
 
 // Form object for search
-var ft0302_bayardetaillistsrch = currentSearchForm = new ew.Form("ft0302_bayardetaillistsrch");
-
-// Filters
-ft0302_bayardetaillistsrch.filterList = <?php echo $t0302_bayardetail_list->getFilterList() ?>;
 </script>
 <style type="text/css">
 .ew-table-preview-row { /* main table preview row color */
@@ -97,12 +97,6 @@ ew.PREVIEW_OVERLAY = false;
 <?php if ($t0302_bayardetail_list->ImportOptions->visible()) { ?>
 <?php $t0302_bayardetail_list->ImportOptions->render("body") ?>
 <?php } ?>
-<?php if ($t0302_bayardetail_list->SearchOptions->visible()) { ?>
-<?php $t0302_bayardetail_list->SearchOptions->render("body") ?>
-<?php } ?>
-<?php if ($t0302_bayardetail_list->FilterOptions->visible()) { ?>
-<?php $t0302_bayardetail_list->FilterOptions->render("body") ?>
-<?php } ?>
 <div class="clearfix"></div>
 </div>
 <?php } ?>
@@ -118,35 +112,6 @@ if ($t0302_bayardetail_list->DbMasterFilter <> "" && $t0302_bayardetail->getCurr
 <?php
 $t0302_bayardetail_list->renderOtherOptions();
 ?>
-<?php if ($Security->CanSearch()) { ?>
-<?php if (!$t0302_bayardetail->isExport() && !$t0302_bayardetail->CurrentAction) { ?>
-<form name="ft0302_bayardetaillistsrch" id="ft0302_bayardetaillistsrch" class="form-inline ew-form ew-ext-search-form" action="<?php echo CurrentPageName() ?>">
-<?php $searchPanelClass = ($t0302_bayardetail_list->SearchWhere <> "") ? " show" : " show"; ?>
-<div id="ft0302_bayardetaillistsrch-search-panel" class="ew-search-panel collapse<?php echo $searchPanelClass ?>">
-<input type="hidden" name="cmd" value="search">
-<input type="hidden" name="t" value="t0302_bayardetail">
-	<div class="ew-basic-search">
-<div id="xsr_1" class="ew-row d-sm-flex">
-	<div class="ew-quick-search input-group">
-		<input type="text" name="<?php echo TABLE_BASIC_SEARCH ?>" id="<?php echo TABLE_BASIC_SEARCH ?>" class="form-control" value="<?php echo HtmlEncode($t0302_bayardetail_list->BasicSearch->getKeyword()) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Search")) ?>">
-		<input type="hidden" name="<?php echo TABLE_BASIC_SEARCH_TYPE ?>" id="<?php echo TABLE_BASIC_SEARCH_TYPE ?>" value="<?php echo HtmlEncode($t0302_bayardetail_list->BasicSearch->getType()) ?>">
-		<div class="input-group-append">
-			<button class="btn btn-primary" name="btn-submit" id="btn-submit" type="submit"><?php echo $Language->phrase("SearchBtn") ?></button>
-			<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-split" aria-haspopup="true" aria-expanded="false"><span id="searchtype"><?php echo $t0302_bayardetail_list->BasicSearch->getTypeNameShort() ?></span></button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item<?php if ($t0302_bayardetail_list->BasicSearch->getType() == "") echo " active"; ?>" href="javascript:void(0);" onclick="ew.setSearchType(this)"><?php echo $Language->phrase("QuickSearchAuto") ?></a>
-				<a class="dropdown-item<?php if ($t0302_bayardetail_list->BasicSearch->getType() == "=") echo " active"; ?>" href="javascript:void(0);" onclick="ew.setSearchType(this,'=')"><?php echo $Language->phrase("QuickSearchExact") ?></a>
-				<a class="dropdown-item<?php if ($t0302_bayardetail_list->BasicSearch->getType() == "AND") echo " active"; ?>" href="javascript:void(0);" onclick="ew.setSearchType(this,'AND')"><?php echo $Language->phrase("QuickSearchAll") ?></a>
-				<a class="dropdown-item<?php if ($t0302_bayardetail_list->BasicSearch->getType() == "OR") echo " active"; ?>" href="javascript:void(0);" onclick="ew.setSearchType(this,'OR')"><?php echo $Language->phrase("QuickSearchAny") ?></a>
-			</div>
-		</div>
-	</div>
-</div>
-	</div>
-</div>
-</form>
-<?php } ?>
-<?php } ?>
 <?php $t0302_bayardetail_list->showPageHeader(); ?>
 <?php
 $t0302_bayardetail_list->showMessage();
@@ -192,7 +157,7 @@ $t0302_bayardetail_list->ListOptions->render("header", "left");
 		<th data-name="Periode1" class="<?php echo $t0302_bayardetail->Periode1->headerCellClass() ?>"><div id="elh_t0302_bayardetail_Periode1" class="t0302_bayardetail_Periode1"><div class="ew-table-header-caption"><?php echo $t0302_bayardetail->Periode1->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Periode1" class="<?php echo $t0302_bayardetail->Periode1->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event,'<?php echo $t0302_bayardetail->SortUrl($t0302_bayardetail->Periode1) ?>',2);"><div id="elh_t0302_bayardetail_Periode1" class="t0302_bayardetail_Periode1">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $t0302_bayardetail->Periode1->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($t0302_bayardetail->Periode1->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($t0302_bayardetail->Periode1->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span></div>
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $t0302_bayardetail->Periode1->caption() ?></span><span class="ew-table-header-sort"><?php if ($t0302_bayardetail->Periode1->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($t0302_bayardetail->Periode1->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -201,7 +166,7 @@ $t0302_bayardetail_list->ListOptions->render("header", "left");
 		<th data-name="Periode2" class="<?php echo $t0302_bayardetail->Periode2->headerCellClass() ?>"><div id="elh_t0302_bayardetail_Periode2" class="t0302_bayardetail_Periode2"><div class="ew-table-header-caption"><?php echo $t0302_bayardetail->Periode2->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Periode2" class="<?php echo $t0302_bayardetail->Periode2->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event,'<?php echo $t0302_bayardetail->SortUrl($t0302_bayardetail->Periode2) ?>',2);"><div id="elh_t0302_bayardetail_Periode2" class="t0302_bayardetail_Periode2">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $t0302_bayardetail->Periode2->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($t0302_bayardetail->Periode2->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($t0302_bayardetail->Periode2->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span></div>
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $t0302_bayardetail->Periode2->caption() ?></span><span class="ew-table-header-sort"><?php if ($t0302_bayardetail->Periode2->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($t0302_bayardetail->Periode2->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -210,7 +175,7 @@ $t0302_bayardetail_list->ListOptions->render("header", "left");
 		<th data-name="Keterangan" class="<?php echo $t0302_bayardetail->Keterangan->headerCellClass() ?>"><div id="elh_t0302_bayardetail_Keterangan" class="t0302_bayardetail_Keterangan"><div class="ew-table-header-caption"><?php echo $t0302_bayardetail->Keterangan->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="Keterangan" class="<?php echo $t0302_bayardetail->Keterangan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event,'<?php echo $t0302_bayardetail->SortUrl($t0302_bayardetail->Keterangan) ?>',2);"><div id="elh_t0302_bayardetail_Keterangan" class="t0302_bayardetail_Keterangan">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $t0302_bayardetail->Keterangan->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($t0302_bayardetail->Keterangan->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($t0302_bayardetail->Keterangan->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span></div>
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $t0302_bayardetail->Keterangan->caption() ?></span><span class="ew-table-header-sort"><?php if ($t0302_bayardetail->Keterangan->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($t0302_bayardetail->Keterangan->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>

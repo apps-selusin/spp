@@ -89,18 +89,21 @@ class t0301_bayarmaster extends DbTable
 		$this->fields['Nomor'] = &$this->Nomor;
 
 		// Tanggal
-		$this->Tanggal = new DbField('t0301_bayarmaster', 't0301_bayarmaster', 'x_Tanggal', 'Tanggal', '`Tanggal`', CastDateFieldForLike('`Tanggal`', 0, "DB"), 133, 0, FALSE, '`Tanggal`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Tanggal = new DbField('t0301_bayarmaster', 't0301_bayarmaster', 'x_Tanggal', 'Tanggal', '`Tanggal`', CastDateFieldForLike('`Tanggal`', 7, "DB"), 133, 7, FALSE, '`Tanggal`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->Tanggal->Nullable = FALSE; // NOT NULL field
 		$this->Tanggal->Required = TRUE; // Required field
 		$this->Tanggal->Sortable = TRUE; // Allow sort
-		$this->Tanggal->DefaultErrorMessage = str_replace("%s", $GLOBALS["DATE_FORMAT"], $Language->phrase("IncorrectDate"));
+		$this->Tanggal->DefaultErrorMessage = str_replace("%s", $GLOBALS["DATE_SEPARATOR"], $Language->phrase("IncorrectDateDMY"));
 		$this->fields['Tanggal'] = &$this->Tanggal;
 
 		// tahunajaran_id
-		$this->tahunajaran_id = new DbField('t0301_bayarmaster', 't0301_bayarmaster', 'x_tahunajaran_id', 'tahunajaran_id', '`tahunajaran_id`', '`tahunajaran_id`', 3, -1, FALSE, '`tahunajaran_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tahunajaran_id = new DbField('t0301_bayarmaster', 't0301_bayarmaster', 'x_tahunajaran_id', 'tahunajaran_id', '`tahunajaran_id`', '`tahunajaran_id`', 3, -1, FALSE, '`tahunajaran_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->tahunajaran_id->Nullable = FALSE; // NOT NULL field
 		$this->tahunajaran_id->Required = TRUE; // Required field
 		$this->tahunajaran_id->Sortable = TRUE; // Allow sort
+		$this->tahunajaran_id->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->tahunajaran_id->PleaseSelectText = $Language->phrase("PleaseSelect"); // PleaseSelect text
+		$this->tahunajaran_id->Lookup = new Lookup('tahunajaran_id', 't0101_tahunajaran', FALSE, 'id', ["TahunAjaran","","",""], [], [], [], [], [], [], '', '');
 		$this->tahunajaran_id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tahunajaran_id'] = &$this->tahunajaran_id;
 
@@ -782,12 +785,29 @@ class t0301_bayarmaster extends DbTable
 
 		// Tanggal
 		$this->Tanggal->ViewValue = $this->Tanggal->CurrentValue;
-		$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 0);
+		$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 7);
 		$this->Tanggal->ViewCustomAttributes = "";
 
 		// tahunajaran_id
-		$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->CurrentValue;
-		$this->tahunajaran_id->ViewValue = FormatNumber($this->tahunajaran_id->ViewValue, 0, -2, -2, -2);
+		$curVal = strval($this->tahunajaran_id->CurrentValue);
+		if ($curVal <> "") {
+			$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->lookupCacheOption($curVal);
+			if ($this->tahunajaran_id->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->tahunajaran_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = array();
+					$arwrk[1] = $rswrk->fields('df');
+					$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->CurrentValue;
+				}
+			}
+		} else {
+			$this->tahunajaran_id->ViewValue = NULL;
+		}
 		$this->tahunajaran_id->ViewCustomAttributes = "";
 
 		// siswa_id
@@ -881,14 +901,12 @@ class t0301_bayarmaster extends DbTable
 		// Tanggal
 		$this->Tanggal->EditAttrs["class"] = "form-control";
 		$this->Tanggal->EditCustomAttributes = "";
-		$this->Tanggal->EditValue = FormatDateTime($this->Tanggal->CurrentValue, 8);
+		$this->Tanggal->EditValue = FormatDateTime($this->Tanggal->CurrentValue, 7);
 		$this->Tanggal->PlaceHolder = RemoveHtml($this->Tanggal->caption());
 
 		// tahunajaran_id
 		$this->tahunajaran_id->EditAttrs["class"] = "form-control";
 		$this->tahunajaran_id->EditCustomAttributes = "";
-		$this->tahunajaran_id->EditValue = $this->tahunajaran_id->CurrentValue;
-		$this->tahunajaran_id->PlaceHolder = RemoveHtml($this->tahunajaran_id->caption());
 
 		// siswa_id
 		$this->siswa_id->EditAttrs["class"] = "form-control";
@@ -1321,7 +1339,9 @@ class t0301_bayarmaster extends DbTable
 
 		// Enter your code here
 		// To cancel, set return value to FALSE
+		// isi nomor bayar ostosmastis
 
+		$rsnew["Nomor"] = GetNextNomor(); // mengantisipasi lebih satu user menginput data saat bersamaan
 		return TRUE;
 	}
 
@@ -1329,6 +1349,11 @@ class t0301_bayarmaster extends DbTable
 	function Row_Inserted($rsold, &$rsnew) {
 
 		//echo "Row Inserted"
+		// update di tabel t0202_siswaiuran
+		// memberi flag sebagai tanda bahwa sudah melakukan pembayaran pada periode yang dipilih
+		// oleh user
+
+		f_updatesiswaiuran($rsnew);
 	}
 
 	// Row Updating event
@@ -1426,7 +1451,23 @@ class t0301_bayarmaster extends DbTable
 
 		// To view properties of field class, use:
 		//var_dump($this-><FieldName>);
+		// read only
+		// - nomor bayar
+		// - total bayar
 
+		$this->Nomor->ReadOnly = true;
+		$this->Total->ReadOnly = true;
+
+		// Kondisi saat form Tambah sedang terbuka (tidak dalam mode konfirmasi)
+		if (CurrentPageID() == "add" && $this->CurrentAction != "F") {
+			$this->Nomor->CurrentValue = GetNextNomor(); // trik
+			$this->Nomor->EditValue = $this->Nomor->CurrentValue; // tampilkan
+		}
+
+		// Kondisi saat form Tambah sedang dalam mode konfirmasi
+		if ($this->CurrentAction == "add" && $this->CurrentAction=="F") {
+			$this->Nomor->ViewValue = $this->Nomor->CurrentValue; // ambil dari mode sebelumnya
+		}
 	}
 
 	// User ID Filtering event

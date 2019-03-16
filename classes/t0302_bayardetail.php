@@ -100,13 +100,21 @@ class t0302_bayardetail extends DbTable
 		$this->fields['iuran_id'] = &$this->iuran_id;
 
 		// Periode1
-		$this->Periode1 = new DbField('t0302_bayardetail', 't0302_bayardetail', 'x_Periode1', 'Periode1', '`Periode1`', '`Periode1`', 200, -1, FALSE, '`Periode1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Periode1 = new DbField('t0302_bayardetail', 't0302_bayardetail', 'x_Periode1', 'Periode1', '`Periode1`', '`Periode1`', 200, -1, FALSE, '`Periode1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->Periode1->Sortable = TRUE; // Allow sort
+		$this->Periode1->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Periode1->PleaseSelectText = $Language->phrase("PleaseSelect"); // PleaseSelect text
+		$this->Periode1->Lookup = new Lookup('Periode1', 't0302_bayardetail', FALSE, '', ["","","",""], [], [], [], [], [], [], '', '');
+		$this->Periode1->OptionCount = 12;
 		$this->fields['Periode1'] = &$this->Periode1;
 
 		// Periode2
-		$this->Periode2 = new DbField('t0302_bayardetail', 't0302_bayardetail', 'x_Periode2', 'Periode2', '`Periode2`', '`Periode2`', 200, -1, FALSE, '`Periode2`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Periode2 = new DbField('t0302_bayardetail', 't0302_bayardetail', 'x_Periode2', 'Periode2', '`Periode2`', '`Periode2`', 200, -1, FALSE, '`Periode2`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->Periode2->Sortable = TRUE; // Allow sort
+		$this->Periode2->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Periode2->PleaseSelectText = $Language->phrase("PleaseSelect"); // PleaseSelect text
+		$this->Periode2->Lookup = new Lookup('Periode2', 't0302_bayardetail', FALSE, '', ["","","",""], [], [], [], [], [], [], '', '');
+		$this->Periode2->OptionCount = 12;
 		$this->fields['Periode2'] = &$this->Periode2;
 
 		// Keterangan
@@ -834,11 +842,19 @@ class t0302_bayardetail extends DbTable
 		$this->iuran_id->ViewCustomAttributes = "";
 
 		// Periode1
-		$this->Periode1->ViewValue = $this->Periode1->CurrentValue;
+		if (strval($this->Periode1->CurrentValue) <> "") {
+			$this->Periode1->ViewValue = $this->Periode1->optionCaption($this->Periode1->CurrentValue);
+		} else {
+			$this->Periode1->ViewValue = NULL;
+		}
 		$this->Periode1->ViewCustomAttributes = "";
 
 		// Periode2
-		$this->Periode2->ViewValue = $this->Periode2->CurrentValue;
+		if (strval($this->Periode2->CurrentValue) <> "") {
+			$this->Periode2->ViewValue = $this->Periode2->optionCaption($this->Periode2->CurrentValue);
+		} else {
+			$this->Periode2->ViewValue = NULL;
+		}
 		$this->Periode2->ViewCustomAttributes = "";
 
 		// Keterangan
@@ -928,18 +944,12 @@ class t0302_bayardetail extends DbTable
 		// Periode1
 		$this->Periode1->EditAttrs["class"] = "form-control";
 		$this->Periode1->EditCustomAttributes = "";
-		if (REMOVE_XSS)
-			$this->Periode1->CurrentValue = HtmlDecode($this->Periode1->CurrentValue);
-		$this->Periode1->EditValue = $this->Periode1->CurrentValue;
-		$this->Periode1->PlaceHolder = RemoveHtml($this->Periode1->caption());
+		$this->Periode1->EditValue = $this->Periode1->options(TRUE);
 
 		// Periode2
 		$this->Periode2->EditAttrs["class"] = "form-control";
 		$this->Periode2->EditCustomAttributes = "";
-		if (REMOVE_XSS)
-			$this->Periode2->CurrentValue = HtmlDecode($this->Periode2->CurrentValue);
-		$this->Periode2->EditValue = $this->Periode2->CurrentValue;
-		$this->Periode2->PlaceHolder = RemoveHtml($this->Periode2->caption());
+		$this->Periode2->EditValue = $this->Periode2->options(TRUE);
 
 		// Keterangan
 		$this->Keterangan->EditAttrs["class"] = "form-control";
@@ -1384,6 +1394,8 @@ class t0302_bayardetail extends DbTable
 	function Row_Inserted($rsold, &$rsnew) {
 
 		//echo "Row Inserted"
+		$tot_det = ExecuteScalar("select sum(Jumlah) from t0302_bayardetail where bayarmaster_id = ".$rsnew["bayarmaster_id"]."");
+		Execute("update t0301_bayarmaster set Total = ".$tot_det." where id = ".$rsnew["bayarmaster_id"]."");
 	}
 
 	// Row Updating event
@@ -1399,6 +1411,8 @@ class t0302_bayardetail extends DbTable
 	function Row_Updated($rsold, &$rsnew) {
 
 		//echo "Row Updated";
+		$tot_det = ExecuteScalar("select sum(Jumlah) from t0302_bayardetail where bayarmaster_id = ".$rsold["bayarmaster_id"]."");
+		Execute("update t0301_bayarmaster set Total = ".$tot_det." where id = ".$rsold["bayarmaster_id"]."");
 	}
 
 	// Row Update Conflict event
@@ -1453,6 +1467,13 @@ class t0302_bayardetail extends DbTable
 	function Row_Deleted(&$rs) {
 
 		//echo "Row Deleted";
+		$rec_cnt_det = ExecuteScalar("select count(Jumlah) from t0302_bayardetail where bayarmaster_id = ".$rs["bayarmaster_id"]."");
+		if ($rec_cnt_det > 0) {
+			$tot_det = ExecuteScalar("select sum(Jumlah) from t0302_bayardetail where bayarmaster_id = ".$rs["bayarmaster_id"]."");
+			Execute("update t0301_bayarmaster set Total = ".$tot_det." where id = ".$rs["bayarmaster_id"]."");
+		} else {
+			Execute("update t0301_bayarmaster set Total = 0 where id = ".$rs["bayarmaster_id"]."");
+		}
 	}
 
 	// Email Sending event
@@ -1474,6 +1495,42 @@ class t0302_bayardetail extends DbTable
 	function Row_Rendering() {
 
 		// Enter your code here
+		// tentukan data iuran berdasarkan masing2 siswa di detail list
+
+		if($this->PageID == "grid") {
+			$grid_count = $this->GridAddRowCount; //var_dump($this);
+
+			// $grid_num = $this->GridCnt;
+			if(isset($this->RowIndex)) {
+				$grid_num = $this->RowIndex;
+
+				//only when we are dawing actual rows
+				if(($grid_count >= $grid_num) && is_int($grid_num) && ($grid_num >= 1)) {
+					$offseter = $grid_num - 1;
+
+					// ambil data iuran
+					$r = ExecuteRow("select * from t0202_siswaiuran where siswa_id = ".$_GET["siswa_id"]." and tahunajaran_id = ".$_SESSION["tahunajaran_id"]." limit 1 OFFSET $offseter");
+					$this->iuran_id->CurrentValue = $r["iuran_id"];
+					$this->Jumlah->CurrentValue = $r["Nilai"];
+					for ($i = 1; $i <= 12; $i++) {
+						if ($r["P".substr("00".$i, -2)] == 0) {
+							$this->Periode1->CurrentValue = $i; //$_SESSION["aperiode"][$i];
+							$this->Periode2->CurrentValue = $i;
+
+							//$this->Periode1->EditValue = $_SESSION["aperiode"][$i];
+							break;
+						}
+					}
+
+					// ambil data pembayaran
+					//$r2 = ew_ExecuteRow("select * from v03_kartuspp where siswa_id = ".$_GET["siswa_id"]." and tahunajaran_id = ".$_GET["tahunajaran_id"]." and siswaspp_id = ".$r["id"]." and Tanggal is null limit 1");
+					//$this->Keterangan->CurrentValue = $r2["Periode"];
+					//hide grid delete
+					//$this->ListOptions->Items["griddelete"]->Visible = FALSE;
+
+				}
+			}
+		}
 	}
 
 	// Row Rendered event

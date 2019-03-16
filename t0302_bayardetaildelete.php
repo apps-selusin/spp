@@ -53,6 +53,10 @@ ft0302_bayardetaildelete.validateRequired = <?php echo json_encode(CLIENT_VALIDA
 ft0302_bayardetaildelete.lists["x_iuran_id"] = <?php echo $t0302_bayardetail_delete->iuran_id->Lookup->toClientList() ?>;
 ft0302_bayardetaildelete.lists["x_iuran_id"].options = <?php echo JsonEncode($t0302_bayardetail_delete->iuran_id->lookupOptions()) ?>;
 ft0302_bayardetaildelete.autoSuggests["x_iuran_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+ft0302_bayardetaildelete.lists["x_Periode1"] = <?php echo $t0302_bayardetail_delete->Periode1->Lookup->toClientList() ?>;
+ft0302_bayardetaildelete.lists["x_Periode1"].options = <?php echo JsonEncode($t0302_bayardetail_delete->Periode1->options(FALSE, TRUE)) ?>;
+ft0302_bayardetaildelete.lists["x_Periode2"] = <?php echo $t0302_bayardetail_delete->Periode2->Lookup->toClientList() ?>;
+ft0302_bayardetaildelete.lists["x_Periode2"].options = <?php echo JsonEncode($t0302_bayardetail_delete->Periode2->options(FALSE, TRUE)) ?>;
 
 // Form object for search
 </script>

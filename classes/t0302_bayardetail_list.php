@@ -811,29 +811,8 @@ class t0302_bayardetail_list extends t0302_bayardetail
 			if ($this->isExport())
 				$this->OtherOptions->hideAllOptions();
 
-			// Get default search criteria
-			AddFilter($this->DefaultSearchWhere, $this->basicSearchWhere(TRUE));
-
-			// Get basic search values
-			$this->loadBasicSearchValues();
-
-			// Process filter list
-			if ($this->processFilterList())
-				$this->terminate();
-
-			// Restore search parms from Session if not searching / reset / export
-			if (($this->isExport() || $this->Command <> "search" && $this->Command <> "reset" && $this->Command <> "resetall") && $this->Command <> "json" && $this->checkSearchParms())
-				$this->restoreSearchParms();
-
-			// Call Recordset SearchValidated event
-			$this->Recordset_SearchValidated();
-
 			// Set up sorting order
 			$this->setupSortOrder();
-
-			// Get basic search criteria
-			if ($SearchError == "")
-				$srchBasic = $this->basicSearchWhere();
 		}
 
 		// Restore display records
@@ -846,31 +825,6 @@ class t0302_bayardetail_list extends t0302_bayardetail
 		// Load Sorting Order
 		if ($this->Command <> "json")
 			$this->loadSortOrder();
-
-		// Load search default if no existing search criteria
-		if (!$this->checkSearchParms()) {
-
-			// Load basic search from default
-			$this->BasicSearch->loadDefault();
-			if ($this->BasicSearch->Keyword != "")
-				$srchBasic = $this->basicSearchWhere();
-		}
-
-		// Build search criteria
-		AddFilter($this->SearchWhere, $srchAdvanced);
-		AddFilter($this->SearchWhere, $srchBasic);
-
-		// Call Recordset_Searching event
-		$this->Recordset_Searching($this->SearchWhere);
-
-		// Save search criteria
-		if ($this->Command == "search" && !$this->RestoreSearch) {
-			$this->setSearchWhere($this->SearchWhere); // Save to Session
-			$this->StartRec = 1; // Reset start record counter
-			$this->setStartRecordNumber($this->StartRec);
-		} elseif ($this->Command <> "json") {
-			$this->SearchWhere = $this->getSearchWhere();
-		}
 
 		// Build filter
 		$filter = "";
@@ -938,13 +892,6 @@ class t0302_bayardetail_list extends t0302_bayardetail
 				else
 					$this->setWarningMessage($Language->phrase("NoRecord"));
 			}
-
-			// Audit trail on search
-			if ($this->AuditTrailOnSearch && $this->Command == "search" && !$this->RestoreSearch) {
-				$searchParm = ServerVar("QUERY_STRING");
-				$searchSql = $this->getSessionWhere();
-				$this->writeAuditTrailOnSearch($searchParm, $searchSql);
-			}
 		}
 
 		// Search options
@@ -1000,276 +947,6 @@ class t0302_bayardetail_list extends t0302_bayardetail
 		return TRUE;
 	}
 
-	// Get list of filters
-	public function getFilterList()
-	{
-		global $UserProfile;
-
-		// Initialize
-		$filterList = "";
-		$savedFilterList = "";
-		$filterList = Concat($filterList, $this->id->AdvancedSearch->toJson(), ","); // Field id
-		$filterList = Concat($filterList, $this->bayarmaster_id->AdvancedSearch->toJson(), ","); // Field bayarmaster_id
-		$filterList = Concat($filterList, $this->iuran_id->AdvancedSearch->toJson(), ","); // Field iuran_id
-		$filterList = Concat($filterList, $this->Periode1->AdvancedSearch->toJson(), ","); // Field Periode1
-		$filterList = Concat($filterList, $this->Periode2->AdvancedSearch->toJson(), ","); // Field Periode2
-		$filterList = Concat($filterList, $this->Keterangan->AdvancedSearch->toJson(), ","); // Field Keterangan
-		$filterList = Concat($filterList, $this->Jumlah->AdvancedSearch->toJson(), ","); // Field Jumlah
-		if ($this->BasicSearch->Keyword <> "") {
-			$wrk = "\"" . TABLE_BASIC_SEARCH . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . TABLE_BASIC_SEARCH_TYPE . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
-			$filterList = Concat($filterList, $wrk, ",");
-		}
-
-		// Return filter list in JSON
-		if ($filterList <> "")
-			$filterList = "\"data\":{" . $filterList . "}";
-		if ($savedFilterList <> "")
-			$filterList = Concat($filterList, "\"filters\":" . $savedFilterList, ",");
-		return ($filterList <> "") ? "{" . $filterList . "}" : "null";
-	}
-
-	// Process filter list
-	protected function processFilterList()
-	{
-		global $UserProfile;
-		if (Post("ajax") == "savefilters") { // Save filter request (Ajax)
-			$filters = Post("filters");
-			$UserProfile->setSearchFilters(CurrentUserName(), "ft0302_bayardetaillistsrch", $filters);
-			WriteJson([["success" => TRUE]]); // Success
-			return TRUE;
-		} elseif (Post("cmd") == "resetfilter") {
-			$this->restoreFilterList();
-		}
-		return FALSE;
-	}
-
-	// Restore list of filters
-	protected function restoreFilterList()
-	{
-
-		// Return if not reset filter
-		if (Post("cmd") !== "resetfilter")
-			return FALSE;
-		$filter = json_decode(Post("filter"), TRUE);
-		$this->Command = "search";
-
-		// Field id
-		$this->id->AdvancedSearch->SearchValue = @$filter["x_id"];
-		$this->id->AdvancedSearch->SearchOperator = @$filter["z_id"];
-		$this->id->AdvancedSearch->SearchCondition = @$filter["v_id"];
-		$this->id->AdvancedSearch->SearchValue2 = @$filter["y_id"];
-		$this->id->AdvancedSearch->SearchOperator2 = @$filter["w_id"];
-		$this->id->AdvancedSearch->save();
-
-		// Field bayarmaster_id
-		$this->bayarmaster_id->AdvancedSearch->SearchValue = @$filter["x_bayarmaster_id"];
-		$this->bayarmaster_id->AdvancedSearch->SearchOperator = @$filter["z_bayarmaster_id"];
-		$this->bayarmaster_id->AdvancedSearch->SearchCondition = @$filter["v_bayarmaster_id"];
-		$this->bayarmaster_id->AdvancedSearch->SearchValue2 = @$filter["y_bayarmaster_id"];
-		$this->bayarmaster_id->AdvancedSearch->SearchOperator2 = @$filter["w_bayarmaster_id"];
-		$this->bayarmaster_id->AdvancedSearch->save();
-
-		// Field iuran_id
-		$this->iuran_id->AdvancedSearch->SearchValue = @$filter["x_iuran_id"];
-		$this->iuran_id->AdvancedSearch->SearchOperator = @$filter["z_iuran_id"];
-		$this->iuran_id->AdvancedSearch->SearchCondition = @$filter["v_iuran_id"];
-		$this->iuran_id->AdvancedSearch->SearchValue2 = @$filter["y_iuran_id"];
-		$this->iuran_id->AdvancedSearch->SearchOperator2 = @$filter["w_iuran_id"];
-		$this->iuran_id->AdvancedSearch->save();
-
-		// Field Periode1
-		$this->Periode1->AdvancedSearch->SearchValue = @$filter["x_Periode1"];
-		$this->Periode1->AdvancedSearch->SearchOperator = @$filter["z_Periode1"];
-		$this->Periode1->AdvancedSearch->SearchCondition = @$filter["v_Periode1"];
-		$this->Periode1->AdvancedSearch->SearchValue2 = @$filter["y_Periode1"];
-		$this->Periode1->AdvancedSearch->SearchOperator2 = @$filter["w_Periode1"];
-		$this->Periode1->AdvancedSearch->save();
-
-		// Field Periode2
-		$this->Periode2->AdvancedSearch->SearchValue = @$filter["x_Periode2"];
-		$this->Periode2->AdvancedSearch->SearchOperator = @$filter["z_Periode2"];
-		$this->Periode2->AdvancedSearch->SearchCondition = @$filter["v_Periode2"];
-		$this->Periode2->AdvancedSearch->SearchValue2 = @$filter["y_Periode2"];
-		$this->Periode2->AdvancedSearch->SearchOperator2 = @$filter["w_Periode2"];
-		$this->Periode2->AdvancedSearch->save();
-
-		// Field Keterangan
-		$this->Keterangan->AdvancedSearch->SearchValue = @$filter["x_Keterangan"];
-		$this->Keterangan->AdvancedSearch->SearchOperator = @$filter["z_Keterangan"];
-		$this->Keterangan->AdvancedSearch->SearchCondition = @$filter["v_Keterangan"];
-		$this->Keterangan->AdvancedSearch->SearchValue2 = @$filter["y_Keterangan"];
-		$this->Keterangan->AdvancedSearch->SearchOperator2 = @$filter["w_Keterangan"];
-		$this->Keterangan->AdvancedSearch->save();
-
-		// Field Jumlah
-		$this->Jumlah->AdvancedSearch->SearchValue = @$filter["x_Jumlah"];
-		$this->Jumlah->AdvancedSearch->SearchOperator = @$filter["z_Jumlah"];
-		$this->Jumlah->AdvancedSearch->SearchCondition = @$filter["v_Jumlah"];
-		$this->Jumlah->AdvancedSearch->SearchValue2 = @$filter["y_Jumlah"];
-		$this->Jumlah->AdvancedSearch->SearchOperator2 = @$filter["w_Jumlah"];
-		$this->Jumlah->AdvancedSearch->save();
-		$this->BasicSearch->setKeyword(@$filter[TABLE_BASIC_SEARCH]);
-		$this->BasicSearch->setType(@$filter[TABLE_BASIC_SEARCH_TYPE]);
-	}
-
-	// Return basic search SQL
-	protected function basicSearchSql($arKeywords, $type)
-	{
-		$where = "";
-		$this->buildBasicSearchSql($where, $this->Periode1, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->Periode2, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->Keterangan, $arKeywords, $type);
-		return $where;
-	}
-
-	// Build basic search SQL
-	protected function buildBasicSearchSql(&$where, &$fld, $arKeywords, $type)
-	{
-		global $BASIC_SEARCH_IGNORE_PATTERN;
-		$defCond = ($type == "OR") ? "OR" : "AND";
-		$arSql = array(); // Array for SQL parts
-		$arCond = array(); // Array for search conditions
-		$cnt = count($arKeywords);
-		$j = 0; // Number of SQL parts
-		for ($i = 0; $i < $cnt; $i++) {
-			$keyword = $arKeywords[$i];
-			$keyword = trim($keyword);
-			if ($BASIC_SEARCH_IGNORE_PATTERN <> "") {
-				$keyword = preg_replace($BASIC_SEARCH_IGNORE_PATTERN, "\\", $keyword);
-				$ar = explode("\\", $keyword);
-			} else {
-				$ar = array($keyword);
-			}
-			foreach ($ar as $keyword) {
-				if ($keyword <> "") {
-					$wrk = "";
-					if ($keyword == "OR" && $type == "") {
-						if ($j > 0)
-							$arCond[$j - 1] = "OR";
-					} elseif ($keyword == NULL_VALUE) {
-						$wrk = $fld->Expression . " IS NULL";
-					} elseif ($keyword == NOT_NULL_VALUE) {
-						$wrk = $fld->Expression . " IS NOT NULL";
-					} elseif ($fld->IsVirtual) {
-						$wrk = $fld->VirtualExpression . Like(QuotedValue("%" . $keyword . "%", DATATYPE_STRING, $this->Dbid), $this->Dbid);
-					} elseif ($fld->DataType != DATATYPE_NUMBER || is_numeric($keyword)) {
-						$wrk = $fld->BasicSearchExpression . Like(QuotedValue("%" . $keyword . "%", DATATYPE_STRING, $this->Dbid), $this->Dbid);
-					}
-					if ($wrk <> "") {
-						$arSql[$j] = $wrk;
-						$arCond[$j] = $defCond;
-						$j += 1;
-					}
-				}
-			}
-		}
-		$cnt = count($arSql);
-		$quoted = FALSE;
-		$sql = "";
-		if ($cnt > 0) {
-			for ($i = 0; $i < $cnt - 1; $i++) {
-				if ($arCond[$i] == "OR") {
-					if (!$quoted)
-						$sql .= "(";
-					$quoted = TRUE;
-				}
-				$sql .= $arSql[$i];
-				if ($quoted && $arCond[$i] <> "OR") {
-					$sql .= ")";
-					$quoted = FALSE;
-				}
-				$sql .= " " . $arCond[$i] . " ";
-			}
-			$sql .= $arSql[$cnt - 1];
-			if ($quoted)
-				$sql .= ")";
-		}
-		if ($sql <> "") {
-			if ($where <> "")
-				$where .= " OR ";
-			$where .= "(" . $sql . ")";
-		}
-	}
-
-	// Return basic search WHERE clause based on search keyword and type
-	protected function basicSearchWhere($default = FALSE)
-	{
-		global $Security;
-		$searchStr = "";
-		if (!$Security->canSearch())
-			return "";
-		$searchKeyword = ($default) ? $this->BasicSearch->KeywordDefault : $this->BasicSearch->Keyword;
-		$searchType = ($default) ? $this->BasicSearch->TypeDefault : $this->BasicSearch->Type;
-
-		// Get search SQL
-		if ($searchKeyword <> "") {
-			$ar = $this->BasicSearch->keywordList($default);
-
-			// Search keyword in any fields
-			if (($searchType == "OR" || $searchType == "AND") && $this->BasicSearch->BasicSearchAnyFields) {
-				foreach ($ar as $keyword) {
-					if ($keyword <> "") {
-						if ($searchStr <> "")
-							$searchStr .= " " . $searchType . " ";
-						$searchStr .= "(" . $this->basicSearchSql(array($keyword), $searchType) . ")";
-					}
-				}
-			} else {
-				$searchStr = $this->basicSearchSql($ar, $searchType);
-			}
-			if (!$default && in_array($this->Command, array("", "reset", "resetall")))
-				$this->Command = "search";
-		}
-		if (!$default && $this->Command == "search") {
-			$this->BasicSearch->setKeyword($searchKeyword);
-			$this->BasicSearch->setType($searchType);
-		}
-		return $searchStr;
-	}
-
-	// Check if search parm exists
-	protected function checkSearchParms()
-	{
-
-		// Check basic search
-		if ($this->BasicSearch->issetSession())
-			return TRUE;
-		return FALSE;
-	}
-
-	// Clear all search parameters
-	protected function resetSearchParms()
-	{
-
-		// Clear search WHERE clause
-		$this->SearchWhere = "";
-		$this->setSearchWhere($this->SearchWhere);
-
-		// Clear basic search parameters
-		$this->resetBasicSearchParms();
-	}
-
-	// Load advanced search default values
-	protected function loadAdvancedSearchDefault()
-	{
-		return FALSE;
-	}
-
-	// Clear all basic search parameters
-	protected function resetBasicSearchParms()
-	{
-		$this->BasicSearch->unsetSession();
-	}
-
-	// Restore all search parameters
-	protected function restoreSearchParms()
-	{
-		$this->RestoreSearch = TRUE;
-
-		// Restore basic search values
-		$this->BasicSearch->load();
-	}
-
 	// Set up sort parameters
 	protected function setupSortOrder()
 	{
@@ -1312,10 +989,6 @@ class t0302_bayardetail_list extends t0302_bayardetail
 
 		// Check if reset command
 		if (substr($this->Command,0,5) == "reset") {
-
-			// Reset search criteria
-			if ($this->Command == "reset" || $this->Command == "resetall")
-				$this->resetSearchParms();
 
 			// Reset master/detail keys
 			if ($this->Command == "resetall") {
@@ -1533,10 +1206,10 @@ class t0302_bayardetail_list extends t0302_bayardetail
 		// Filter button
 		$item = &$this->FilterOptions->add("savecurrentfilter");
 		$item->Body = "<a class=\"ew-save-filter\" data-form=\"ft0302_bayardetaillistsrch\" href=\"#\">" . $Language->phrase("SaveCurrentFilter") . "</a>";
-		$item->Visible = TRUE;
+		$item->Visible = FALSE;
 		$item = &$this->FilterOptions->add("deletefilter");
 		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"ft0302_bayardetaillistsrch\" href=\"#\">" . $Language->phrase("DeleteFilter") . "</a>";
-		$item->Visible = TRUE;
+		$item->Visible = FALSE;
 		$this->FilterOptions->UseDropDownButton = TRUE;
 		$this->FilterOptions->UseButtonGroup = !$this->FilterOptions->UseDropDownButton;
 		$this->FilterOptions->DropDownButtonPhrase = $Language->phrase("Filters");
@@ -1664,17 +1337,6 @@ class t0302_bayardetail_list extends t0302_bayardetail
 		$this->SearchOptions->Tag = "div";
 		$this->SearchOptions->TagClassName = "ew-search-option";
 
-		// Search button
-		$item = &$this->SearchOptions->add("searchtoggle");
-		$searchToggleClass = ($this->SearchWhere <> "") ? " active" : " active";
-		$item->Body = "<button type=\"button\" class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" title=\"" . $Language->phrase("SearchPanel") . "\" data-caption=\"" . $Language->phrase("SearchPanel") . "\" data-toggle=\"button\" data-form=\"ft0302_bayardetaillistsrch\">" . $Language->phrase("SearchLink") . "</button>";
-		$item->Visible = TRUE;
-
-		// Show all button
-		$item = &$this->SearchOptions->add("showall");
-		$item->Body = "<a class=\"btn btn-default ew-show-all\" title=\"" . $Language->phrase("ShowAll") . "\" data-caption=\"" . $Language->phrase("ShowAll") . "\" href=\"" . $this->pageUrl() . "cmd=reset\">" . $Language->phrase("ShowAllBtn") . "</a>";
-		$item->Visible = ($this->SearchWhere <> $this->DefaultSearchWhere && $this->SearchWhere <> "0=101");
-
 		// Button group for search
 		$this->SearchOptions->UseDropDownButton = FALSE;
 		$this->SearchOptions->UseButtonGroup = TRUE;
@@ -1741,15 +1403,6 @@ class t0302_bayardetail_list extends t0302_bayardetail
 			$this->StartRec = (int)(($this->StartRec - 1)/$this->DisplayRecs) * $this->DisplayRecs + 1; // Point to page boundary
 			$this->setStartRecordNumber($this->StartRec);
 		}
-	}
-
-	// Load basic search values
-	protected function loadBasicSearchValues()
-	{
-		$this->BasicSearch->setKeyword(Get(TABLE_BASIC_SEARCH, ""), FALSE);
-		if ($this->BasicSearch->Keyword <> "" && $this->Command == "")
-			$this->Command = "search";
-		$this->BasicSearch->setType(Get(TABLE_BASIC_SEARCH_TYPE, ""), FALSE);
 	}
 
 	// Load recordset
@@ -1924,11 +1577,19 @@ class t0302_bayardetail_list extends t0302_bayardetail
 			$this->iuran_id->ViewCustomAttributes = "";
 
 			// Periode1
-			$this->Periode1->ViewValue = $this->Periode1->CurrentValue;
+			if (strval($this->Periode1->CurrentValue) <> "") {
+				$this->Periode1->ViewValue = $this->Periode1->optionCaption($this->Periode1->CurrentValue);
+			} else {
+				$this->Periode1->ViewValue = NULL;
+			}
 			$this->Periode1->ViewCustomAttributes = "";
 
 			// Periode2
-			$this->Periode2->ViewValue = $this->Periode2->CurrentValue;
+			if (strval($this->Periode2->CurrentValue) <> "") {
+				$this->Periode2->ViewValue = $this->Periode2->optionCaption($this->Periode2->CurrentValue);
+			} else {
+				$this->Periode2->ViewValue = NULL;
+			}
 			$this->Periode2->ViewCustomAttributes = "";
 
 			// Keterangan
@@ -2102,6 +1763,14 @@ class t0302_bayardetail_list extends t0302_bayardetail
 	function Page_Load() {
 
 		//echo "Page Load";
+		// hapus baris di grid
+
+		$this->GridAddRowCount = 0;
+
+		// ambil data iuran
+		if (isset($_GET["siswa_id"]) and isset($_SESSION["tahunajaran_id"])) {
+			$this->GridAddRowCount = ExecuteScalar("select count(*) from t0202_siswaiuran where siswa_id = ".$_GET["siswa_id"]." and tahunajaran_id = ".$_SESSION["tahunajaran_id"]."");
+		}
 	}
 
 	// Page Unload event

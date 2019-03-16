@@ -638,6 +638,7 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 		$this->createToken();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->tahunajaran_id);
 		$this->setupLookupOptions($this->siswa_id);
 
 		// Check modal
@@ -818,7 +819,7 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 				$this->Tanggal->Visible = FALSE; // Disable update for API request
 			else
 				$this->Tanggal->setFormValue($val);
-			$this->Tanggal->CurrentValue = UnFormatDateTime($this->Tanggal->CurrentValue, 0);
+			$this->Tanggal->CurrentValue = UnFormatDateTime($this->Tanggal->CurrentValue, 7);
 		}
 
 		// Check field name 'tahunajaran_id' first before field var 'x_tahunajaran_id'
@@ -861,7 +862,7 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 		$this->id->CurrentValue = $this->id->FormValue;
 		$this->Nomor->CurrentValue = $this->Nomor->FormValue;
 		$this->Tanggal->CurrentValue = $this->Tanggal->FormValue;
-		$this->Tanggal->CurrentValue = UnFormatDateTime($this->Tanggal->CurrentValue, 0);
+		$this->Tanggal->CurrentValue = UnFormatDateTime($this->Tanggal->CurrentValue, 7);
 		$this->tahunajaran_id->CurrentValue = $this->tahunajaran_id->FormValue;
 		$this->siswa_id->CurrentValue = $this->siswa_id->FormValue;
 		$this->Total->CurrentValue = $this->Total->FormValue;
@@ -980,12 +981,29 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 
 			// Tanggal
 			$this->Tanggal->ViewValue = $this->Tanggal->CurrentValue;
-			$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 0);
+			$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 7);
 			$this->Tanggal->ViewCustomAttributes = "";
 
 			// tahunajaran_id
-			$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->CurrentValue;
-			$this->tahunajaran_id->ViewValue = FormatNumber($this->tahunajaran_id->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->tahunajaran_id->CurrentValue);
+			if ($curVal <> "") {
+				$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->lookupCacheOption($curVal);
+				if ($this->tahunajaran_id->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->tahunajaran_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = array();
+						$arwrk[1] = $rswrk->fields('df');
+						$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->CurrentValue;
+					}
+				}
+			} else {
+				$this->tahunajaran_id->ViewValue = NULL;
+			}
 			$this->tahunajaran_id->ViewCustomAttributes = "";
 
 			// siswa_id
@@ -1054,14 +1072,31 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 			// Tanggal
 			$this->Tanggal->EditAttrs["class"] = "form-control";
 			$this->Tanggal->EditCustomAttributes = "";
-			$this->Tanggal->EditValue = HtmlEncode(FormatDateTime($this->Tanggal->CurrentValue, 8));
+			$this->Tanggal->EditValue = HtmlEncode(FormatDateTime($this->Tanggal->CurrentValue, 7));
 			$this->Tanggal->PlaceHolder = RemoveHtml($this->Tanggal->caption());
 
 			// tahunajaran_id
 			$this->tahunajaran_id->EditAttrs["class"] = "form-control";
 			$this->tahunajaran_id->EditCustomAttributes = "";
-			$this->tahunajaran_id->EditValue = HtmlEncode($this->tahunajaran_id->CurrentValue);
-			$this->tahunajaran_id->PlaceHolder = RemoveHtml($this->tahunajaran_id->caption());
+			$curVal = trim(strval($this->tahunajaran_id->CurrentValue));
+			if ($curVal <> "")
+				$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->lookupCacheOption($curVal);
+			else
+				$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->Lookup !== NULL && is_array($this->tahunajaran_id->Lookup->Options) ? $curVal : NULL;
+			if ($this->tahunajaran_id->ViewValue !== NULL) { // Load from cache
+				$this->tahunajaran_id->EditValue = array_values($this->tahunajaran_id->Lookup->Options);
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`id`" . SearchString("=", $this->tahunajaran_id->CurrentValue, DATATYPE_NUMBER, "");
+				}
+				$sqlWrk = $this->tahunajaran_id->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				$arwrk = ($rswrk) ? $rswrk->GetRows() : array();
+				if ($rswrk) $rswrk->Close();
+				$this->tahunajaran_id->EditValue = $arwrk;
+			}
 
 			// siswa_id
 			$this->siswa_id->EditAttrs["class"] = "form-control";
@@ -1153,16 +1188,13 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 				AddMessage($FormError, str_replace("%s", $this->Tanggal->caption(), $this->Tanggal->RequiredErrorMessage));
 			}
 		}
-		if (!CheckDate($this->Tanggal->FormValue)) {
+		if (!CheckEuroDate($this->Tanggal->FormValue)) {
 			AddMessage($FormError, $this->Tanggal->errorMessage());
 		}
 		if ($this->tahunajaran_id->Required) {
 			if (!$this->tahunajaran_id->IsDetailKey && $this->tahunajaran_id->FormValue != NULL && $this->tahunajaran_id->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->tahunajaran_id->caption(), $this->tahunajaran_id->RequiredErrorMessage));
 			}
-		}
-		if (!CheckInteger($this->tahunajaran_id->FormValue)) {
-			AddMessage($FormError, $this->tahunajaran_id->errorMessage());
 		}
 		if ($this->siswa_id->Required) {
 			if (!$this->siswa_id->IsDetailKey && $this->siswa_id->FormValue != NULL && $this->siswa_id->FormValue == "") {
@@ -1233,7 +1265,7 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 			$this->Nomor->setDbValueDef($rsnew, $this->Nomor->CurrentValue, "", $this->Nomor->ReadOnly);
 
 			// Tanggal
-			$this->Tanggal->setDbValueDef($rsnew, UnFormatDateTime($this->Tanggal->CurrentValue, 0), CurrentDate(), $this->Tanggal->ReadOnly);
+			$this->Tanggal->setDbValueDef($rsnew, UnFormatDateTime($this->Tanggal->CurrentValue, 7), CurrentDate(), $this->Tanggal->ReadOnly);
 
 			// tahunajaran_id
 			$this->tahunajaran_id->setDbValueDef($rsnew, $this->tahunajaran_id->CurrentValue, 0, $this->tahunajaran_id->ReadOnly);
@@ -1376,6 +1408,8 @@ class t0301_bayarmaster_edit extends t0301_bayarmaster
 
 					// Format the field values
 					switch ($fld->FieldVar) {
+						case "x_tahunajaran_id":
+							break;
 						case "x_siswa_id":
 							break;
 					}

@@ -54,6 +54,10 @@ ft0302_bayardetailview.validateRequired = <?php echo json_encode(CLIENT_VALIDATE
 ft0302_bayardetailview.lists["x_iuran_id"] = <?php echo $t0302_bayardetail_view->iuran_id->Lookup->toClientList() ?>;
 ft0302_bayardetailview.lists["x_iuran_id"].options = <?php echo JsonEncode($t0302_bayardetail_view->iuran_id->lookupOptions()) ?>;
 ft0302_bayardetailview.autoSuggests["x_iuran_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+ft0302_bayardetailview.lists["x_Periode1"] = <?php echo $t0302_bayardetail_view->Periode1->Lookup->toClientList() ?>;
+ft0302_bayardetailview.lists["x_Periode1"].options = <?php echo JsonEncode($t0302_bayardetail_view->Periode1->options(FALSE, TRUE)) ?>;
+ft0302_bayardetailview.lists["x_Periode2"] = <?php echo $t0302_bayardetail_view->Periode2->Lookup->toClientList() ?>;
+ft0302_bayardetailview.lists["x_Periode2"].options = <?php echo JsonEncode($t0302_bayardetail_view->Periode2->options(FALSE, TRUE)) ?>;
 
 // Form object for search
 </script>

@@ -28,7 +28,9 @@ SetClientVar("login", LoginStatus());
 Page_Rendering();
 ?>
 <?php include_once "header.php" ?>
-<!-- %%Custom page content begin%% --><!-- %%Custom page content end%% --><?php if (DEBUG_ENABLED) echo GetDebugMessage(); ?>
+<?php //echo $_SESSION["tahunajaran_id"]; ?>
+<?php //echo GetNextNomor(); ?>
+<?php if (DEBUG_ENABLED) echo GetDebugMessage(); ?>
 <?php include_once "footer.php" ?>
 <?php
 $cf01_home->terminate();

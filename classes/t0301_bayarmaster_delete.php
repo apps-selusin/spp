@@ -618,6 +618,7 @@ class t0301_bayarmaster_delete extends t0301_bayarmaster
 		$this->createToken();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->tahunajaran_id);
 		$this->setupLookupOptions($this->siswa_id);
 
 		// Set up Breadcrumb
@@ -791,12 +792,29 @@ class t0301_bayarmaster_delete extends t0301_bayarmaster
 
 			// Tanggal
 			$this->Tanggal->ViewValue = $this->Tanggal->CurrentValue;
-			$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 0);
+			$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 7);
 			$this->Tanggal->ViewCustomAttributes = "";
 
 			// tahunajaran_id
-			$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->CurrentValue;
-			$this->tahunajaran_id->ViewValue = FormatNumber($this->tahunajaran_id->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->tahunajaran_id->CurrentValue);
+			if ($curVal <> "") {
+				$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->lookupCacheOption($curVal);
+				if ($this->tahunajaran_id->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->tahunajaran_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = array();
+						$arwrk[1] = $rswrk->fields('df');
+						$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->tahunajaran_id->ViewValue = $this->tahunajaran_id->CurrentValue;
+					}
+				}
+			} else {
+				$this->tahunajaran_id->ViewValue = NULL;
+			}
 			$this->tahunajaran_id->ViewCustomAttributes = "";
 
 			// siswa_id
@@ -997,6 +1015,8 @@ class t0301_bayarmaster_delete extends t0301_bayarmaster
 
 					// Format the field values
 					switch ($fld->FieldVar) {
+						case "x_tahunajaran_id":
+							break;
 						case "x_siswa_id":
 							break;
 					}

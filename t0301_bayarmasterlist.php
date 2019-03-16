@@ -52,6 +52,8 @@ ft0301_bayarmasterlist.Form_CustomValidate = function(fobj) { // DO NOT CHANGE T
 ft0301_bayarmasterlist.validateRequired = <?php echo json_encode(CLIENT_VALIDATE) ?>;
 
 // Dynamic selection lists
+ft0301_bayarmasterlist.lists["x_tahunajaran_id"] = <?php echo $t0301_bayarmaster_list->tahunajaran_id->Lookup->toClientList() ?>;
+ft0301_bayarmasterlist.lists["x_tahunajaran_id"].options = <?php echo JsonEncode($t0301_bayarmaster_list->tahunajaran_id->lookupOptions()) ?>;
 ft0301_bayarmasterlist.lists["x_siswa_id"] = <?php echo $t0301_bayarmaster_list->siswa_id->Lookup->toClientList() ?>;
 ft0301_bayarmasterlist.lists["x_siswa_id"].options = <?php echo JsonEncode($t0301_bayarmaster_list->siswa_id->lookupOptions()) ?>;
 ft0301_bayarmasterlist.autoSuggests["x_siswa_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;

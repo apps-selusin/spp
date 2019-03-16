@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2019/3/15" version="15.0.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2019/3/16" version="15.0.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!-- 
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -1002,9 +1002,57 @@
       </field>
       <field id="periode1">
         <phrase id="fldcaption" value="Periode 1" />
+        <phrase id="fldtagvalue1" value="1" />
+        <phrase id="fldtagcaption1" value="Juli" />
+        <phrase id="fldtagvalue2" value="2" />
+        <phrase id="fldtagcaption2" value="Agustus" />
+        <phrase id="fldtagvalue3" value="3" />
+        <phrase id="fldtagcaption3" value="September" />
+        <phrase id="fldtagvalue4" value="4" />
+        <phrase id="fldtagcaption4" value="Oktober" />
+        <phrase id="fldtagvalue5" value="5" />
+        <phrase id="fldtagcaption5" value="November" />
+        <phrase id="fldtagvalue6" value="6" />
+        <phrase id="fldtagcaption6" value="Desember" />
+        <phrase id="fldtagvalue7" value="7" />
+        <phrase id="fldtagcaption7" value="Januari" />
+        <phrase id="fldtagvalue8" value="8" />
+        <phrase id="fldtagcaption8" value="Februari" />
+        <phrase id="fldtagvalue9" value="9" />
+        <phrase id="fldtagcaption9" value="Maret" />
+        <phrase id="fldtagvalue10" value="10" />
+        <phrase id="fldtagcaption10" value="April" />
+        <phrase id="fldtagvalue11" value="11" />
+        <phrase id="fldtagcaption11" value="Mei" />
+        <phrase id="fldtagvalue12" value="12" />
+        <phrase id="fldtagcaption12" value="Juni" />
       </field>
       <field id="periode2">
         <phrase id="fldcaption" value="Periode 2" />
+        <phrase id="fldtagvalue1" value="1" />
+        <phrase id="fldtagcaption1" value="Juli" />
+        <phrase id="fldtagvalue2" value="2" />
+        <phrase id="fldtagcaption2" value="Agustus" />
+        <phrase id="fldtagvalue3" value="3" />
+        <phrase id="fldtagcaption3" value="September" />
+        <phrase id="fldtagvalue4" value="4" />
+        <phrase id="fldtagcaption4" value="Oktober" />
+        <phrase id="fldtagvalue5" value="5" />
+        <phrase id="fldtagcaption5" value="November" />
+        <phrase id="fldtagvalue6" value="6" />
+        <phrase id="fldtagcaption6" value="Desember" />
+        <phrase id="fldtagvalue7" value="7" />
+        <phrase id="fldtagcaption7" value="Januari" />
+        <phrase id="fldtagvalue8" value="8" />
+        <phrase id="fldtagcaption8" value="Februari" />
+        <phrase id="fldtagvalue9" value="9" />
+        <phrase id="fldtagcaption9" value="Maret" />
+        <phrase id="fldtagvalue10" value="10" />
+        <phrase id="fldtagcaption10" value="April" />
+        <phrase id="fldtagvalue11" value="11" />
+        <phrase id="fldtagcaption11" value="Mei" />
+        <phrase id="fldtagvalue12" value="12" />
+        <phrase id="fldtagcaption12" value="Juni" />
       </field>
       <field id="keterangan">
         <phrase id="fldcaption" value="Keterangan" />

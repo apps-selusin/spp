@@ -995,11 +995,19 @@ class t0302_bayardetail_view extends t0302_bayardetail
 			$this->iuran_id->ViewCustomAttributes = "";
 
 			// Periode1
-			$this->Periode1->ViewValue = $this->Periode1->CurrentValue;
+			if (strval($this->Periode1->CurrentValue) <> "") {
+				$this->Periode1->ViewValue = $this->Periode1->optionCaption($this->Periode1->CurrentValue);
+			} else {
+				$this->Periode1->ViewValue = NULL;
+			}
 			$this->Periode1->ViewCustomAttributes = "";
 
 			// Periode2
-			$this->Periode2->ViewValue = $this->Periode2->CurrentValue;
+			if (strval($this->Periode2->CurrentValue) <> "") {
+				$this->Periode2->ViewValue = $this->Periode2->optionCaption($this->Periode2->CurrentValue);
+			} else {
+				$this->Periode2->ViewValue = NULL;
+			}
 			$this->Periode2->ViewCustomAttributes = "";
 
 			// Keterangan

@@ -111,6 +111,10 @@ ft0302_bayardetailgrid.validateRequired = <?php echo json_encode(CLIENT_VALIDATE
 ft0302_bayardetailgrid.lists["x_iuran_id"] = <?php echo $t0302_bayardetail_grid->iuran_id->Lookup->toClientList() ?>;
 ft0302_bayardetailgrid.lists["x_iuran_id"].options = <?php echo JsonEncode($t0302_bayardetail_grid->iuran_id->lookupOptions()) ?>;
 ft0302_bayardetailgrid.autoSuggests["x_iuran_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+ft0302_bayardetailgrid.lists["x_Periode1"] = <?php echo $t0302_bayardetail_grid->Periode1->Lookup->toClientList() ?>;
+ft0302_bayardetailgrid.lists["x_Periode1"].options = <?php echo JsonEncode($t0302_bayardetail_grid->Periode1->options(FALSE, TRUE)) ?>;
+ft0302_bayardetailgrid.lists["x_Periode2"] = <?php echo $t0302_bayardetail_grid->Periode2->Lookup->toClientList() ?>;
+ft0302_bayardetailgrid.lists["x_Periode2"].options = <?php echo JsonEncode($t0302_bayardetail_grid->Periode2->options(FALSE, TRUE)) ?>;
 
 // Form object for search
 </script>
@@ -356,13 +360,21 @@ ft0302_bayardetailgrid.createAutoSuggest({"id":"x<?php echo $t0302_bayardetail_g
 		<td data-name="Periode1"<?php echo $t0302_bayardetail->Periode1->cellAttributes() ?>>
 <?php if ($t0302_bayardetail->RowType == ROWTYPE_ADD) { // Add record ?>
 <span id="el<?php echo $t0302_bayardetail_grid->RowCnt ?>_t0302_bayardetail_Periode1" class="form-group t0302_bayardetail_Periode1">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode1" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode1->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode1->EditValue ?>"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode1" data-value-separator="<?php echo $t0302_bayardetail->Periode1->displayValueSeparatorAttribute() ?>" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode1->selectOptionListHtml("x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1") ?>
+	</select>
+</div>
 </span>
 <input type="hidden" data-table="t0302_bayardetail" data-field="x_Periode1" name="o<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" id="o<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" value="<?php echo HtmlEncode($t0302_bayardetail->Periode1->OldValue) ?>">
 <?php } ?>
 <?php if ($t0302_bayardetail->RowType == ROWTYPE_EDIT) { // Edit record ?>
 <span id="el<?php echo $t0302_bayardetail_grid->RowCnt ?>_t0302_bayardetail_Periode1" class="form-group t0302_bayardetail_Periode1">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode1" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode1->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode1->EditValue ?>"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode1" data-value-separator="<?php echo $t0302_bayardetail->Periode1->displayValueSeparatorAttribute() ?>" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode1->selectOptionListHtml("x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1") ?>
+	</select>
+</div>
 </span>
 <?php } ?>
 <?php if ($t0302_bayardetail->RowType == ROWTYPE_VIEW) { // View record ?>
@@ -384,13 +396,21 @@ ft0302_bayardetailgrid.createAutoSuggest({"id":"x<?php echo $t0302_bayardetail_g
 		<td data-name="Periode2"<?php echo $t0302_bayardetail->Periode2->cellAttributes() ?>>
 <?php if ($t0302_bayardetail->RowType == ROWTYPE_ADD) { // Add record ?>
 <span id="el<?php echo $t0302_bayardetail_grid->RowCnt ?>_t0302_bayardetail_Periode2" class="form-group t0302_bayardetail_Periode2">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode2" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode2->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode2->EditValue ?>"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode2" data-value-separator="<?php echo $t0302_bayardetail->Periode2->displayValueSeparatorAttribute() ?>" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode2->selectOptionListHtml("x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2") ?>
+	</select>
+</div>
 </span>
 <input type="hidden" data-table="t0302_bayardetail" data-field="x_Periode2" name="o<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" id="o<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" value="<?php echo HtmlEncode($t0302_bayardetail->Periode2->OldValue) ?>">
 <?php } ?>
 <?php if ($t0302_bayardetail->RowType == ROWTYPE_EDIT) { // Edit record ?>
 <span id="el<?php echo $t0302_bayardetail_grid->RowCnt ?>_t0302_bayardetail_Periode2" class="form-group t0302_bayardetail_Periode2">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode2" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode2->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode2->EditValue ?>"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode2" data-value-separator="<?php echo $t0302_bayardetail->Periode2->displayValueSeparatorAttribute() ?>" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode2->selectOptionListHtml("x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2") ?>
+	</select>
+</div>
 </span>
 <?php } ?>
 <?php if ($t0302_bayardetail->RowType == ROWTYPE_VIEW) { // View record ?>
@@ -539,7 +559,11 @@ ft0302_bayardetailgrid.createAutoSuggest({"id":"x<?php echo $t0302_bayardetail_g
 		<td data-name="Periode1">
 <?php if (!$t0302_bayardetail->isConfirm()) { ?>
 <span id="el$rowindex$_t0302_bayardetail_Periode1" class="form-group t0302_bayardetail_Periode1">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode1" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode1->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode1->EditValue ?>"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode1" data-value-separator="<?php echo $t0302_bayardetail->Periode1->displayValueSeparatorAttribute() ?>" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1"<?php echo $t0302_bayardetail->Periode1->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode1->selectOptionListHtml("x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode1") ?>
+	</select>
+</div>
 </span>
 <?php } else { ?>
 <span id="el$rowindex$_t0302_bayardetail_Periode1" class="form-group t0302_bayardetail_Periode1">
@@ -555,7 +579,11 @@ ft0302_bayardetailgrid.createAutoSuggest({"id":"x<?php echo $t0302_bayardetail_g
 		<td data-name="Periode2">
 <?php if (!$t0302_bayardetail->isConfirm()) { ?>
 <span id="el$rowindex$_t0302_bayardetail_Periode2" class="form-group t0302_bayardetail_Periode2">
-<input type="text" data-table="t0302_bayardetail" data-field="x_Periode2" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" size="30" maxlength="14" placeholder="<?php echo HtmlEncode($t0302_bayardetail->Periode2->getPlaceHolder()) ?>" value="<?php echo $t0302_bayardetail->Periode2->EditValue ?>"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0302_bayardetail" data-field="x_Periode2" data-value-separator="<?php echo $t0302_bayardetail->Periode2->displayValueSeparatorAttribute() ?>" id="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2" name="x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2"<?php echo $t0302_bayardetail->Periode2->editAttributes() ?>>
+		<?php echo $t0302_bayardetail->Periode2->selectOptionListHtml("x<?php echo $t0302_bayardetail_grid->RowIndex ?>_Periode2") ?>
+	</select>
+</div>
 </span>
 <?php } else { ?>
 <span id="el$rowindex$_t0302_bayardetail_Periode2" class="form-group t0302_bayardetail_Periode2">

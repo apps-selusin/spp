@@ -1000,11 +1000,19 @@ class t0302_bayardetail_edit extends t0302_bayardetail
 			$this->iuran_id->ViewCustomAttributes = "";
 
 			// Periode1
-			$this->Periode1->ViewValue = $this->Periode1->CurrentValue;
+			if (strval($this->Periode1->CurrentValue) <> "") {
+				$this->Periode1->ViewValue = $this->Periode1->optionCaption($this->Periode1->CurrentValue);
+			} else {
+				$this->Periode1->ViewValue = NULL;
+			}
 			$this->Periode1->ViewCustomAttributes = "";
 
 			// Periode2
-			$this->Periode2->ViewValue = $this->Periode2->CurrentValue;
+			if (strval($this->Periode2->CurrentValue) <> "") {
+				$this->Periode2->ViewValue = $this->Periode2->optionCaption($this->Periode2->CurrentValue);
+			} else {
+				$this->Periode2->ViewValue = NULL;
+			}
 			$this->Periode2->ViewCustomAttributes = "";
 
 			// Keterangan
@@ -1070,18 +1078,12 @@ class t0302_bayardetail_edit extends t0302_bayardetail
 			// Periode1
 			$this->Periode1->EditAttrs["class"] = "form-control";
 			$this->Periode1->EditCustomAttributes = "";
-			if (REMOVE_XSS)
-				$this->Periode1->CurrentValue = HtmlDecode($this->Periode1->CurrentValue);
-			$this->Periode1->EditValue = HtmlEncode($this->Periode1->CurrentValue);
-			$this->Periode1->PlaceHolder = RemoveHtml($this->Periode1->caption());
+			$this->Periode1->EditValue = $this->Periode1->options(TRUE);
 
 			// Periode2
 			$this->Periode2->EditAttrs["class"] = "form-control";
 			$this->Periode2->EditCustomAttributes = "";
-			if (REMOVE_XSS)
-				$this->Periode2->CurrentValue = HtmlDecode($this->Periode2->CurrentValue);
-			$this->Periode2->EditValue = HtmlEncode($this->Periode2->CurrentValue);
-			$this->Periode2->PlaceHolder = RemoveHtml($this->Periode2->caption());
+			$this->Periode2->EditValue = $this->Periode2->options(TRUE);
 
 			// Keterangan
 			$this->Keterangan->EditAttrs["class"] = "form-control";

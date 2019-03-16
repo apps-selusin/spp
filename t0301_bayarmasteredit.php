@@ -65,16 +65,13 @@ ft0301_bayarmasteredit.validate = function() {
 				return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $t0301_bayarmaster->Tanggal->caption(), $t0301_bayarmaster->Tanggal->RequiredErrorMessage)) ?>");
 		<?php } ?>
 			elm = this.getElements("x" + infix + "_Tanggal");
-			if (elm && !ew.checkDateDef(elm.value))
+			if (elm && !ew.checkEuroDate(elm.value))
 				return this.onError(elm, "<?php echo JsEncode($t0301_bayarmaster->Tanggal->errorMessage()) ?>");
 		<?php if ($t0301_bayarmaster_edit->tahunajaran_id->Required) { ?>
 			elm = this.getElements("x" + infix + "_tahunajaran_id");
 			if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 				return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $t0301_bayarmaster->tahunajaran_id->caption(), $t0301_bayarmaster->tahunajaran_id->RequiredErrorMessage)) ?>");
 		<?php } ?>
-			elm = this.getElements("x" + infix + "_tahunajaran_id");
-			if (elm && !ew.checkInteger(elm.value))
-				return this.onError(elm, "<?php echo JsEncode($t0301_bayarmaster->tahunajaran_id->errorMessage()) ?>");
 		<?php if ($t0301_bayarmaster_edit->siswa_id->Required) { ?>
 			elm = this.getElements("x" + infix + "_siswa_id");
 			if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -119,6 +116,8 @@ ft0301_bayarmasteredit.Form_CustomValidate = function(fobj) { // DO NOT CHANGE T
 ft0301_bayarmasteredit.validateRequired = <?php echo json_encode(CLIENT_VALIDATE) ?>;
 
 // Dynamic selection lists
+ft0301_bayarmasteredit.lists["x_tahunajaran_id"] = <?php echo $t0301_bayarmaster_edit->tahunajaran_id->Lookup->toClientList() ?>;
+ft0301_bayarmasteredit.lists["x_tahunajaran_id"].options = <?php echo JsonEncode($t0301_bayarmaster_edit->tahunajaran_id->lookupOptions()) ?>;
 ft0301_bayarmasteredit.lists["x_siswa_id"] = <?php echo $t0301_bayarmaster_edit->siswa_id->Lookup->toClientList() ?>;
 ft0301_bayarmasteredit.lists["x_siswa_id"].options = <?php echo JsonEncode($t0301_bayarmaster_edit->siswa_id->lookupOptions()) ?>;
 ft0301_bayarmasteredit.autoSuggests["x_siswa_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
@@ -156,10 +155,10 @@ $t0301_bayarmaster_edit->showMessage();
 		<label id="elh_t0301_bayarmaster_Tanggal" for="x_Tanggal" class="<?php echo $t0301_bayarmaster_edit->LeftColumnClass ?>"><?php echo $t0301_bayarmaster->Tanggal->caption() ?><?php echo ($t0301_bayarmaster->Tanggal->Required) ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
 		<div class="<?php echo $t0301_bayarmaster_edit->RightColumnClass ?>"><div<?php echo $t0301_bayarmaster->Tanggal->cellAttributes() ?>>
 <span id="el_t0301_bayarmaster_Tanggal">
-<input type="text" data-table="t0301_bayarmaster" data-field="x_Tanggal" name="x_Tanggal" id="x_Tanggal" placeholder="<?php echo HtmlEncode($t0301_bayarmaster->Tanggal->getPlaceHolder()) ?>" value="<?php echo $t0301_bayarmaster->Tanggal->EditValue ?>"<?php echo $t0301_bayarmaster->Tanggal->editAttributes() ?>>
+<input type="text" data-table="t0301_bayarmaster" data-field="x_Tanggal" data-format="7" name="x_Tanggal" id="x_Tanggal" placeholder="<?php echo HtmlEncode($t0301_bayarmaster->Tanggal->getPlaceHolder()) ?>" value="<?php echo $t0301_bayarmaster->Tanggal->EditValue ?>"<?php echo $t0301_bayarmaster->Tanggal->editAttributes() ?>>
 <?php if (!$t0301_bayarmaster->Tanggal->ReadOnly && !$t0301_bayarmaster->Tanggal->Disabled && !isset($t0301_bayarmaster->Tanggal->EditAttrs["readonly"]) && !isset($t0301_bayarmaster->Tanggal->EditAttrs["disabled"])) { ?>
 <script>
-ew.createDateTimePicker("ft0301_bayarmasteredit", "x_Tanggal", {"ignoreReadonly":true,"useCurrent":false,"format":0});
+ew.createDateTimePicker("ft0301_bayarmasteredit", "x_Tanggal", {"ignoreReadonly":true,"useCurrent":false,"format":7});
 </script>
 <?php } ?>
 </span>
@@ -171,7 +170,12 @@ ew.createDateTimePicker("ft0301_bayarmasteredit", "x_Tanggal", {"ignoreReadonly"
 		<label id="elh_t0301_bayarmaster_tahunajaran_id" for="x_tahunajaran_id" class="<?php echo $t0301_bayarmaster_edit->LeftColumnClass ?>"><?php echo $t0301_bayarmaster->tahunajaran_id->caption() ?><?php echo ($t0301_bayarmaster->tahunajaran_id->Required) ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
 		<div class="<?php echo $t0301_bayarmaster_edit->RightColumnClass ?>"><div<?php echo $t0301_bayarmaster->tahunajaran_id->cellAttributes() ?>>
 <span id="el_t0301_bayarmaster_tahunajaran_id">
-<input type="text" data-table="t0301_bayarmaster" data-field="x_tahunajaran_id" name="x_tahunajaran_id" id="x_tahunajaran_id" size="30" placeholder="<?php echo HtmlEncode($t0301_bayarmaster->tahunajaran_id->getPlaceHolder()) ?>" value="<?php echo $t0301_bayarmaster->tahunajaran_id->EditValue ?>"<?php echo $t0301_bayarmaster->tahunajaran_id->editAttributes() ?>>
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="t0301_bayarmaster" data-field="x_tahunajaran_id" data-value-separator="<?php echo $t0301_bayarmaster->tahunajaran_id->displayValueSeparatorAttribute() ?>" id="x_tahunajaran_id" name="x_tahunajaran_id"<?php echo $t0301_bayarmaster->tahunajaran_id->editAttributes() ?>>
+		<?php echo $t0301_bayarmaster->tahunajaran_id->selectOptionListHtml("x_tahunajaran_id") ?>
+	</select>
+</div>
+<?php echo $t0301_bayarmaster->tahunajaran_id->Lookup->getParamTag("p_x_tahunajaran_id") ?>
 </span>
 <?php echo $t0301_bayarmaster->tahunajaran_id->CustomMsg ?></div></div>
 	</div>
