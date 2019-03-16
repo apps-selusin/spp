@@ -1,1 +1,823 @@
-(function(e,t){typeof exports==="object"&&typeof module!=="undefined"?t(exports):typeof define==="function"&&define.amd?define(["exports"],t):t(e.adminlte={})})(this,function(e){"use strict";var t=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(e){return typeof e}:function(e){return e&&typeof Symbol==="function"&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};var n=function(e,t){if(!(e instanceof t)){throw new TypeError("Cannot call a class as a function")}};var i=function(e){var t="ControlSidebar";var i="lte.control.sidebar";var r=e.fn[t];var o={CONTROL_SIDEBAR:".control-sidebar",DATA_TOGGLE:'[data-widget="control-sidebar"]',MAIN_HEADER:".main-header"};var a={CONTROL_SIDEBAR_OPEN:"control-sidebar-open",CONTROL_SIDEBAR_SLIDE:"control-sidebar-slide-open"};var s={slide:true};var c=function(){function t(e,i){n(this,t);this._element=e;this._config=this._getConfig(i)}t.prototype.show=function t(){if(this._config.slide){e("body").removeClass(a.CONTROL_SIDEBAR_SLIDE)}else{e("body").removeClass(a.CONTROL_SIDEBAR_OPEN)}};t.prototype.collapse=function t(){if(this._config.slide){e("body").addClass(a.CONTROL_SIDEBAR_SLIDE)}else{e("body").addClass(a.CONTROL_SIDEBAR_OPEN)}};t.prototype.toggle=function t(){this._setMargin();var n=e("body").hasClass(a.CONTROL_SIDEBAR_OPEN)||e("body").hasClass(a.CONTROL_SIDEBAR_SLIDE);if(n){this.show()}else{this.collapse()}};t.prototype._getConfig=function t(n){return e.extend({},s,n)};t.prototype._setMargin=function t(){e(o.CONTROL_SIDEBAR).css({top:e(o.MAIN_HEADER).outerHeight()})};t._jQueryInterface=function n(r){return this.each(function(){var n=e(this).data(i);if(!n){n=new t(this,e(this).data());e(this).data(i,n)}if(n[r]==="undefined"){throw new Error(r+" is not a function")}n[r]()})};return t}();e(document).on("click",o.DATA_TOGGLE,function(t){t.preventDefault();c._jQueryInterface.call(e(this),"toggle")});e.fn[t]=c._jQueryInterface;e.fn[t].Constructor=c;e.fn[t].noConflict=function(){e.fn[t]=r;return c._jQueryInterface};return c}(jQuery);var r=function(e){var t="Layout";var i="lte.layout";var r=e.fn[t];var o={SIDEBAR:".main-sidebar",HEADER:".main-header",CONTENT:".content-wrapper",CONTENT_HEADER:".content-header",WRAPPER:".wrapper",CONTROL_SIDEBAR:".control-sidebar",LAYOUT_FIXED:".layout-fixed",FOOTER:".main-footer"};var a={HOLD:"hold-transition",SIDEBAR:"main-sidebar",LAYOUT_FIXED:"layout-fixed"};var s=function(){function t(e){n(this,t);this._element=e;this._init()}t.prototype.fixLayoutHeight=function t(){var n={window:e(window).height(),header:e(o.HEADER).outerHeight(),footer:e(o.FOOTER).outerHeight(),sidebar:e(o.SIDEBAR).height()};var i=this._max(n);e(o.CONTENT).css("min-height",i-n.header);e(o.SIDEBAR).css("min-height",i-n.header)};t.prototype._init=function t(){var n=this;e("body").removeClass(a.HOLD);this.fixLayoutHeight();e(o.SIDEBAR).on("collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu",function(){n.fixLayoutHeight()});e(window).resize(function(){n.fixLayoutHeight()});e("body, html").css("height","auto")};t.prototype._max=function e(t){var n=0;Object.keys(t).forEach(function(e){if(t[e]>n){n=t[e]}});return n};t._jQueryInterface=function n(r){return this.each(function(){var n=e(this).data(i);if(!n){n=new t(this);e(this).data(i,n)}if(r){n[r]()}})};return t}();e(window).on("load",function(){s._jQueryInterface.call(e("body"))});e.fn[t]=s._jQueryInterface;e.fn[t].Constructor=s;e.fn[t].noConflict=function(){e.fn[t]=r;return s._jQueryInterface};return s}(jQuery);var o=function(e){var t="PushMenu";var i="lte.pushmenu";var r="."+i;var o=e.fn[t];var a={COLLAPSED:"collapsed"+r,SHOWN:"shown"+r};var s={screenCollapseSize:768};var c={TOGGLE_BUTTON:'[data-widget="pushmenu"]',SIDEBAR_MINI:".sidebar-mini",SIDEBAR_COLLAPSED:".sidebar-collapse",BODY:"body",OVERLAY:"#sidebar-overlay",WRAPPER:".wrapper"};var f={SIDEBAR_OPEN:"sidebar-open",COLLAPSED:"sidebar-collapse",OPEN:"sidebar-open",SIDEBAR_MINI:"sidebar-mini"};var u=function(){function t(i,r){n(this,t);this._element=i;this._options=e.extend({},s,r);if(!e(c.OVERLAY).length){this._addOverlay()}}t.prototype.show=function t(){e(c.BODY).addClass(f.OPEN).removeClass(f.COLLAPSED);var n=e.Event(a.SHOWN);e(this._element).trigger(n)};t.prototype.collapse=function t(){e(c.BODY).removeClass(f.OPEN).addClass(f.COLLAPSED);var n=e.Event(a.COLLAPSED);e(this._element).trigger(n)};t.prototype.toggle=function t(){var n=void 0;if(e(window).width()>=this._options.screenCollapseSize){n=!e(c.BODY).hasClass(f.COLLAPSED)}else{n=e(c.BODY).hasClass(f.OPEN)}if(n){this.collapse()}else{this.show()}};t.prototype._addOverlay=function t(){var n=this;var i=e("<div />",{id:"sidebar-overlay"});i.on("click",function(){n.collapse()});e(c.WRAPPER).append(i)};t._jQueryInterface=function n(r){return this.each(function(){var n=e(this).data(i);if(!n){n=new t(this);e(this).data(i,n)}if(r){n[r]()}})};return t}();e(document).on("click",c.TOGGLE_BUTTON,function(t){t.preventDefault();var n=t.currentTarget;if(e(n).data("widget")!=="pushmenu"){n=e(n).closest(c.TOGGLE_BUTTON)}u._jQueryInterface.call(e(n),"toggle")});e.fn[t]=u._jQueryInterface;e.fn[t].Constructor=u;e.fn[t].noConflict=function(){e.fn[t]=o;return u._jQueryInterface};return u}(jQuery);var a=function(e){var t="Treeview";var i="lte.treeview";var r="."+i;var o=e.fn[t];var a={SELECTED:"selected"+r,EXPANDED:"expanded"+r,COLLAPSED:"collapsed"+r,LOAD_DATA_API:"load"+r};var s={LI:".nav-item",LINK:".nav-link",TREEVIEW_MENU:".nav-treeview",OPEN:".menu-open",DATA_WIDGET:'[data-widget="treeview"]'};var c={LI:"nav-item",LINK:"nav-link",TREEVIEW_MENU:"nav-treeview",OPEN:"menu-open"};var f={trigger:s.DATA_WIDGET+" "+s.LINK,animationSpeed:300,accordion:true};var u=function(){function t(e,i){n(this,t);this._config=i;this._element=e}t.prototype.init=function e(){this._setupListeners()};t.prototype.expand=function t(n,i){var r=this;var o=e.Event(a.EXPANDED);if(this._config.accordion){var f=i.siblings(s.OPEN).first();var u=f.find(s.TREEVIEW_MENU).first();this.collapse(u,f)}n.slideDown(this._config.animationSpeed,function(){i.addClass(c.OPEN);e(r._element).trigger(o)})};t.prototype.collapse=function t(n,i){var r=this;var o=e.Event(a.COLLAPSED);n.slideUp(this._config.animationSpeed,function(){i.removeClass(c.OPEN);e(r._element).trigger(o);n.find(s.OPEN+" > "+s.TREEVIEW_MENU).slideUp();n.find(s.OPEN).removeClass(c.OPEN)})};t.prototype.toggle=function t(n){var i=e(n.currentTarget);var r=i.next();if(!r.is(s.TREEVIEW_MENU)){return}n.preventDefault();var o=i.parents(s.LI).first();var a=o.hasClass(c.OPEN);if(a){this.collapse(e(r),o)}else{this.expand(e(r),o)}};t.prototype._setupListeners=function t(){var n=this;e(document).on("click",this._config.trigger,function(e){n.toggle(e)})};t._jQueryInterface=function n(r){return this.each(function(){var n=e(this).data(i);var o=e.extend({},f,e(this).data());if(!n){n=new t(e(this),o);e(this).data(i,n)}if(r==="init"){n[r]()}})};return t}();e(window).on(a.LOAD_DATA_API,function(){e(s.DATA_WIDGET).each(function(){u._jQueryInterface.call(e(this),"init")})});e.fn[t]=u._jQueryInterface;e.fn[t].Constructor=u;e.fn[t].noConflict=function(){e.fn[t]=o;return u._jQueryInterface};return u}(jQuery);var s=function(e){var i="Widget";var r="lte.widget";var o="."+r;var a=e.fn[i];var s={EXPANDED:"expanded"+o,COLLAPSED:"collapsed"+o,REMOVED:"removed"+o};var c={DATA_REMOVE:'[data-widget="remove"]',DATA_COLLAPSE:'[data-widget="collapse"]',CARD:".card",CARD_HEADER:".card-header",CARD_BODY:".card-body",CARD_FOOTER:".card-footer",COLLAPSED:".collapsed-card"};var f={COLLAPSED:"collapsed-card"};var u={animationSpeed:"normal",collapseTrigger:c.DATA_COLLAPSE,removeTrigger:c.DATA_REMOVE};var l=function(){function i(t,r){n(this,i);this._element=t;this._parent=t.parents(c.CARD).first();this._settings=e.extend({},u,r)}i.prototype.collapse=function t(){var n=this;this._parent.children(c.CARD_BODY+", "+c.CARD_FOOTER).slideUp(this._settings.animationSpeed,function(){n._parent.addClass(f.COLLAPSED)});var i=e.Event(s.COLLAPSED);this._element.trigger(i,this._parent)};i.prototype.expand=function t(){var n=this;this._parent.children(c.CARD_BODY+", "+c.CARD_FOOTER).slideDown(this._settings.animationSpeed,function(){n._parent.removeClass(f.COLLAPSED)});var i=e.Event(s.EXPANDED);this._element.trigger(i,this._parent)};i.prototype.remove=function t(){this._parent.slideUp();var n=e.Event(s.REMOVED);this._element.trigger(n,this._parent)};i.prototype.toggle=function e(){if(this._parent.hasClass(f.COLLAPSED)){this.expand();return}this.collapse()};i.prototype._init=function t(n){var i=this;this._parent=n;e(this).find(this._settings.collapseTrigger).click(function(){i.toggle()});e(this).find(this._settings.removeTrigger).click(function(){i.remove()})};i._jQueryInterface=function n(o){return this.each(function(){var n=e(this).data(r);if(!n){n=new i(e(this),n);e(this).data(r,typeof o==="string"?n:o)}if(typeof o==="string"&&o.match(/remove|toggle/)){n[o]()}else if((typeof o==="undefined"?"undefined":t(o))==="object"){n._init(e(this))}})};return i}();e(document).on("click",c.DATA_COLLAPSE,function(t){if(t){t.preventDefault()}l._jQueryInterface.call(e(this),"toggle")});e(document).on("click",c.DATA_REMOVE,function(t){if(t){t.preventDefault()}l._jQueryInterface.call(e(this),"remove")});e.fn[i]=l._jQueryInterface;e.fn[i].Constructor=l;e.fn[i].noConflict=function(){e.fn[i]=a;return l._jQueryInterface};return l}(jQuery);e.ControlSidebar=i;e.Layout=r;e.PushMenu=o;e.Treeview=a;e.Widget=s;Object.defineProperty(e,"__esModule",{value:true})});
+/*!
+ * AdminLTE v3.0.0-alpha.2 (https://adminlte.io)
+ * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+ */
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.adminlte = {})));
+}(this, (function (exports) { 'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+/**
+ * --------------------------------------------
+ * AdminLTE ControlSidebar.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var ControlSidebar = function ($) {
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'ControlSidebar';
+  var DATA_KEY = 'lte.control.sidebar';
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  var Selector = {
+    CONTROL_SIDEBAR: '.control-sidebar',
+    DATA_TOGGLE: '[data-widget="control-sidebar"]',
+    MAIN_HEADER: '.main-header'
+  };
+
+  var ClassName = {
+    CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
+    CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
+  };
+
+  var Default = {
+    slide: true
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
+  };
+  var ControlSidebar = function () {
+    function ControlSidebar(element, config) {
+      classCallCheck(this, ControlSidebar);
+
+      this._element = element;
+      this._config = this._getConfig(config);
+    }
+
+    // Public
+
+    ControlSidebar.prototype.show = function show() {
+      // Show the control sidebar
+      if (this._config.slide) {
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      } else {
+        $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
+      }
+    };
+
+    ControlSidebar.prototype.collapse = function collapse() {
+      // Collapse the control sidebar
+      if (this._config.slide) {
+        $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      } else {
+        $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
+      }
+    };
+
+    ControlSidebar.prototype.toggle = function toggle() {
+      this._setMargin();
+
+      var shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      if (shouldOpen) {
+        // Open the control sidebar
+        this.show();
+      } else {
+        // Close the control sidebar
+        this.collapse();
+      }
+    };
+
+    // Private
+
+    ControlSidebar.prototype._getConfig = function _getConfig(config) {
+      return $.extend({}, Default, config);
+    };
+
+    ControlSidebar.prototype._setMargin = function _setMargin() {
+      $(Selector.CONTROL_SIDEBAR).css({
+        top: $(Selector.MAIN_HEADER).outerHeight()
+      });
+    };
+
+    // Static
+
+    ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new ControlSidebar(this, $(this).data());
+          $(this).data(DATA_KEY, data);
+        }
+
+        if (data[operation] === 'undefined') {
+          throw new Error(operation + ' is not a function');
+        }
+
+        data[operation]();
+      });
+    };
+
+    return ControlSidebar;
+  }();
+
+  /**
+   *
+   * Data Api implementation
+   * ====================================================
+   */
+
+
+  $(document).on('click', Selector.DATA_TOGGLE, function (event) {
+    event.preventDefault();
+
+    ControlSidebar._jQueryInterface.call($(this), 'toggle');
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = ControlSidebar._jQueryInterface;
+  $.fn[NAME].Constructor = ControlSidebar;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return ControlSidebar._jQueryInterface;
+  };
+
+  return ControlSidebar;
+}(jQuery);
+
+/**
+ * --------------------------------------------
+ * AdminLTE Layout.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var Layout = function ($) {
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'Layout';
+  var DATA_KEY = 'lte.layout';
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+  var Selector = {
+    SIDEBAR: '.main-sidebar',
+    HEADER: '.main-header',
+    CONTENT: '.content-wrapper',
+    CONTENT_HEADER: '.content-header',
+    WRAPPER: '.wrapper',
+    CONTROL_SIDEBAR: '.control-sidebar',
+    LAYOUT_FIXED: '.layout-fixed',
+    FOOTER: '.main-footer'
+  };
+
+  var ClassName = {
+    HOLD: 'hold-transition',
+    SIDEBAR: 'main-sidebar',
+    LAYOUT_FIXED: 'layout-fixed'
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
+  };
+  var Layout = function () {
+    function Layout(element) {
+      classCallCheck(this, Layout);
+
+      this._element = element;
+
+      this._init();
+    }
+
+    // Public
+
+    Layout.prototype.fixLayoutHeight = function fixLayoutHeight() {
+      var heights = {
+        window: $(window).height(),
+        header: $(Selector.HEADER).outerHeight(),
+        footer: $(Selector.FOOTER).outerHeight(),
+        sidebar: $(Selector.SIDEBAR).height()
+      };
+      var max = this._max(heights);
+
+      $(Selector.CONTENT).css('min-height', max - heights.header);
+      $(Selector.SIDEBAR).css('min-height', max - heights.header);
+    };
+
+    // Private
+
+    Layout.prototype._init = function _init() {
+      var _this = this;
+
+      // Enable transitions
+      $('body').removeClass(ClassName.HOLD);
+
+      // Activate layout height watcher
+      this.fixLayoutHeight();
+      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
+        _this.fixLayoutHeight();
+      });
+
+      $(window).resize(function () {
+        _this.fixLayoutHeight();
+      });
+
+      $('body, html').css('height', 'auto');
+    };
+
+    Layout.prototype._max = function _max(numbers) {
+      // Calculate the maximum number in a list
+      var max = 0;
+
+      Object.keys(numbers).forEach(function (key) {
+        if (numbers[key] > max) {
+          max = numbers[key];
+        }
+      });
+
+      return max;
+    };
+
+    // Static
+
+    Layout._jQueryInterface = function _jQueryInterface(operation) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new Layout(this);
+          $(this).data(DATA_KEY, data);
+        }
+
+        if (operation) {
+          data[operation]();
+        }
+      });
+    };
+
+    return Layout;
+  }();
+
+  /**
+   * Data API
+   * ====================================================
+   */
+
+
+  $(window).on('load', function () {
+    Layout._jQueryInterface.call($('body'));
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = Layout._jQueryInterface;
+  $.fn[NAME].Constructor = Layout;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return Layout._jQueryInterface;
+  };
+
+  return Layout;
+}(jQuery);
+
+/**
+ * --------------------------------------------
+ * AdminLTE PushMenu.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var PushMenu = function ($) {
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'PushMenu';
+  var DATA_KEY = 'lte.pushmenu';
+  var EVENT_KEY = '.' + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+  var Event = {
+    COLLAPSED: 'collapsed' + EVENT_KEY,
+    SHOWN: 'shown' + EVENT_KEY
+  };
+
+  var Default = {
+    screenCollapseSize: 768
+  };
+
+  var Selector = {
+    TOGGLE_BUTTON: '[data-widget="pushmenu"]',
+    SIDEBAR_MINI: '.sidebar-mini',
+    SIDEBAR_COLLAPSED: '.sidebar-collapse',
+    BODY: 'body',
+    OVERLAY: '#sidebar-overlay',
+    WRAPPER: '.wrapper'
+  };
+
+  var ClassName = {
+    SIDEBAR_OPEN: 'sidebar-open',
+    COLLAPSED: 'sidebar-collapse',
+    OPEN: 'sidebar-open',
+    SIDEBAR_MINI: 'sidebar-mini'
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+
+  };
+  var PushMenu = function () {
+    function PushMenu(element, options) {
+      classCallCheck(this, PushMenu);
+
+      this._element = element;
+      this._options = $.extend({}, Default, options);
+
+      if (!$(Selector.OVERLAY).length) {
+        this._addOverlay();
+      }
+    }
+
+    // Public
+
+    PushMenu.prototype.show = function show() {
+      $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
+
+      var shownEvent = $.Event(Event.SHOWN);
+      $(this._element).trigger(shownEvent);
+    };
+
+    PushMenu.prototype.collapse = function collapse() {
+      $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
+
+      var collapsedEvent = $.Event(Event.COLLAPSED);
+      $(this._element).trigger(collapsedEvent);
+    };
+
+    PushMenu.prototype.toggle = function toggle() {
+      var isShown = void 0;
+      if ($(window).width() >= this._options.screenCollapseSize) {
+        isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
+      } else {
+        isShown = $(Selector.BODY).hasClass(ClassName.OPEN);
+      }
+
+      if (isShown) {
+        this.collapse();
+      } else {
+        this.show();
+      }
+    };
+
+    // Private
+
+
+    PushMenu.prototype._addOverlay = function _addOverlay() {
+      var _this = this;
+
+      var overlay = $('<div />', {
+        id: 'sidebar-overlay'
+      });
+
+      overlay.on('click', function () {
+        _this.collapse();
+      });
+
+      $(Selector.WRAPPER).append(overlay);
+    };
+
+    // Static
+
+    PushMenu._jQueryInterface = function _jQueryInterface(operation) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new PushMenu(this);
+          $(this).data(DATA_KEY, data);
+        }
+
+        if (operation) {
+          data[operation]();
+        }
+      });
+    };
+
+    return PushMenu;
+  }();
+
+  /**
+   * Data API
+   * ====================================================
+   */
+
+  $(document).on('click', Selector.TOGGLE_BUTTON, function (event) {
+    event.preventDefault();
+
+    var button = event.currentTarget;
+
+    if ($(button).data('widget') !== 'pushmenu') {
+      button = $(button).closest(Selector.TOGGLE_BUTTON);
+    }
+
+    PushMenu._jQueryInterface.call($(button), 'toggle');
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = PushMenu._jQueryInterface;
+  $.fn[NAME].Constructor = PushMenu;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return PushMenu._jQueryInterface;
+  };
+
+  return PushMenu;
+}(jQuery);
+
+/**
+ * --------------------------------------------
+ * AdminLTE Treeview.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var Treeview = function ($) {
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'Treeview';
+  var DATA_KEY = 'lte.treeview';
+  var EVENT_KEY = '.' + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+  var Event = {
+    SELECTED: 'selected' + EVENT_KEY,
+    EXPANDED: 'expanded' + EVENT_KEY,
+    COLLAPSED: 'collapsed' + EVENT_KEY,
+    LOAD_DATA_API: 'load' + EVENT_KEY
+  };
+
+  var Selector = {
+    LI: '.nav-item',
+    LINK: '.nav-link',
+    TREEVIEW_MENU: '.nav-treeview',
+    OPEN: '.menu-open',
+    DATA_WIDGET: '[data-widget="treeview"]'
+  };
+
+  var ClassName = {
+    LI: 'nav-item',
+    LINK: 'nav-link',
+    TREEVIEW_MENU: 'nav-treeview',
+    OPEN: 'menu-open'
+  };
+
+  var Default = {
+    trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
+    animationSpeed: 300,
+    accordion: true
+
+    /**
+     * Class Definition
+     * ====================================================
+     */
+  };
+  var Treeview = function () {
+    function Treeview(element, config) {
+      classCallCheck(this, Treeview);
+
+      this._config = config;
+      this._element = element;
+    }
+
+    // Public
+
+    Treeview.prototype.init = function init() {
+      this._setupListeners();
+    };
+
+    Treeview.prototype.expand = function expand(treeviewMenu, parentLi) {
+      var _this = this;
+
+      var expandedEvent = $.Event(Event.EXPANDED);
+
+      if (this._config.accordion) {
+        var openMenuLi = parentLi.siblings(Selector.OPEN).first();
+        var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
+        this.collapse(openTreeview, openMenuLi);
+      }
+
+      treeviewMenu.slideDown(this._config.animationSpeed, function () {
+        parentLi.addClass(ClassName.OPEN);
+        $(_this._element).trigger(expandedEvent);
+      });
+    };
+
+    Treeview.prototype.collapse = function collapse(treeviewMenu, parentLi) {
+      var _this2 = this;
+
+      var collapsedEvent = $.Event(Event.COLLAPSED);
+
+      treeviewMenu.slideUp(this._config.animationSpeed, function () {
+        parentLi.removeClass(ClassName.OPEN);
+        $(_this2._element).trigger(collapsedEvent);
+        treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
+        treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
+      });
+    };
+
+    Treeview.prototype.toggle = function toggle(event) {
+      var $relativeTarget = $(event.currentTarget);
+      var treeviewMenu = $relativeTarget.next();
+
+      if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      var parentLi = $relativeTarget.parents(Selector.LI).first();
+      var isOpen = parentLi.hasClass(ClassName.OPEN);
+
+      if (isOpen) {
+        this.collapse($(treeviewMenu), parentLi);
+      } else {
+        this.expand($(treeviewMenu), parentLi);
+      }
+    };
+
+    // Private
+
+    Treeview.prototype._setupListeners = function _setupListeners() {
+      var _this3 = this;
+
+      $(document).on('click', this._config.trigger, function (event) {
+        _this3.toggle(event);
+      });
+    };
+
+    // Static
+
+    Treeview._jQueryInterface = function _jQueryInterface(config) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+        var _config = $.extend({}, Default, $(this).data());
+
+        if (!data) {
+          data = new Treeview($(this), _config);
+          $(this).data(DATA_KEY, data);
+        }
+
+        if (config === 'init') {
+          data[config]();
+        }
+      });
+    };
+
+    return Treeview;
+  }();
+
+  /**
+   * Data API
+   * ====================================================
+   */
+
+  $(window).on(Event.LOAD_DATA_API, function () {
+    $(Selector.DATA_WIDGET).each(function () {
+      Treeview._jQueryInterface.call($(this), 'init');
+    });
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = Treeview._jQueryInterface;
+  $.fn[NAME].Constructor = Treeview;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return Treeview._jQueryInterface;
+  };
+
+  return Treeview;
+}(jQuery);
+
+/**
+ * --------------------------------------------
+ * AdminLTE Widget.js
+ * License MIT
+ * --------------------------------------------
+ */
+
+var Widget = function ($) {
+  /**
+   * Constants
+   * ====================================================
+   */
+
+  var NAME = 'Widget';
+  var DATA_KEY = 'lte.widget';
+  var EVENT_KEY = '.' + DATA_KEY;
+  var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+  var Event = {
+    EXPANDED: 'expanded' + EVENT_KEY,
+    COLLAPSED: 'collapsed' + EVENT_KEY,
+    REMOVED: 'removed' + EVENT_KEY
+  };
+
+  var Selector = {
+    DATA_REMOVE: '[data-widget="remove"]',
+    DATA_COLLAPSE: '[data-widget="collapse"]',
+    CARD: '.card',
+    CARD_HEADER: '.card-header',
+    CARD_BODY: '.card-body',
+    CARD_FOOTER: '.card-footer',
+    COLLAPSED: '.collapsed-card'
+  };
+
+  var ClassName = {
+    COLLAPSED: 'collapsed-card'
+  };
+
+  var Default = {
+    animationSpeed: 'normal',
+    collapseTrigger: Selector.DATA_COLLAPSE,
+    removeTrigger: Selector.DATA_REMOVE
+  };
+
+  var Widget = function () {
+    function Widget(element, settings) {
+      classCallCheck(this, Widget);
+
+      this._element = element;
+      this._parent = element.parents(Selector.CARD).first();
+      this._settings = $.extend({}, Default, settings);
+    }
+
+    Widget.prototype.collapse = function collapse() {
+      var _this = this;
+
+      this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
+        _this._parent.addClass(ClassName.COLLAPSED);
+      });
+
+      var collapsed = $.Event(Event.COLLAPSED);
+
+      this._element.trigger(collapsed, this._parent);
+    };
+
+    Widget.prototype.expand = function expand() {
+      var _this2 = this;
+
+      this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+        _this2._parent.removeClass(ClassName.COLLAPSED);
+      });
+
+      var expanded = $.Event(Event.EXPANDED);
+
+      this._element.trigger(expanded, this._parent);
+    };
+
+    Widget.prototype.remove = function remove() {
+      this._parent.slideUp();
+
+      var removed = $.Event(Event.REMOVED);
+
+      this._element.trigger(removed, this._parent);
+    };
+
+    Widget.prototype.toggle = function toggle() {
+      if (this._parent.hasClass(ClassName.COLLAPSED)) {
+        this.expand();
+        return;
+      }
+
+      this.collapse();
+    };
+
+    // Private
+
+    Widget.prototype._init = function _init(card) {
+      var _this3 = this;
+
+      this._parent = card;
+
+      $(this).find(this._settings.collapseTrigger).click(function () {
+        _this3.toggle();
+      });
+
+      $(this).find(this._settings.removeTrigger).click(function () {
+        _this3.remove();
+      });
+    };
+
+    // Static
+
+    Widget._jQueryInterface = function _jQueryInterface(config) {
+      return this.each(function () {
+        var data = $(this).data(DATA_KEY);
+
+        if (!data) {
+          data = new Widget($(this), data);
+          $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
+        }
+
+        if (typeof config === 'string' && config.match(/remove|toggle/)) {
+          data[config]();
+        } else if ((typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
+          data._init($(this));
+        }
+      });
+    };
+
+    return Widget;
+  }();
+
+  /**
+   * Data API
+   * ====================================================
+   */
+
+  $(document).on('click', Selector.DATA_COLLAPSE, function (event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    Widget._jQueryInterface.call($(this), 'toggle');
+  });
+
+  $(document).on('click', Selector.DATA_REMOVE, function (event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    Widget._jQueryInterface.call($(this), 'remove');
+  });
+
+  /**
+   * jQuery API
+   * ====================================================
+   */
+
+  $.fn[NAME] = Widget._jQueryInterface;
+  $.fn[NAME].Constructor = Widget;
+  $.fn[NAME].noConflict = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT;
+    return Widget._jQueryInterface;
+  };
+
+  return Widget;
+}(jQuery);
+
+exports.ControlSidebar = ControlSidebar;
+exports.Layout = Layout;
+exports.PushMenu = PushMenu;
+exports.Treeview = Treeview;
+exports.Widget = Widget;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=adminlte.js.map

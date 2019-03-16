@@ -442,8 +442,6 @@ class index
 			$this->terminate("t9997_userlevelpermissionslist.php");
 		if ($Security->allowList(CurrentProjectID() . 't9998_userlevels'))
 			$this->terminate("t9998_userlevelslist.php");
-		if ($Security->allowList(CurrentProjectID() . 'v0301_bayarmasterdetail'))
-			$this->terminate("v0301_bayarmasterdetaillist.php");
 		if ($Security->allowList(CurrentProjectID() . 't9999_audittrail'))
 			$this->terminate("t9999_audittraillist.php");
 		if ($Security->isLoggedIn()) {

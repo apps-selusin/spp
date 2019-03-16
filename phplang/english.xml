@@ -717,9 +717,6 @@
     <menu id="4">
       <phrase id="menutext" value="Daftar Kelas" />
     </menu>
-    <menu id="5">
-      <phrase id="menutext" value="Siswa" />
-    </menu>
     <menu id="6">
       <phrase id="menutext" value="Iuran" />
     </menu>
@@ -728,9 +725,6 @@
     </menu>
     <menu id="7">
       <phrase id="menutext" value="Siswa" />
-    </menu>
-    <menu id="8">
-      <phrase id="menutext" value="Iuran" />
     </menu>
     <menu id="43">
       <phrase id="menutext" value="Data Pembayaran" />
@@ -741,23 +735,71 @@
     <menu id="9">
       <phrase id="menutext" value="Edit / List" />
     </menu>
-    <menu id="10">
-      <phrase id="menutext" value="Rincian" />
+    <menu id="10039">
+      <phrase id="menutext" value="Laporan" />
     </menu>
-    <menu id="11">
+    <menu id="10020">
+      <phrase id="menutext" value="Potensi Uang Masuk" />
+    </menu>
+    <menu id="10022">
+      <phrase id="menutext" value="Potensi Uang Masuk" />
+    </menu>
+    <menu id="10021">
+      <phrase id="menutext" value="v 0304 potensi" />
+    </menu>
+    <menu id="10019">
+      <phrase id="menutext" value="v 0303 potensi" />
+    </menu>
+    <menu id="10017">
+      <phrase id="menutext" value="Potensi" />
+    </menu>
+    <menu id="10001">
+      <phrase id="menutext" value="t 0101 tahunajaran" />
+    </menu>
+    <menu id="10002">
+      <phrase id="menutext" value="t 0102 sekolah" />
+    </menu>
+    <menu id="10003">
+      <phrase id="menutext" value="t 0103 kelas" />
+    </menu>
+    <menu id="10004">
+      <phrase id="menutext" value="t 0104 daftarsiswamaster" />
+    </menu>
+    <menu id="10005">
+      <phrase id="menutext" value="t 0105 daftarsiswadetail" />
+    </menu>
+    <menu id="10006">
+      <phrase id="menutext" value="t 0106 iuran" />
+    </menu>
+    <menu id="10007">
+      <phrase id="menutext" value="t 0201 siswa" />
+    </menu>
+    <menu id="10008">
+      <phrase id="menutext" value="t 0202 siswaiuran" />
+    </menu>
+    <menu id="10009">
+      <phrase id="menutext" value="t 0301 bayarmaster" />
+    </menu>
+    <menu id="10010">
+      <phrase id="menutext" value="t 0302 bayardetail" />
+    </menu>
+    <menu id="10011">
       <phrase id="menutext" value="t 9996 employees" />
     </menu>
-    <menu id="12">
+    <menu id="10012">
       <phrase id="menutext" value="t 9997 userlevelpermissions" />
     </menu>
-    <menu id="13">
+    <menu id="10013">
       <phrase id="menutext" value="t 9998 userlevels" />
     </menu>
-    <menu id="14">
+    <menu id="10014">
+      <phrase id="menutext" value="t 9999 audittrail" />
+    </menu>
+    <menu id="10015">
       <phrase id="menutext" value="v 0301 bayarmasterdetail" />
     </menu>
-    <menu id="16">
-      <phrase id="menutext" value="t 9999 audittrail" />
+    <menu id="10016">
+      <phrase id="menutext" value="v 0302 potensi" />
     </menu>
     <table id="t0101_tahunajaran">
       <phrase id="tblcaption" value="Tahun Ajaran" />
@@ -1232,6 +1274,70 @@
     </table>
     <table id="cf01_home">
       <phrase id="tblcaption" value="Home" />
+    </table>
+    <table id="v0302_potensi">
+      <phrase id="tblcaption" value="v 0302 potensi" />
+      <field id="ds_id">
+        <phrase id="fldcaption" value="ds id" />
+      </field>
+      <field id="ta_id">
+        <phrase id="fldcaption" value="ta id" />
+      </field>
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="s_id">
+        <phrase id="fldcaption" value="s id" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="k_id">
+        <phrase id="fldcaption" value="k id" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="dsd_id">
+        <phrase id="fldcaption" value="dsd id" />
+      </field>
+      <field id="siswa_id">
+        <phrase id="fldcaption" value="siswa id" />
+      </field>
+      <field id="nis">
+        <phrase id="fldcaption" value="NIS" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="sswiur_id">
+        <phrase id="fldcaption" value="sswiur id" />
+      </field>
+      <field id="iuran_id">
+        <phrase id="fldcaption" value="iuran id" />
+      </field>
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+        <phrase id="fldtagvalue1" value="Rutin" />
+        <phrase id="fldtagcaption1" value="Rutin" />
+        <phrase id="fldtagvalue2" value="Non-Rutin" />
+        <phrase id="fldtagcaption2" value="Non-Rutin" />
+      </field>
+      <field id="nilai">
+        <phrase id="fldcaption" value="Nilai" />
+      </field>
+      <field id="jumlah">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="Terbayar" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="Sisa" />
+      </field>
     </table>
   </project>
 </ew-language>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration date="2019/03/16" author="e.World Technology Ltd.">
+  <project id="{1E3116C6-C701-420A-A6D6-A123DF9E6EED}" file="C:\xampp\htdocs\spp\spp_prj.prp" name="spp_prj" product="PHPReportMaker" version="12.0" datetime="2019/03/16 19:23:27" languagefolder="phprptlang" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0">
+    <table id="t0101_tahunajaran" name="t0101_tahunajaran" caption="t 0101 tahunajaran" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0102_sekolah" name="t0102_sekolah" caption="t 0102 sekolah" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0103_kelas" name="t0103_kelas" caption="t 0103 kelas" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0104_daftarsiswamaster" name="t0104_daftarsiswamaster" caption="t 0104 daftarsiswamaster" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0105_daftarsiswadetail" name="t0105_daftarsiswadetail" caption="t 0105 daftarsiswadetail" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0106_iuran" name="t0106_iuran" caption="t 0106 iuran" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0201_siswa" name="t0201_siswa" caption="t 0201 siswa" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0202_siswaiuran" name="t0202_siswaiuran" caption="t 0202 siswaiuran" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0301_bayarmaster" name="t0301_bayarmaster" caption="t 0301 bayarmaster" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t0302_bayardetail" name="t0302_bayardetail" caption="t 0302 bayardetail" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t9996_employees" name="t9996_employees" caption="t 9996 employees" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t9997_userlevelpermissions" name="t9997_userlevelpermissions" caption="t 9997 userlevelpermissions" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t9998_userlevels" name="t9998_userlevels" caption="t 9998 userlevels" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="t9999_audittrail" name="t9999_audittrail" caption="t 9999 audittrail" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0301_bayarmasterdetail" name="v0301_bayarmasterdetail" caption="v 0301 bayarmasterdetail" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0302_potensi" name="v0302_potensi" caption="v 0302 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="r0302_potensi" name="r0302_potensi" caption="Potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0303_potensi" name="v0303_potensi" caption="v 0303 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="r0303_potensi" name="r0303_potensi" caption="Laporan Potensi Uang Masuk" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0304_potensi" name="v0304_potensi" caption="v 0304 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="r0304_potensi" name="r0304_potensi" caption="Laporan Potensi Uang Masuk" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+  </project>
+</configuration>
