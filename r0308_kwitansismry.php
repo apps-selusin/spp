@@ -75,8 +75,6 @@ fr0308_kwitansisummary.validateRequired = false; // No JavaScript validation
 <?php } ?>
 
 // Use Ajax
-fr0308_kwitansisummary.lists["x_Nomor"] = <?php echo $r0308_kwitansi_summary->Nomor->Lookup->toClientList() ?>;
-fr0308_kwitansisummary.lists["x_Nomor"].options = <?php echo JsonEncode($r0308_kwitansi_summary->Nomor->lookupOptions()) ?>;
 </script>
 <?php } ?>
 <?php if ($Page->Export == "" && !$Page->DrillDown || $Page->Export <> "" && $Page->CustomExport <> "") { ?>
@@ -132,16 +130,16 @@ if (!$Page->DrillDownInPanel) {
 <div id="r_1" class="ew-row d-sm-flex">
 <div id="c_Nomor" class="ew-cell form-group">
 	<label for="x_Nomor" class="ew-search-caption ew-label"><?php echo $Page->Nomor->caption() ?></label>
-	<span class="ew-search-field">
-<?php $Page->Nomor->EditAttrs["onchange"] = "ew.forms(this).submit(); " . @$Page->Nomor->EditAttrs["onchange"]; ?>
-<div class="input-group">
-	<select class="custom-select ew-custom-select" data-table="r0308_kwitansi" data-field="x_Nomor" data-value-separator="<?php echo $Page->Nomor->displayValueSeparatorAttribute() ?>" id="x_Nomor" name="x_Nomor"<?php echo $Page->Nomor->editAttributes() ?>>
-		<?php echo $Page->Nomor->selectOptionListHtml("x_Nomor") ?>
-	</select>
-</div>
-<?php echo $Page->Nomor->Lookup->getParamTag("p_x_Nomor") ?>
+	<span class="ew-search-operator"><?php echo $ReportLanguage->phrase("="); ?><input type="hidden" name="z_Nomor" id="z_Nomor" value="="></span>
+	<span class="control-group ew-search-field">
+<?php PrependClass($Page->Nomor->EditAttrs["class"], "form-control"); // PR8 ?>
+<input type="text" data-table="r0308_kwitansi" data-field="x_Nomor" id="x_Nomor" name="x_Nomor" size="30" maxlength="25" placeholder="<?php echo HtmlEncode($Page->Nomor->getPlaceHolder()) ?>" value="<?php echo HtmlEncode($Page->Nomor->AdvancedSearch->SearchValue) ?>"<?php echo $Page->Nomor->editAttributes() ?>>
 </span>
 </div>
+</div>
+<div class="ew-row d-sm-flex">
+<button type="submit" name="btn-submit" id="btn-submit" class="btn btn-primary"><?php echo $ReportLanguage->phrase("Search") ?></button>
+<button type="reset" name="btn-reset" id="btn-reset" class="btn hide"><?php echo $ReportLanguage->phrase("Reset") ?></button>
 </div>
 </div>
 </form>

@@ -720,14 +720,7 @@ class t0301_bayarmaster_add extends t0301_bayarmaster
 				if ($this->addRow($this->OldRecordset)) { // Add successful
 					if ($this->getSuccessMessage() == "")
 						$this->setSuccessMessage($Language->phrase("AddSuccess")); // Set up success message
-					if ($this->getCurrentDetailTable() <> "") // Master/detail add
-						$returnUrl = $this->getDetailUrl();
-					else
-						$returnUrl = $this->getReturnUrl();
-					if (GetPageName($returnUrl) == "t0301_bayarmasterlist.php")
-						$returnUrl = $this->addMasterUrl($returnUrl); // List page, return to List page with correct master key if necessary
-					elseif (GetPageName($returnUrl) == "t0301_bayarmasterview.php")
-						$returnUrl = $this->getViewUrl(); // View page, return to View page with keyurl directly
+					$returnUrl = "r0308_kwitansismry.php?cmd=search&x_Nomor=" . urlencode($this->Nomor->CurrentValue);
 					if (IsApi()) { // Return to caller
 						$this->terminate(TRUE);
 						return;

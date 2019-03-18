@@ -667,8 +667,9 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		$ExportFileName = $this->TableVar; // Get export file, used in header
 
 		// Setup placeholder
-		// Setup export options
+		$this->Nomor->PlaceHolder = $this->Nomor->caption();
 
+		// Setup export options
 		$this->setupExportOptions();
 
 		// Global Page Loading event (in userfn*.php)
@@ -688,9 +689,8 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		$this->createToken();
 
 		// Set up lookup cache
-		$this->setupLookupOptions($this->Nomor);
-
 		// Set field visibility for detail fields
+
 		$this->TahunAjaran->setVisibility();
 		$this->Sekolah->setVisibility();
 		$this->Kelas->setVisibility();
@@ -763,6 +763,10 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 
 		// Call Page Selecting event
 		$this->Page_Selecting($this->Filter);
+
+		// Requires search criteria
+		if (($this->Filter == $this->UserIDFilter || $FormError != "") && !$this->DrillDown)
+			$this->Filter = "0=101";
 
 		// Search options
 		$this->setupSearchOptions();
@@ -1059,18 +1063,6 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		// Call Row_Rendering event
 		$this->Row_Rendering();
 		if ($this->RowType == ROWTYPE_SEARCH) { // Search row
-			$ar = [];
-			if (is_array($this->Nomor->AdvancedFilters)) {
-				foreach ($this->Nomor->AdvancedFilters as $filter)
-					if ($filter->Enabled)
-						$ar[] = [$filter->ID, $filter->Name];
-			}
-			if (is_array($this->Nomor->DropDownList)) {
-				foreach ($this->Nomor->DropDownList as $val)
-					$ar[] = [$val, GetDropDownDisplayValue($val, "", 0)];
-			}
-			$this->Nomor->EditValue = $ar;
-			$this->Nomor->AdvancedSearch->SearchValue = is_array($this->Nomor->DropDownValue) ? implode(",", $this->Nomor->DropDownValue) : $this->Nomor->DropDownValue;
 		} elseif ($this->RowType == ROWTYPE_TOTAL && !($this->RowTotalType == ROWTOTAL_GROUP && $this->RowTotalSubType == ROWTOTAL_HEADER)) { // Summary row
 			PrependClass($this->RowAttrs["class"], ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : ""); // Set up row class
 			if ($this->RowTotalType == ROWTOTAL_GROUP) $this->RowAttrs["data-group"] = $this->Nomor->groupOldValue(); // Set up group attribute
@@ -1793,16 +1785,14 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		} elseif (Get("cmd", "") == "reset") {
 
 			// Load default values
-			$this->setSessionDropDownValue($this->Nomor->DropDownValue, $this->Nomor->AdvancedSearch->SearchOperator, "Nomor"); // Field Nomor
+			$this->setSessionFilterValues($this->Nomor->AdvancedSearch->SearchValue, $this->Nomor->AdvancedSearch->SearchOperator, $this->Nomor->AdvancedSearch->SearchCondition, $this->Nomor->AdvancedSearch->SearchValue2, $this->Nomor->AdvancedSearch->SearchOperator2, "Nomor"); // Field Nomor
 
 			//$setupFilter = TRUE; // No need to set up, just use default
 		} else {
 			$restoreSession = !$this->SearchCommand;
 
 			// Field Nomor
-			if ($this->getDropDownValue($this->Nomor)) {
-				$setupFilter = TRUE;
-			} elseif ($this->Nomor->DropDownValue <> INIT_VALUE && !isset($_SESSION["x_r0308_kwitansi_Nomor"])) {
+			if ($this->getFilterValues($this->Nomor)) {
 				$setupFilter = TRUE;
 			}
 			if (!$this->validateForm()) {
@@ -1813,24 +1803,21 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 
 		// Restore session
 		if ($restoreSession) {
-			$this->getSessionDropDownValue($this->Nomor); // Field Nomor
+			$this->getSessionFilterValues($this->Nomor); // Field Nomor
 		}
 
 		// Call page filter validated event
 		$this->Page_FilterValidated();
 
 		// Build SQL
-		$this->buildDropDownFilter($this->Nomor, $filter, $this->Nomor->AdvancedSearch->SearchOperator, FALSE, TRUE); // Field Nomor
+		$this->buildExtendedFilter($this->Nomor, $filter, FALSE, TRUE); // Field Nomor
 
 		// Save parms to session
-		$this->setSessionDropDownValue($this->Nomor->DropDownValue, $this->Nomor->AdvancedSearch->SearchOperator, "Nomor"); // Field Nomor
+		$this->setSessionFilterValues($this->Nomor->AdvancedSearch->SearchValue, $this->Nomor->AdvancedSearch->SearchOperator, $this->Nomor->AdvancedSearch->SearchCondition, $this->Nomor->AdvancedSearch->SearchValue2, $this->Nomor->AdvancedSearch->SearchOperator2, "Nomor"); // Field Nomor
 
 		// Setup filter
 		if ($setupFilter) {
 		}
-
-		// Field Nomor
-		LoadDropDownList($this->Nomor->DropDownList, $this->Nomor->DropDownValue);
 		return $filter;
 	}
 
@@ -2166,11 +2153,6 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		/**
 		* Set up default values for non Text filters
 		*/
-		// Field Nomor
-
-		$this->Nomor->DefaultDropDownValue = INIT_VALUE;
-		if (!$this->SearchCommand)
-			$this->Nomor->DropDownValue = $this->Nomor->DefaultDropDownValue;
 
 		/**
 		* Set up default values for extended filters
@@ -2183,6 +2165,11 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		* $so2 - Default search operator 2 (if operator 2 is enabled)
 		* $sv2 - Default ext filter value 2 (if operator 2 is enabled)
 		*/
+		// Field Nomor
+
+		$this->setDefaultExtFilter($this->Nomor, "=", NULL, 'AND', "=", NULL);
+		if (!$this->SearchCommand)
+			$this->applyDefaultExtFilter($this->Nomor);
 
 		/**
 		* Set up default values for popup filters
@@ -2193,8 +2180,8 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 	protected function checkFilter()
 	{
 
-		// Check Nomor extended filter
-		if ($this->nonTextFilterApplied($this->Nomor))
+		// Check Nomor text filter
+		if ($this->textFilterApplied($this->Nomor))
 			return TRUE;
 		return FALSE;
 	}
@@ -2212,7 +2199,7 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 		// Field Nomor
 		$extWrk = "";
 		$wrk = "";
-		$this->buildDropDownFilter($this->Nomor, $extWrk, $this->Nomor->AdvancedSearch->SearchOperator);
+		$this->buildExtendedFilter($this->Nomor, $extWrk);
 		$filter = "";
 		if ($extWrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
@@ -2246,11 +2233,13 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 
 		// Field Nomor
 		$wrk = "";
-		$wrk = ($this->Nomor->DropDownValue <> INIT_VALUE) ? $this->Nomor->DropDownValue : "";
-		if (is_array($wrk))
-			$wrk = implode("||", $wrk);
-		if ($wrk <> "")
-			$wrk = "\"x_Nomor\":\"" . JsEncode($wrk) . "\"";
+		if ($this->Nomor->AdvancedSearch->SearchValue <> "" || $this->Nomor->AdvancedSearch->SearchValue2 <> "") {
+			$wrk = "\"x_Nomor\":\"" . JsEncode($this->Nomor->AdvancedSearch->SearchValue) . "\"," .
+				"\"z_Nomor\":\"" . JsEncode($this->Nomor->AdvancedSearch->SearchOperator) . "\"," .
+				"\"v_Nomor\":\"" . JsEncode($this->Nomor->AdvancedSearch->SearchCondition) . "\"," .
+				"\"y_Nomor\":\"" . JsEncode($this->Nomor->AdvancedSearch->SearchValue2) . "\"," .
+				"\"w_Nomor\":\"" . JsEncode($this->Nomor->AdvancedSearch->SearchOperator2) . "\"";
+		}
 		if ($wrk <> "") {
 			if ($filterList <> "") $filterList .= ",";
 			$filterList .= $wrk;
@@ -2282,15 +2271,14 @@ class r0308_kwitansi_summary extends r0308_kwitansi
 
 		// Field Nomor
 		$restoreFilter = FALSE;
-		if (array_key_exists("x_Nomor", $filter)) {
-			$wrk = $filter["x_Nomor"];
-			if (strpos($wrk, "||") !== FALSE)
-				$wrk = explode("||", $wrk);
-			$this->setSessionDropDownValue($wrk, @$filter["z_Nomor"], "Nomor");
+		if (array_key_exists("x_Nomor", $filter) || array_key_exists("z_Nomor", $filter) ||
+			array_key_exists("v_Nomor", $filter) ||
+			array_key_exists("y_Nomor", $filter) || array_key_exists("w_Nomor", $filter)) {
+			$this->setSessionFilterValues(@$filter["x_Nomor"], @$filter["z_Nomor"], @$filter["v_Nomor"], @$filter["y_Nomor"], @$filter["w_Nomor"], "Nomor");
 			$restoreFilter = TRUE;
 		}
 		if (!$restoreFilter) { // Clear filter
-			$this->setSessionDropDownValue(INIT_VALUE, "", "Nomor");
+			$this->setSessionFilterValues("", "=", "AND", "", "=", "Nomor");
 		}
 		return TRUE;
 	}
