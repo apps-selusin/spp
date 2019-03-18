@@ -7955,6 +7955,20 @@ function Database_Connecting(&$info) {
 	//	$info["pass"] = "";
 	//}
 
+	if (CurrentUserIP () == "127.0.0.1"  || CurrentUserIP () == ":: 1"  || CurrentHost () == "localhost" ) { // testing on local PC
+		$info["host"] = "localhost";
+		$info["user"] = "root"; // sesuaikan dengan username database di komputer localhost
+		$info["pass"] = "admin"; // sesuaikan dengan password database di komputer localhost
+		$info["db"] = "db_spp"; // sesuaikan dengan nama database di komputer localhost
+		$lines=file('00_dbport.txt');foreach ($lines as $line_num => $line){$port = $line;}
+		$info["port"] = $port; //$info["port"] = "3306";
+	} elseif (ew_CurrentHost () == "spp.selusin.web.id") { // setting koneksi database untuk komputer server
+		$info["host"] = "mysql.hostinger.co.id";  // sesuaikan dengan ip address atau hostname komputer server
+		$info["user"] = "u591406990_spp"; // sesuaikan dengan username database di komputer server
+		$info["pass"] = "PresarioCQ43"; // sesuaikan deengan password database di komputer server
+		$info["db"] = "u591406990_spp"; // sesuaikan dengan nama database di komputer server
+		$info["port"] = "3306";
+	}
 }
 
 // Database Connected event
