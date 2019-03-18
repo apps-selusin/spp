@@ -81,12 +81,16 @@ class r0308_kwitansi extends ReportTable
 		$this->fields['Jenis'] = &$this->Jenis;
 
 		// Nomor
-		$this->Nomor = new ReportField('r0308_kwitansi', 'r0308_kwitansi', 'x_Nomor', 'Nomor', '`Nomor`', 200, -1, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->Nomor = new ReportField('r0308_kwitansi', 'r0308_kwitansi', 'x_Nomor', 'Nomor', '`Nomor`', 200, -1, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->Nomor->Sortable = TRUE; // Allow sort
+		$this->Nomor->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->Nomor->PleaseSelectText = $ReportLanguage->phrase("PleaseSelect"); // PleaseSelect text
 		$this->Nomor->GroupingFieldId = 1;
 		$this->Nomor->ShowGroupHeaderAsRow = $this->ShowGroupHeaderAsRow;
 		$this->Nomor->ShowCompactSummaryFooter = $this->ShowCompactSummaryFooter;
 		$this->Nomor->DateFilter = "";
+		$this->Nomor->Lookup = new ReportLookup('Nomor', 'r0308_kwitansi', TRUE, 'Nomor', ["Nomor","","",""], [], [], [], [], [], [], '`Nomor` ASC', '');
+		$this->Nomor->Lookup->RenderViewFunc = "renderLookup";
 		$this->Nomor->GroupByType = "";
 		$this->Nomor->GroupInterval = "0";
 		$this->Nomor->GroupSql = "";
@@ -128,7 +132,7 @@ class r0308_kwitansi extends ReportTable
 	// Render for lookup
 	public function renderLookup()
 	{
-		$this->Nomor->ViewValue = $this->Nomor->CurrentValue;
+		$this->Nomor->ViewValue = GetDropDownDisplayValue($this->Nomor->CurrentValue, "", 0);
 	}
 
 	// Get Field Visibility
