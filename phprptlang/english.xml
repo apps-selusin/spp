@@ -403,6 +403,9 @@
   <project>
     <phrase id="bodytitle" value="PEMBAYARAN" />
     <phrase id="footertext" value="&amp;copy;2019 ESTIGA.NET. All rights reserved." />
+    <menu id="29">
+      <phrase id="menutext" value="Kwitansi" />
+    </menu>
     <menu id="28">
       <phrase id="menutext" value="Laporan Pembayaran" />
     </menu>
@@ -1047,6 +1050,9 @@
       <field id="jumlah">
         <phrase id="fldcaption" value="Jumlah" />
       </field>
+      <field id="iurannama">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
     </table>
     <table id="v0302_potensi_base">
       <phrase id="tblcaption" value="v 0302 potensi" />
@@ -1245,6 +1251,45 @@
     </table>
     <table id="r0307_pembayaran">
       <phrase id="tblcaption" value="Laporan Pembayaran" />
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="nis">
+        <phrase id="fldcaption" value="NIS" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+      </field>
+      <field id="nomor">
+        <phrase id="fldcaption" value="Nomor" />
+      </field>
+      <field id="tanggal">
+        <phrase id="fldcaption" value="Tanggal" />
+      </field>
+      <field id="periode1">
+        <phrase id="fldcaption" value="Periode 1" />
+      </field>
+      <field id="periode2">
+        <phrase id="fldcaption" value="Periode 2" />
+      </field>
+      <field id="jumlah">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+    </table>
+    <table id="r0308_kwitansi">
+      <phrase id="tblcaption" value="Kwitansi" />
       <field id="tahunajaran">
         <phrase id="fldcaption" value="Tahun Ajaran" />
       </field>
