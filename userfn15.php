@@ -65,14 +65,14 @@ function f_updatesiswaiuran($rs) {
 			$Periode1 = "P" . substr("00" . $r->fields["Periode1"], -2);
 			$Periode1value = 
 			$q = "update t0202_siswaiuran set " . $Periode1 . " = '1'
-				where iuran_id = ".$r->fields["iuran_id"];
+				where iuran_id = ".$r->fields["iuran_id"] . " and siswa_id = ".$rs["siswa_id"]."";
 			Execute($q);
 		}
 		if (!is_null($r->fields["Periode2"])) {
 			for ($i = $r->fields["Periode1"]; $i <= $r->fields["Periode2"]; $i++) {
 				$Periode2 = "P" . substr("00" . $i, -2);
 				$q = "update t0202_siswaiuran set " . $Periode2 . " = '1'
-					where iuran_id = ".$r->fields["iuran_id"];
+					where iuran_id = ".$r->fields["iuran_id"] . " and siswa_id = ".$rs["siswa_id"]."";
 				Execute($q);
 			}
 		}
