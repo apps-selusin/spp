@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <configuration date="2019/03/18" author="e.World Technology Ltd.">
-  <project id="{1E3116C6-C701-420A-A6D6-A123DF9E6EED}" file="C:\xampp\htdocs\spp\spp_prj.prp" name="spp_prj" product="PHPReportMaker" version="12.0" datetime="2019/03/18 12:56:57" languagefolder="phprptlang" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0">
+  <project id="{1E3116C6-C701-420A-A6D6-A123DF9E6EED}" file="C:\xampp\htdocs\spp\spp_prj.prp" name="spp_prj" product="PHPReportMaker" version="12.0" datetime="2019/03/18 14:11:48" languagefolder="phprptlang" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0">
     <table id="r0302_potensi" name="r0302_potensi" caption="Potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
     <table id="r0303_potensi" name="r0303_potensi" caption="Laporan Potensi Uang Masuk" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
     <table id="r0304_potensi" name="r0304_potensi" caption="Laporan Potensi Uang Masuk" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
