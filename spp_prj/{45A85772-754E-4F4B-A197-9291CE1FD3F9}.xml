@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <configuration date="2019/03/18" author="e.World Technology Ltd.">
-  <project id="{45A85772-754E-4F4B-A197-9291CE1FD3F9}" file="C:\xampp\htdocs\spp\spp_prj.pmp" name="spp_prj" product="PHPMaker" version="15.0" datetime="2019/03/18 12:08:53" languagefolder="phplang" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" relatedid="{1E3116C6-C701-420A-A6D6-A123DF9E6EED}">
+  <project id="{45A85772-754E-4F4B-A197-9291CE1FD3F9}" file="C:\xampp\htdocs\spp\spp_prj.pmp" name="spp_prj" product="PHPMaker" version="15.0" datetime="2019/03/18 12:57:41" languagefolder="phplang" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" relatedid="{1E3116C6-C701-420A-A6D6-A123DF9E6EED}">
     <table id="t0101_tahunajaran" name="t0101_tahunajaran" caption="Tahun Ajaran" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
     <table id="t0102_sekolah" name="t0102_sekolah" caption="Sekolah" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
     <table id="t0103_kelas" name="t0103_kelas" caption="Kelas" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
@@ -18,5 +18,10 @@
     <table id="t9999_audittrail" name="t9999_audittrail" caption="t 9999 audittrail" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
     <table id="cf01_home" name="cf01_home.php" caption="Home" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
     <table id="v0302_potensi" name="v0302_potensi" caption="v 0302 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0303_potensi" name="v0303_potensi" caption="v 0303 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0304_potensi" name="v0304_potensi" caption="v 0304 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0305_potensi" name="v0305_potensi" caption="v 0305 potensi" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0101_daftarsiswamasterdetail" name="v0101_daftarsiswamasterdetail" caption="v 0101 daftarsiswamasterdetail" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
+    <table id="v0306_pembayaran" name="v0306_pembayaran" caption="v 0306 pembayaran" userlevel="-2,&quot;Anonymous&quot;,0;0,&quot;Default&quot;,0" priv="1" />
   </project>
 </configuration>
