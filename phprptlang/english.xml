@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2019/3/16" version="12.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2019/3/18" version="12.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!-- 
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -403,6 +403,24 @@
   <project>
     <phrase id="bodytitle" value="PEMBAYARAN" />
     <phrase id="footertext" value="&amp;copy;2019 ESTIGA.NET. All rights reserved." />
+    <menu id="28">
+      <phrase id="menutext" value="Laporan Pembayaran" />
+    </menu>
+    <menu id="25">
+      <phrase id="menutext" value="Laporan Uang Masuk" />
+    </menu>
+    <menu id="26">
+      <phrase id="menutext" value="v 0306 pembayaran" />
+    </menu>
+    <menu id="24">
+      <phrase id="menutext" value="Laporan Potensi Uang Masuk" />
+    </menu>
+    <menu id="27">
+      <phrase id="menutext" value="v 0101 daftarsiswamasterdetail" />
+    </menu>
+    <menu id="23">
+      <phrase id="menutext" value="v 0305 potensi" />
+    </menu>
     <menu id="21">
       <phrase id="menutext" value="v 0304 potensi" />
     </menu>
@@ -466,6 +484,189 @@
     <menu id="16">
       <phrase id="menutext" value="v 0302 potensi" />
     </menu>
+    <table id="r0302_potensi">
+      <phrase id="tblcaption" value="Potensi" />
+      <field id="ds_id">
+        <phrase id="fldcaption" value="ds id" />
+      </field>
+      <field id="ta_id">
+        <phrase id="fldcaption" value="ta id" />
+      </field>
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="s_id">
+        <phrase id="fldcaption" value="s id" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="k_id">
+        <phrase id="fldcaption" value="k id" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="dsd_id">
+        <phrase id="fldcaption" value="dsd id" />
+      </field>
+      <field id="siswa_id">
+        <phrase id="fldcaption" value="siswa id" />
+      </field>
+      <field id="nis">
+        <phrase id="fldcaption" value="NIS" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="sswiur_id">
+        <phrase id="fldcaption" value="sswiur id" />
+      </field>
+      <field id="iuran_id">
+        <phrase id="fldcaption" value="iuran id" />
+      </field>
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+      </field>
+      <field id="nilai">
+        <phrase id="fldcaption" value="Nilai" />
+      </field>
+      <field id="jumlah">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="Terbayar" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="Sisa" />
+      </field>
+    </table>
+    <table id="r0303_potensi">
+      <phrase id="tblcaption" value="Laporan Potensi Uang Masuk" />
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="nis">
+        <phrase id="fldcaption" value="NIS" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="jumlah">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="Terbayar" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+      <field id="iuran">
+        <phrase id="fldcaption" value="iuran" />
+      </field>
+    </table>
+    <table id="r0304_potensi">
+      <phrase id="tblcaption" value="Laporan Potensi Uang Masuk" />
+      <field id="iuran_id">
+        <phrase id="fldcaption" value="iuran id" />
+      </field>
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+      </field>
+      <field id="tahunajaran_id">
+        <phrase id="fldcaption" value="tahunajaran id" />
+      </field>
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="sekolah_id">
+        <phrase id="fldcaption" value="sekolah id" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="kelas_id">
+        <phrase id="fldcaption" value="kelas id" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="potensi">
+        <phrase id="fldcaption" value="Potensi" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="Terbayar" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="Sisa" />
+      </field>
+    </table>
+    <table id="r0305_potensi">
+      <phrase id="tblcaption" value="Laporan Potensi Uang Masuk" />
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+      </field>
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="potensi">
+        <phrase id="fldcaption" value="Potensi" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="Terbayar" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+    </table>
+    <table id="r0306_uangmasuk">
+      <phrase id="tblcaption" value="Laporan Uang Masuk" />
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+      </field>
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="potensi">
+        <phrase id="fldcaption" value="potensi" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="sisa" />
+      </field>
+    </table>
     <table id="t0101_tahunajaran_base">
       <phrase id="tblcaption" value="t 0101 tahunajaran" />
       <field id="id">
@@ -790,6 +991,24 @@
         <phrase id="fldcaption" value="newvalue" />
       </field>
     </table>
+    <table id="v0101_daftarsiswamasterdetail_base">
+      <phrase id="tblcaption" value="v 0101 daftarsiswamasterdetail" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="tahunajaran_id">
+        <phrase id="fldcaption" value="tahunajaran id" />
+      </field>
+      <field id="sekolah_id">
+        <phrase id="fldcaption" value="sekolah id" />
+      </field>
+      <field id="kelas_id">
+        <phrase id="fldcaption" value="kelas id" />
+      </field>
+      <field id="siswa_id">
+        <phrase id="fldcaption" value="siswa id" />
+      </field>
+    </table>
     <table id="v0301_bayarmasterdetail_base">
       <phrase id="tblcaption" value="v 0301 bayarmasterdetail" />
       <field id="bayarmaster_id">
@@ -889,66 +1108,6 @@
         <phrase id="fldcaption" value="Sisa" />
       </field>
     </table>
-    <table id="r0302_potensi">
-      <phrase id="tblcaption" value="Potensi" />
-      <field id="ds_id">
-        <phrase id="fldcaption" value="ds id" />
-      </field>
-      <field id="ta_id">
-        <phrase id="fldcaption" value="ta id" />
-      </field>
-      <field id="tahunajaran">
-        <phrase id="fldcaption" value="Tahun Ajaran" />
-      </field>
-      <field id="s_id">
-        <phrase id="fldcaption" value="s id" />
-      </field>
-      <field id="sekolah">
-        <phrase id="fldcaption" value="Sekolah" />
-      </field>
-      <field id="k_id">
-        <phrase id="fldcaption" value="k id" />
-      </field>
-      <field id="kelas">
-        <phrase id="fldcaption" value="Kelas" />
-      </field>
-      <field id="dsd_id">
-        <phrase id="fldcaption" value="dsd id" />
-      </field>
-      <field id="siswa_id">
-        <phrase id="fldcaption" value="siswa id" />
-      </field>
-      <field id="nis">
-        <phrase id="fldcaption" value="NIS" />
-      </field>
-      <field id="nama">
-        <phrase id="fldcaption" value="Nama" />
-      </field>
-      <field id="sswiur_id">
-        <phrase id="fldcaption" value="sswiur id" />
-      </field>
-      <field id="iuran_id">
-        <phrase id="fldcaption" value="iuran id" />
-      </field>
-      <field id="iuran">
-        <phrase id="fldcaption" value="Iuran" />
-      </field>
-      <field id="jenis">
-        <phrase id="fldcaption" value="Jenis" />
-      </field>
-      <field id="nilai">
-        <phrase id="fldcaption" value="Nilai" />
-      </field>
-      <field id="jumlah">
-        <phrase id="fldcaption" value="Jumlah" />
-      </field>
-      <field id="terbayar">
-        <phrase id="fldcaption" value="Terbayar" />
-      </field>
-      <field id="sisa">
-        <phrase id="fldcaption" value="Sisa" />
-      </field>
-    </table>
     <table id="v0303_potensi_base">
       <phrase id="tblcaption" value="v 0303 potensi" />
       <field id="tahunajaran">
@@ -974,36 +1133,6 @@
       </field>
       <field id="sisa">
         <phrase id="fldcaption" value="sisa" />
-      </field>
-      <field id="iuran">
-        <phrase id="fldcaption" value="iuran" />
-      </field>
-    </table>
-    <table id="r0303_potensi">
-      <phrase id="tblcaption" value="Laporan Potensi Uang Masuk" />
-      <field id="tahunajaran">
-        <phrase id="fldcaption" value="Tahun Ajaran" />
-      </field>
-      <field id="sekolah">
-        <phrase id="fldcaption" value="Sekolah" />
-      </field>
-      <field id="kelas">
-        <phrase id="fldcaption" value="Kelas" />
-      </field>
-      <field id="nis">
-        <phrase id="fldcaption" value="NIS" />
-      </field>
-      <field id="nama">
-        <phrase id="fldcaption" value="Nama" />
-      </field>
-      <field id="jumlah">
-        <phrase id="fldcaption" value="Iuran" />
-      </field>
-      <field id="terbayar">
-        <phrase id="fldcaption" value="Terbayar" />
-      </field>
-      <field id="sisa">
-        <phrase id="fldcaption" value="Jumlah" />
       </field>
       <field id="iuran">
         <phrase id="fldcaption" value="iuran" />
@@ -1048,10 +1177,49 @@
         <phrase id="fldcaption" value="Sisa" />
       </field>
     </table>
-    <table id="r0304_potensi">
-      <phrase id="tblcaption" value="Laporan Potensi Uang Masuk" />
-      <field id="iuran_id">
-        <phrase id="fldcaption" value="iuran id" />
+    <table id="v0305_potensi_base">
+      <phrase id="tblcaption" value="v 0305 potensi" />
+      <field id="iuran">
+        <phrase id="fldcaption" value="iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="jenis" />
+      </field>
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="tahunajaran" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="sekolah" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="kelas" />
+      </field>
+      <field id="potensi">
+        <phrase id="fldcaption" value="potensi" />
+      </field>
+      <field id="terbayar">
+        <phrase id="fldcaption" value="terbayar" />
+      </field>
+      <field id="sisa">
+        <phrase id="fldcaption" value="sisa" />
+      </field>
+    </table>
+    <table id="v0306_pembayaran_base">
+      <phrase id="tblcaption" value="v 0306 pembayaran" />
+      <field id="tahunajaran">
+        <phrase id="fldcaption" value="Tahun Ajaran" />
+      </field>
+      <field id="sekolah">
+        <phrase id="fldcaption" value="Sekolah" />
+      </field>
+      <field id="kelas">
+        <phrase id="fldcaption" value="Kelas" />
+      </field>
+      <field id="nis">
+        <phrase id="fldcaption" value="NIS" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
       </field>
       <field id="iuran">
         <phrase id="fldcaption" value="Iuran" />
@@ -1059,32 +1227,59 @@
       <field id="jenis">
         <phrase id="fldcaption" value="Jenis" />
       </field>
-      <field id="tahunajaran_id">
-        <phrase id="fldcaption" value="tahunajaran id" />
+      <field id="nomor">
+        <phrase id="fldcaption" value="Nomor" />
       </field>
+      <field id="tanggal">
+        <phrase id="fldcaption" value="Tanggal" />
+      </field>
+      <field id="periode1">
+        <phrase id="fldcaption" value="Periode 1" />
+      </field>
+      <field id="periode2">
+        <phrase id="fldcaption" value="Periode 2" />
+      </field>
+      <field id="jumlah">
+        <phrase id="fldcaption" value="Jumlah" />
+      </field>
+    </table>
+    <table id="r0307_pembayaran">
+      <phrase id="tblcaption" value="Laporan Pembayaran" />
       <field id="tahunajaran">
         <phrase id="fldcaption" value="Tahun Ajaran" />
-      </field>
-      <field id="sekolah_id">
-        <phrase id="fldcaption" value="sekolah id" />
       </field>
       <field id="sekolah">
         <phrase id="fldcaption" value="Sekolah" />
       </field>
-      <field id="kelas_id">
-        <phrase id="fldcaption" value="kelas id" />
-      </field>
       <field id="kelas">
         <phrase id="fldcaption" value="Kelas" />
       </field>
-      <field id="potensi">
-        <phrase id="fldcaption" value="Potensi" />
+      <field id="nis">
+        <phrase id="fldcaption" value="NIS" />
       </field>
-      <field id="terbayar">
-        <phrase id="fldcaption" value="Terbayar" />
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
       </field>
-      <field id="sisa">
-        <phrase id="fldcaption" value="Sisa" />
+      <field id="iuran">
+        <phrase id="fldcaption" value="Iuran" />
+      </field>
+      <field id="jenis">
+        <phrase id="fldcaption" value="Jenis" />
+      </field>
+      <field id="nomor">
+        <phrase id="fldcaption" value="Nomor" />
+      </field>
+      <field id="tanggal">
+        <phrase id="fldcaption" value="Tanggal" />
+      </field>
+      <field id="periode1">
+        <phrase id="fldcaption" value="Periode 1" />
+      </field>
+      <field id="periode2">
+        <phrase id="fldcaption" value="Periode 2" />
+      </field>
+      <field id="jumlah">
+        <phrase id="fldcaption" value="Jumlah" />
       </field>
     </table>
   </project>

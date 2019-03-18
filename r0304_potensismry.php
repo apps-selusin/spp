@@ -198,34 +198,19 @@ $Page->RecordIndex = 0;
 
 // Get first row
 if ($Page->TotalGroups > 0) {
-	$Page->loadGroupRowValues(TRUE);
+	$Page->loadRowValues(TRUE);
 	$Page->GroupCount = 1;
 }
-$Page->GroupIndexes = InitArray($Page->StopGroup - $Page->StartGroup + 1, -1);
-while ($Page->GroupRecordset && !$Page->GroupRecordset->EOF && $Page->GroupCount <= $Page->DisplayGroups || $Page->ShowHeader) {
+$Page->GroupIndexes = InitArray(2, -1);
+$Page->GroupIndexes[0] = -1;
+$Page->GroupIndexes[1] = $Page->StopGroup - $Page->StartGroup + 1;
+while ($Page->Recordset && !$Page->Recordset->EOF && $Page->GroupCount <= $Page->DisplayGroups || $Page->ShowHeader) {
 
 	// Show dummy header for custom template
 	// Show header
 
 	if ($Page->ShowHeader) {
 ?>
-<?php if ($Page->GroupCount > 1) { ?>
-</tbody>
-</table>
-<?php if ($Page->Export <> "pdf") { ?>
-</div>
-<?php } ?>
-<?php if ($Page->Export == "" && !($Page->DrillDown && $Page->TotalGroups > 0)) { ?>
-<div class="card-footer ew-grid-lower-panel">
-<?php include "r0304_potensi_pager.php" ?>
-<div class="clearfix"></div>
-</div>
-<?php } ?>
-<?php if ($Page->Export <> "pdf") { ?>
-</div>
-<?php } ?>
-<span data-class="tpb<?php echo $Page->GroupCount - 1 ?>_r0304_potensi"><?php echo $Page->PageBreakContent ?></span>
-<?php } ?>
 <?php if ($Page->Export <> "pdf") { ?>
 <?php if ($Page->Export == "word" || $Page->Export == "excel") { ?>
 <div class="ew-grid"<?php echo $Page->ReportTableStyle ?>>
@@ -242,9 +227,6 @@ while ($Page->GroupRecordset && !$Page->GroupRecordset->EOF && $Page->GroupCount
 	<!-- Table header -->
 	<tr class="ew-table-header">
 <?php if ($Page->Iuran->Visible) { ?>
-	<?php if ($Page->Iuran->ShowGroupHeaderAsRow) { ?>
-	<td data-field="Iuran">&nbsp;</td>
-	<?php } else { ?>
 <?php if ($Page->Export <> "" || $Page->DrillDown) { ?>
 	<td data-field="Iuran"><div class="r0304_potensi_Iuran"><span class="ew-table-header-caption"><?php echo $Page->Iuran->caption() ?></span></div></td>
 <?php } else { ?>
@@ -261,7 +243,6 @@ while ($Page->GroupRecordset && !$Page->GroupRecordset->EOF && $Page->GroupCount
 <?php } ?>
 	</td>
 <?php } ?>
-	<?php } ?>
 <?php } ?>
 <?php if ($Page->TahunAjaran->Visible) { ?>
 <?php if ($Page->Export <> "" || $Page->DrillDown) { ?>
@@ -378,69 +359,9 @@ while ($Page->GroupRecordset && !$Page->GroupRecordset->EOF && $Page->GroupCount
 		if ($Page->TotalGroups == 0) break; // Show header only
 		$Page->ShowHeader = FALSE;
 	}
-
-	// Build detail SQL
-	$where = DetailFilterSql($Page->Iuran, $Page->getSqlFirstGroupField(), $Page->Iuran->groupValue(), $Page->Dbid);
-	if ($Page->PageFirstGroupFilter <> "") $Page->PageFirstGroupFilter .= " OR ";
-	$Page->PageFirstGroupFilter .= $where;
-	if ($Page->Filter != "")
-		$where = "($Page->Filter) AND ($where)";
-	$sql = BuildReportSql($Page->getSqlSelect(), $Page->getSqlWhere(), $Page->getSqlGroupBy(), $Page->getSqlHaving(), $Page->getSqlOrderBy(), $where, $Page->Sort);
-	$Page->DetailRecordCount = 0;
-	if ($Page->Recordset = $Page->getRecordset($sql)) {
-		$Page->DetailRecordCount = $Page->Recordset->recordCount();
-		if (GetConnectionType($Page->Dbid) == "ORACLE") { // Oracle, cannot moveFirst, use another recordset
-			$rswrk = $Page->getRecordset($sql);
-			$Page->DetailRows = $rswrk ? $rswrk->getRows() : [];
-			$rswrk->close();
-		} else {
-			$Page->DetailRows = $Page->Recordset ? $Page->Recordset->getRows() : [];
-		}
-	}
-	if ($Page->DetailRecordCount > 0)
-		$Page->loadRowValues(TRUE);
-	$Page->GroupIndexes[$Page->GroupCount] = $Page->DetailRecordCount;
-	while ($Page->Recordset && !$Page->Recordset->EOF) { // Loop detail records
-		$Page->RecordCount++;
-		$Page->RecordIndex++;
+	$Page->RecordCount++;
+	$Page->RecordIndex++;
 ?>
-<?php if ($Page->Iuran->Visible && $Page->checkLevelBreak(1) && $Page->Iuran->ShowGroupHeaderAsRow) { ?>
-<?php
-
-		// Render header row
-		$Page->resetAttributes();
-		$Page->RowType = ROWTYPE_TOTAL;
-		$Page->RowTotalType = ROWTOTAL_GROUP;
-		$Page->RowTotalSubType = ROWTOTAL_HEADER;
-		$Page->RowGroupLevel = 1;
-		$Page->Iuran->Count = $Page->getSummaryCount(1);
-		$Page->renderRow();
-?>
-	<tr<?php echo $Page->rowAttributes(); ?>>
-<?php if ($Page->Iuran->Visible) { ?>
-		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes(); ?>><span class="ew-group-toggle icon-collapse"></span></td>
-<?php } ?>
-		<td data-field="Iuran" colspan="<?php echo ($Page->GroupColumnCount + $Page->DetailColumnCount - 1) ?>"<?php echo $Page->Iuran->cellAttributes() ?>>
-<?php if ($Page->Export <> "" || $Page->DrillDown) { ?>
-		<span class="ew-summary-caption r0304_potensi_Iuran"><span class="ew-table-header-caption"><?php echo $Page->Iuran->caption() ?></span></span>
-<?php } else { ?>
-	<?php if ($Page->sortUrl($Page->Iuran) == "") { ?>
-		<span class="ew-summary-caption r0304_potensi_Iuran">
-			<span class="ew-table-header-caption"><?php echo $Page->Iuran->caption() ?></span>
-		</span>
-	<?php } else { ?>
-		<span class="ew-table-header-btn ew-pointer ew-summary-caption r0304_potensi_Iuran" onclick="ew.sort(event,'<?php echo $Page->sortUrl($Page->Iuran) ?>',2);">
-			<span class="ew-table-header-caption"><?php echo $Page->Iuran->caption() ?></span>
-			<span class="ew-table-header-sort"><?php if ($Page->Iuran->getSort() == "ASC") { ?><i class="fa fa-sort-up"></i><?php } elseif ($Page->Iuran->getSort() == "DESC") { ?><i class="fa fa-sort-down"></i><?php } ?></span>
-		</span>
-	<?php } ?>
-<?php } ?>
-		<?php echo $ReportLanguage->phrase("SummaryColon") ?>
-<span data-class="tpx<?php echo $Page->GroupCount ?>_r0304_potensi_Iuran"<?php echo $Page->Iuran->viewAttributes() ?>><?php echo $Page->Iuran->GroupViewValue ?></span>
-		<span class="ew-summary-count">(<span class="ew-aggregate-caption"><?php echo $ReportLanguage->phrase("RptCnt") ?></span><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span class="ew-aggregate-value"><?php echo FormatNumber($Page->Iuran->Count,0,-2,-2,-2) ?></span>)</span>
-		</td>
-	</tr>
-<?php } ?>
 <?php
 
 		// Render detail row
@@ -450,12 +371,8 @@ while ($Page->GroupRecordset && !$Page->GroupRecordset->EOF && $Page->GroupCount
 ?>
 	<tr<?php echo $Page->rowAttributes(); ?>>
 <?php if ($Page->Iuran->Visible) { ?>
-	<?php if ($Page->Iuran->ShowGroupHeaderAsRow) { ?>
-		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes(); ?>>&nbsp;</td>
-	<?php } else { ?>
-		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes(); ?>>
-<span data-class="tpx<?php echo $Page->GroupCount ?>_r0304_potensi_Iuran"<?php echo $Page->Iuran->viewAttributes() ?>><?php echo $Page->Iuran->GroupViewValue ?></span></td>
-	<?php } ?>
+		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes() ?>>
+<span<?php echo $Page->Iuran->viewAttributes() ?>><?php echo $Page->Iuran->getViewValue() ?></span></td>
 <?php } ?>
 <?php if ($Page->TahunAjaran->Visible) { ?>
 		<td data-field="TahunAjaran"<?php echo $Page->TahunAjaran->cellAttributes() ?>>
@@ -489,123 +406,83 @@ while ($Page->GroupRecordset && !$Page->GroupRecordset->EOF && $Page->GroupCount
 
 		// Get next record
 		$Page->loadRowValues();
-
-		// Show Footers
-?>
-<?php
-	} // End detail records loop
-?>
-<?php
-		if ($Page->Iuran->Visible) {
-?>
-<?php
-			$Page->Iuran->Count = $Page->getSummaryCount(1, FALSE);
-			$Page->Potensi->Count = $Page->Counts[1][4];
-			$Page->Potensi->SumValue = $Page->Summaries[1][4]; // Load SUM
-			$Page->Terbayar->Count = $Page->Counts[1][5];
-			$Page->Terbayar->SumValue = $Page->Summaries[1][5]; // Load SUM
-			$Page->Sisa->Count = $Page->Counts[1][6];
-			$Page->Sisa->SumValue = $Page->Summaries[1][6]; // Load SUM
-			$Page->resetAttributes();
-			$Page->RowType = ROWTYPE_TOTAL;
-			$Page->RowTotalType = ROWTOTAL_GROUP;
-			$Page->RowTotalSubType = ROWTOTAL_FOOTER;
-			$Page->RowGroupLevel = 1;
-			$Page->renderRow();
-?>
-<?php if ($Page->Iuran->ShowCompactSummaryFooter) { ?>
-	<tr<?php echo $Page->rowAttributes(); ?>>
-<?php if ($Page->Iuran->Visible) { ?>
-		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes() ?>>
-	<?php if ($Page->Iuran->ShowGroupHeaderAsRow) { ?>
-		&nbsp;
-	<?php } elseif ($Page->RowGroupLevel <> 1) { ?>
-		&nbsp;
-	<?php } else { ?>
-		<span class="ew-summary-count"><span class="ew-aggregate-caption"><?php echo $ReportLanguage->phrase("RptCnt") ?></span><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span class="ew-aggregate-value"><?php echo FormatNumber($Page->Iuran->Count,0,-2,-2,-2) ?></span></span>
-	<?php } ?>
-		</td>
-<?php } ?>
-<?php if ($Page->TahunAjaran->Visible) { ?>
-		<td data-field="TahunAjaran"<?php echo $Page->Iuran->cellAttributes() ?>></td>
-<?php } ?>
-<?php if ($Page->Sekolah->Visible) { ?>
-		<td data-field="Sekolah"<?php echo $Page->Iuran->cellAttributes() ?>></td>
-<?php } ?>
-<?php if ($Page->Kelas->Visible) { ?>
-		<td data-field="Kelas"<?php echo $Page->Iuran->cellAttributes() ?>></td>
-<?php } ?>
-<?php if ($Page->Potensi->Visible) { ?>
-		<td data-field="Potensi"<?php echo $Page->Iuran->cellAttributes() ?>><span class="ew-aggregate-caption"><?php echo $ReportLanguage->phrase("RptSum") ?></span><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span class="ew-aggregate-value"><span<?php echo $Page->Potensi->viewAttributes() ?>><?php echo $Page->Potensi->SumViewValue ?></span></span></td>
-<?php } ?>
-<?php if ($Page->Terbayar->Visible) { ?>
-		<td data-field="Terbayar"<?php echo $Page->Iuran->cellAttributes() ?>><span class="ew-aggregate-caption"><?php echo $ReportLanguage->phrase("RptSum") ?></span><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span class="ew-aggregate-value"><span<?php echo $Page->Terbayar->viewAttributes() ?>><?php echo $Page->Terbayar->SumViewValue ?></span></span></td>
-<?php } ?>
-<?php if ($Page->Sisa->Visible) { ?>
-		<td data-field="Sisa"<?php echo $Page->Iuran->cellAttributes() ?>><span class="ew-aggregate-caption"><?php echo $ReportLanguage->phrase("RptSum") ?></span><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span class="ew-aggregate-value"><span<?php echo $Page->Sisa->viewAttributes() ?>><?php echo $Page->Sisa->SumViewValue ?></span></span></td>
-<?php } ?>
-	</tr>
-<?php } else { ?>
-	<tr<?php echo $Page->rowAttributes(); ?>>
-<?php if ($Page->GroupColumnCount + $Page->DetailColumnCount > 0) { ?>
-		<td colspan="<?php echo ($Page->GroupColumnCount + $Page->DetailColumnCount) ?>"<?php echo $Page->Sisa->cellAttributes() ?>><?php echo str_replace(["%v", "%c"], [$Page->Iuran->GroupViewValue, $Page->Iuran->caption()], $ReportLanguage->phrase("RptSumHead")) ?> <span class="ew-dir-ltr">(<?php echo FormatNumber($Page->Counts[1][0],0,-2,-2,-2) ?><?php echo $ReportLanguage->Phrase("RptDtlRec") ?>)</span></td>
-<?php } ?>
-	</tr>
-	<tr<?php echo $Page->rowAttributes(); ?>>
-<?php if ($Page->GroupColumnCount > 0) { ?>
-		<td colspan="<?php echo ($Page->GroupColumnCount - 0) ?>"<?php echo $Page->Iuran->cellAttributes() ?>><?php echo $ReportLanguage->phrase("RptSum") ?></td>
-<?php } ?>
-<?php if ($Page->TahunAjaran->Visible) { ?>
-		<td data-field="TahunAjaran"<?php echo $Page->Iuran->cellAttributes() ?>>&nbsp;</td>
-<?php } ?>
-<?php if ($Page->Sekolah->Visible) { ?>
-		<td data-field="Sekolah"<?php echo $Page->Iuran->cellAttributes() ?>>&nbsp;</td>
-<?php } ?>
-<?php if ($Page->Kelas->Visible) { ?>
-		<td data-field="Kelas"<?php echo $Page->Iuran->cellAttributes() ?>>&nbsp;</td>
-<?php } ?>
-<?php if ($Page->Potensi->Visible) { ?>
-		<td data-field="Potensi"<?php echo $Page->Sisa->cellAttributes() ?>>
-<span<?php echo $Page->Potensi->viewAttributes() ?>><?php echo $Page->Potensi->SumViewValue ?></span></td>
-<?php } ?>
-<?php if ($Page->Terbayar->Visible) { ?>
-		<td data-field="Terbayar"<?php echo $Page->Sisa->cellAttributes() ?>>
-<span<?php echo $Page->Terbayar->viewAttributes() ?>><?php echo $Page->Terbayar->SumViewValue ?></span></td>
-<?php } ?>
-<?php if ($Page->Sisa->Visible) { ?>
-		<td data-field="Sisa"<?php echo $Page->Sisa->cellAttributes() ?>>
-<span<?php echo $Page->Sisa->viewAttributes() ?>><?php echo $Page->Sisa->SumViewValue ?></span></td>
-<?php } ?>
-	</tr>
-<?php } ?>
-<?php
-
-			// Reset level 1 summary
-			$Page->resetLevelSummary(1);
-		} // End show footer check
-?>
-<?php
-
-	// Next group
-	$Page->loadGroupRowValues();
-
-	// Show header if page break
-	if ($Page->Export <> "")
-		$Page->ShowHeader = ($Page->ExportPageBreakCount == 0) ? FALSE : ($Page->GroupCount % $Page->ExportPageBreakCount == 0);
-
-	// Page_Breaking server event
-	if ($Page->ShowHeader)
-		$Page->Page_Breaking($Page->ShowHeader, $Page->PageBreakContent);
 	$Page->GroupCount++;
-
-	// Handle EOF
-	if (!$Page->GroupRecordset || $Page->GroupRecordset->EOF)
-		$Page->ShowHeader = FALSE;
 } // End while
 ?>
 <?php if ($Page->TotalGroups > 0) { ?>
 </tbody>
 <tfoot>
+<?php
+	$Page->Potensi->Count = $Page->GrandCounts[5];
+	$Page->Potensi->SumValue = $Page->GrandSummaries[5]; // Load SUM
+	$Page->Terbayar->Count = $Page->GrandCounts[6];
+	$Page->Terbayar->SumValue = $Page->GrandSummaries[6]; // Load SUM
+	$Page->Sisa->Count = $Page->GrandCounts[7];
+	$Page->Sisa->SumValue = $Page->GrandSummaries[7]; // Load SUM
+	$Page->resetAttributes();
+	$Page->RowType = ROWTYPE_TOTAL;
+	$Page->RowTotalType = ROWTOTAL_GRAND;
+	$Page->RowTotalSubType = ROWTOTAL_FOOTER;
+	$Page->RowAttrs["class"] = "ew-rpt-grand-summary";
+	$Page->renderRow();
+?>
+<?php if ($Page->ShowCompactSummaryFooter) { ?>
+	<tr<?php echo $Page->rowAttributes() ?>><td colspan="<?php echo ($Page->GroupColumnCount + $Page->DetailColumnCount) ?>"><?php echo $ReportLanguage->Phrase("RptGrandSummary") ?> <span class="ew-summary-count">(<span class="ew-aggregate-caption"><?php echo $ReportLanguage->phrase("RptCnt") ?></span><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span class="ew-aggregate-value"><?php echo FormatNumber($Page->TotalCount,0,-2,-2,-2) ?></span>)</span></td></tr>
+	<tr<?php echo $Page->rowAttributes() ?>>
+<?php if ($Page->GroupColumnCount > 0) { ?>
+		<td colspan="<?php echo $Page->GroupColumnCount ?>" class="ew-rpt-grp-aggregate">&nbsp;</td>
+<?php } ?>
+<?php if ($Page->Iuran->Visible) { ?>
+		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes() ?>></td>
+<?php } ?>
+<?php if ($Page->TahunAjaran->Visible) { ?>
+		<td data-field="TahunAjaran"<?php echo $Page->TahunAjaran->cellAttributes() ?>></td>
+<?php } ?>
+<?php if ($Page->Sekolah->Visible) { ?>
+		<td data-field="Sekolah"<?php echo $Page->Sekolah->cellAttributes() ?>></td>
+<?php } ?>
+<?php if ($Page->Kelas->Visible) { ?>
+		<td data-field="Kelas"<?php echo $Page->Kelas->cellAttributes() ?>></td>
+<?php } ?>
+<?php if ($Page->Potensi->Visible) { ?>
+		<td data-field="Potensi"<?php echo $Page->Potensi->cellAttributes() ?>><?php echo $ReportLanguage->phrase("RptSum") ?><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span<?php echo $Page->Potensi->viewAttributes() ?>><?php echo $Page->Potensi->SumViewValue ?></span></td>
+<?php } ?>
+<?php if ($Page->Terbayar->Visible) { ?>
+		<td data-field="Terbayar"<?php echo $Page->Terbayar->cellAttributes() ?>><?php echo $ReportLanguage->phrase("RptSum") ?><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span<?php echo $Page->Terbayar->viewAttributes() ?>><?php echo $Page->Terbayar->SumViewValue ?></span></td>
+<?php } ?>
+<?php if ($Page->Sisa->Visible) { ?>
+		<td data-field="Sisa"<?php echo $Page->Sisa->cellAttributes() ?>><?php echo $ReportLanguage->phrase("RptSum") ?><?php echo $ReportLanguage->phrase("AggregateEqual") ?><span<?php echo $Page->Sisa->viewAttributes() ?>><?php echo $Page->Sisa->SumViewValue ?></span></td>
+<?php } ?>
+	</tr>
+<?php } else { ?>
+	<tr<?php echo $Page->rowAttributes() ?>><td colspan="<?php echo ($Page->GroupColumnCount + $Page->DetailColumnCount) ?>"><?php echo $ReportLanguage->Phrase("RptGrandSummary") ?> <span class="ew-summary-count">(<?php echo FormatNumber($Page->TotalCount,0,-2,-2,-2); ?><?php echo $ReportLanguage->Phrase("RptDtlRec") ?>)</span></td></tr>
+	<tr<?php echo $Page->rowAttributes() ?>>
+<?php if ($Page->Iuran->Visible) { ?>
+		<td data-field="Iuran"<?php echo $Page->Iuran->cellAttributes() ?>>&nbsp;</td>
+<?php } ?>
+<?php if ($Page->TahunAjaran->Visible) { ?>
+		<td data-field="TahunAjaran"<?php echo $Page->TahunAjaran->cellAttributes() ?>>&nbsp;</td>
+<?php } ?>
+<?php if ($Page->Sekolah->Visible) { ?>
+		<td data-field="Sekolah"<?php echo $Page->Sekolah->cellAttributes() ?>>&nbsp;</td>
+<?php } ?>
+<?php if ($Page->Kelas->Visible) { ?>
+		<td data-field="Kelas"<?php echo $Page->Kelas->cellAttributes() ?>>&nbsp;</td>
+<?php } ?>
+<?php if ($Page->Potensi->Visible) { ?>
+		<td data-field="Potensi"<?php echo $Page->Potensi->cellAttributes() ?>><span class="ew-aggregate"><?php echo $ReportLanguage->phrase("RptSum") ?></span><?php echo $ReportLanguage->phrase("AggregateColon") ?>
+<span<?php echo $Page->Potensi->viewAttributes() ?>><?php echo $Page->Potensi->SumViewValue ?></span></td>
+<?php } ?>
+<?php if ($Page->Terbayar->Visible) { ?>
+		<td data-field="Terbayar"<?php echo $Page->Terbayar->cellAttributes() ?>><span class="ew-aggregate"><?php echo $ReportLanguage->phrase("RptSum") ?></span><?php echo $ReportLanguage->phrase("AggregateColon") ?>
+<span<?php echo $Page->Terbayar->viewAttributes() ?>><?php echo $Page->Terbayar->SumViewValue ?></span></td>
+<?php } ?>
+<?php if ($Page->Sisa->Visible) { ?>
+		<td data-field="Sisa"<?php echo $Page->Sisa->cellAttributes() ?>><span class="ew-aggregate"><?php echo $ReportLanguage->phrase("RptSum") ?></span><?php echo $ReportLanguage->phrase("AggregateColon") ?>
+<span<?php echo $Page->Sisa->viewAttributes() ?>><?php echo $Page->Sisa->SumViewValue ?></span></td>
+<?php } ?>
+	</tr>
+<?php } ?>
 	</tfoot>
 <?php } elseif (!$Page->ShowHeader && FALSE) { // No header displayed ?>
 <?php if ($Page->Export <> "pdf") { ?>

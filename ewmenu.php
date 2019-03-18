@@ -22,7 +22,9 @@ $topMenu->addMenuItem(43, "mci_Data_Pembayaran", $MenuLanguage->MenuPhrase("43",
 $topMenu->addMenuItem(51, "mci_Entry", $MenuLanguage->MenuPhrase("51", "MenuText"), "t0301_bayarmasteradd.php?showdetail=t0302_bayardetail", 43, "", IsLoggedIn(), FALSE, TRUE, "", "", TRUE);
 $topMenu->addMenuItem(9, "mi_t0301_bayarmaster", $MenuLanguage->MenuPhrase("9", "MenuText"), "t0301_bayarmasterlist.php", 43, "", AllowListMenu('{45A85772-754E-4F4B-A197-9291CE1FD3F9}t0301_bayarmaster'), FALSE, FALSE, "", "", TRUE);
 $topMenu->addMenuItem(10039, "mci_Laporan", $MenuLanguage->MenuPhrase("10039", "MenuText"), "", -1, "", IsLoggedIn(), FALSE, TRUE, "", "", TRUE);
-$topMenu->addMenuItem(10022, "mri_r0304_potensi", $MenuLanguage->MenuPhrase("10022", "MenuText"), "r0304_potensismry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0304_potensi'), FALSE, FALSE, "", "", TRUE);
+$topMenu->addMenuItem(10028, "mri_r0307_pembayaran", $MenuLanguage->MenuPhrase("10028", "MenuText"), "r0307_pembayaransmry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0307_pembayaran'), FALSE, FALSE, "", "", TRUE);
+$topMenu->addMenuItem(10025, "mri_r0306_uangmasuk", $MenuLanguage->MenuPhrase("10025", "MenuText"), "r0306_uangmasuksmry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0306_uangmasuk'), FALSE, FALSE, "", "", TRUE);
+$topMenu->addMenuItem(10024, "mri_r0305_potensi", $MenuLanguage->MenuPhrase("10024", "MenuText"), "r0305_potensismry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0305_potensi'), FALSE, FALSE, "", "", TRUE);
 echo $topMenu->toScript();
 
 // Sidebar menu
@@ -40,6 +42,8 @@ $sideMenu->addMenuItem(43, "mci_Data_Pembayaran", $MenuLanguage->MenuPhrase("43"
 $sideMenu->addMenuItem(51, "mci_Entry", $MenuLanguage->MenuPhrase("51", "MenuText"), "t0301_bayarmasteradd.php?showdetail=t0302_bayardetail", 43, "", IsLoggedIn(), FALSE, TRUE, "", "", TRUE);
 $sideMenu->addMenuItem(9, "mi_t0301_bayarmaster", $MenuLanguage->MenuPhrase("9", "MenuText"), "t0301_bayarmasterlist.php", 43, "", AllowListMenu('{45A85772-754E-4F4B-A197-9291CE1FD3F9}t0301_bayarmaster'), FALSE, FALSE, "", "", TRUE);
 $sideMenu->addMenuItem(10039, "mci_Laporan", $MenuLanguage->MenuPhrase("10039", "MenuText"), "", -1, "", IsLoggedIn(), FALSE, TRUE, "", "", TRUE);
-$sideMenu->addMenuItem(10022, "mri_r0304_potensi", $MenuLanguage->MenuPhrase("10022", "MenuText"), "r0304_potensismry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0304_potensi'), FALSE, FALSE, "", "", TRUE);
+$sideMenu->addMenuItem(10028, "mri_r0307_pembayaran", $MenuLanguage->MenuPhrase("10028", "MenuText"), "r0307_pembayaransmry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0307_pembayaran'), FALSE, FALSE, "", "", TRUE);
+$sideMenu->addMenuItem(10025, "mri_r0306_uangmasuk", $MenuLanguage->MenuPhrase("10025", "MenuText"), "r0306_uangmasuksmry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0306_uangmasuk'), FALSE, FALSE, "", "", TRUE);
+$sideMenu->addMenuItem(10024, "mri_r0305_potensi", $MenuLanguage->MenuPhrase("10024", "MenuText"), "r0305_potensismry.php", 10039, "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}", AllowListMenu('{1E3116C6-C701-420A-A6D6-A123DF9E6EED}r0305_potensi'), FALSE, FALSE, "", "", TRUE);
 echo $sideMenu->toScript();
 ?>

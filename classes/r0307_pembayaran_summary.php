@@ -2,9 +2,9 @@
 namespace PHPMaker2019\spp_prj;
 
 /**
- * Page class (r0304_potensi_summary)
+ * Page class (r0307_pembayaran_summary)
  */
-class r0304_potensi_summary extends r0304_potensi
+class r0307_pembayaran_summary extends r0307_pembayaran
 {
 
 	// Page ID
@@ -14,7 +14,7 @@ class r0304_potensi_summary extends r0304_potensi
 	public $ProjectID = "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}";
 
 	// Page object name
-	public $PageObjName = 'r0304_potensi_summary';
+	public $PageObjName = 'r0307_pembayaran_summary';
 	public $Token = "";
 	public $TokenTimeout = 0;
 	public $CheckToken = CHECK_TOKEN;
@@ -282,10 +282,10 @@ class r0304_potensi_summary extends r0304_potensi
 		// Parent constuctor
 		parent::__construct();
 
-		// Table object (r0304_potensi)
-		if (!isset($GLOBALS["r0304_potensi"])) {
-			$GLOBALS["r0304_potensi"] = &$this;
-			$GLOBALS["Table"] = &$GLOBALS["r0304_potensi"];
+		// Table object (r0307_pembayaran)
+		if (!isset($GLOBALS["r0307_pembayaran"])) {
+			$GLOBALS["r0307_pembayaran"] = &$this;
+			$GLOBALS["Table"] = &$GLOBALS["r0307_pembayaran"];
 		}
 
 		// Initialize URLs
@@ -301,7 +301,7 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Table name (for backward compatibility)
 		if (!defined(PROJECT_NAMESPACE . "TABLE_NAME"))
-			define(PROJECT_NAMESPACE . "TABLE_NAME", 'r0304_potensi');
+			define(PROJECT_NAMESPACE . "TABLE_NAME", 'r0307_pembayaran');
 
 		// Start timer
 		if (!isset($GLOBALS["DebugTimer"]))
@@ -333,7 +333,7 @@ class r0304_potensi_summary extends r0304_potensi
 		// Filter options
 		$this->FilterOptions = new ListOptions();
 		$this->FilterOptions->Tag = "div";
-		$this->FilterOptions->TagClassName = "ew-filter-option fr0304_potensisummary";
+		$this->FilterOptions->TagClassName = "ew-filter-option fr0307_pembayaransummary";
 
 		// Generate report options
 		$this->GenerateOptions = new ListOptions();
@@ -364,7 +364,7 @@ class r0304_potensi_summary extends r0304_potensi
 		} elseif (SameText($type, "pdf")) {
 			return "<a class=\"ew-export-link ew-pdf\" title=\"" . HtmlEncode($ReportLanguage->phrase("ExportToPDF", TRUE)) . "\" data-caption=\"" . HtmlEncode($ReportLanguage->phrase("ExportToPDF", TRUE)) . "\" href=\"" . $this->ExportPdfUrl . "\">" . $ReportLanguage->phrase("ExportToPDF") . "</a>";
 		} elseif (SameText($type, "email")) {
-			return "<a class=\"ew-export-link ew-email\" title=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" data-caption=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" id=\"emf_r0304_potensi\" href=\"#\" onclick=\"ew.emailDialogShow({ lnk: 'emf_r0304_potensi', hdr: ew.language.phrase('ExportToEmail'), url: '$this->ExportEmailUrl', exportid: '$exportId', el: this }); return false;\">" . $ReportLanguage->phrase("ExportToEmail") . "</a>";
+			return "<a class=\"ew-export-link ew-email\" title=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" data-caption=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" id=\"emf_r0307_pembayaran\" href=\"#\" onclick=\"ew.emailDialogShow({ lnk: 'emf_r0307_pembayaran', hdr: ew.language.phrase('ExportToEmail'), url: '$this->ExportEmailUrl', exportid: '$exportId', el: this }); return false;\">" . $ReportLanguage->phrase("ExportToEmail") . "</a>";
 		}
 	}
 
@@ -422,10 +422,10 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Filter button
 		$item = &$this->FilterOptions->add("savecurrentfilter");
-		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fr0304_potensisummary\" href=\"#\">" . $ReportLanguage->phrase("SaveCurrentFilter") . "</a>";
+		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fr0307_pembayaransummary\" href=\"#\">" . $ReportLanguage->phrase("SaveCurrentFilter") . "</a>";
 		$item->Visible = TRUE;
 		$item = &$this->FilterOptions->add("deletefilter");
-		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fr0304_potensisummary\" href=\"#\">" . $ReportLanguage->phrase("DeleteFilter") . "</a>";
+		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fr0307_pembayaransummary\" href=\"#\">" . $ReportLanguage->phrase("DeleteFilter") . "</a>";
 		$item->Visible = TRUE;
 		$this->FilterOptions->UseDropDownButton = TRUE;
 		$this->FilterOptions->UseButtonGroup = !$this->FilterOptions->UseDropDownButton; // v8
@@ -460,7 +460,7 @@ class r0304_potensi_summary extends r0304_potensi
 		// Filter panel button
 		$item = &$this->SearchOptions->add("searchtoggle");
 		$searchToggleClass = $this->FilterApplied ? " active" : " active";
-		$item->Body = "<button type=\"button\" class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" title=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-caption=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-toggle=\"button\" data-form=\"fr0304_potensisummary\">" . $ReportLanguage->phrase("SearchBtn") . "</button>";
+		$item->Body = "<button type=\"button\" class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" title=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-caption=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-toggle=\"button\" data-form=\"fr0307_pembayaransummary\">" . $ReportLanguage->phrase("SearchBtn") . "</button>";
 		$item->Visible = TRUE;
 
 		// Reset filter
@@ -604,7 +604,7 @@ class r0304_potensi_summary extends r0304_potensi
 		$Security = new AdvancedSecurity();
 		if (!$Security->isLoggedIn()) $Security->autoLogin(); // Auto login
 		$Security->TablePermission_Loading();
-		$Security->loadCurrentUserLevel($this->ProjectID . 'r0304_potensi');
+		$Security->loadCurrentUserLevel($this->ProjectID . 'r0307_pembayaran');
 		$Security->TablePermission_Loaded();
 		if (!$Security->canList()) {
 			$Security->saveLastUrl();
@@ -627,10 +627,12 @@ class r0304_potensi_summary extends r0304_potensi
 		$ExportFileName = $this->TableVar; // Get export file, used in header
 
 		// Setup placeholder
-		$this->Iuran->PlaceHolder = $this->Iuran->caption();
 		$this->TahunAjaran->PlaceHolder = $this->TahunAjaran->caption();
 		$this->Sekolah->PlaceHolder = $this->Sekolah->caption();
 		$this->Kelas->PlaceHolder = $this->Kelas->caption();
+		$this->NIS->PlaceHolder = $this->NIS->caption();
+		$this->Nama->PlaceHolder = $this->Nama->caption();
+		$this->Tanggal->PlaceHolder = $this->Tanggal->caption();
 
 		// Setup export options
 		$this->setupExportOptions();
@@ -654,19 +656,24 @@ class r0304_potensi_summary extends r0304_potensi
 		// Set up lookup cache
 		// Set field visibility for detail fields
 
-		$this->Iuran->setVisibility();
 		$this->TahunAjaran->setVisibility();
 		$this->Sekolah->setVisibility();
 		$this->Kelas->setVisibility();
-		$this->Potensi->setVisibility();
-		$this->Terbayar->setVisibility();
-		$this->Sisa->setVisibility();
+		$this->NIS->setVisibility();
+		$this->Nama->setVisibility();
+		$this->Iuran->setVisibility();
+		$this->Jenis->setVisibility();
+		$this->Nomor->setVisibility();
+		$this->Tanggal->setVisibility();
+		$this->Periode1->setVisibility();
+		$this->Periode2->setVisibility();
+		$this->Jumlah->setVisibility();
 
 		// Aggregate variables
 		// 1st dimension = no of groups (level 0 used for grand total)
 		// 2nd dimension = no of fields
 
-		$fieldCount = 8;
+		$fieldCount = 13;
 		$groupCount = 1;
 		$this->Values = &InitArray($fieldCount, 0);
 		$this->Counts = &Init2DArray($groupCount, $fieldCount, 0);
@@ -679,7 +686,7 @@ class r0304_potensi_summary extends r0304_potensi
 		$this->GrandMaximums = &InitArray($fieldCount, NULL);
 
 		// Set up array if accumulation required: [Accum, SkipNullOrZero]
-		$this->Columns = [[FALSE, FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [TRUE,FALSE], [TRUE,FALSE], [TRUE,FALSE]];
+		$this->Columns = [[FALSE, FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [TRUE,FALSE]];
 
 		// Set up groups per page dynamically
 		$this->setupDisplayGroups();
@@ -845,54 +852,59 @@ class r0304_potensi_summary extends r0304_potensi
 			return;
 		if ($firstRow) { // Get first row
 				$this->FirstRowData = [];
-				$this->FirstRowData["iuran_id"] = $this->Recordset->fields('iuran_id');
+				$this->FirstRowData["TahunAjaran"] = $this->Recordset->fields('TahunAjaran');
+				$this->FirstRowData["Sekolah"] = $this->Recordset->fields('Sekolah');
+				$this->FirstRowData["Kelas"] = $this->Recordset->fields('Kelas');
+				$this->FirstRowData["NIS"] = $this->Recordset->fields('NIS');
+				$this->FirstRowData["Nama"] = $this->Recordset->fields('Nama');
 				$this->FirstRowData["Iuran"] = $this->Recordset->fields('Iuran');
 				$this->FirstRowData["Jenis"] = $this->Recordset->fields('Jenis');
-				$this->FirstRowData["tahunajaran_id"] = $this->Recordset->fields('tahunajaran_id');
-				$this->FirstRowData["TahunAjaran"] = $this->Recordset->fields('TahunAjaran');
-				$this->FirstRowData["sekolah_id"] = $this->Recordset->fields('sekolah_id');
-				$this->FirstRowData["Sekolah"] = $this->Recordset->fields('Sekolah');
-				$this->FirstRowData["kelas_id"] = $this->Recordset->fields('kelas_id');
-				$this->FirstRowData["Kelas"] = $this->Recordset->fields('Kelas');
-				$this->FirstRowData["Potensi"] = $this->Recordset->fields('Potensi');
-				$this->FirstRowData["Terbayar"] = $this->Recordset->fields('Terbayar');
-				$this->FirstRowData["Sisa"] = $this->Recordset->fields('Sisa');
+				$this->FirstRowData["Nomor"] = $this->Recordset->fields('Nomor');
+				$this->FirstRowData["Tanggal"] = $this->Recordset->fields('Tanggal');
+				$this->FirstRowData["Periode1"] = $this->Recordset->fields('Periode1');
+				$this->FirstRowData["Periode2"] = $this->Recordset->fields('Periode2');
+				$this->FirstRowData["Jumlah"] = $this->Recordset->fields('Jumlah');
 		} else { // Get next row
 			$this->Recordset->moveNext();
 		}
 		if (!$this->Recordset->EOF) {
-			$this->iuran_id->setDbValue($this->Recordset->fields('iuran_id'));
+			$this->TahunAjaran->setDbValue($this->Recordset->fields('TahunAjaran'));
+			$this->Sekolah->setDbValue($this->Recordset->fields('Sekolah'));
+			$this->Kelas->setDbValue($this->Recordset->fields('Kelas'));
+			$this->NIS->setDbValue($this->Recordset->fields('NIS'));
+			$this->Nama->setDbValue($this->Recordset->fields('Nama'));
 			$this->Iuran->setDbValue($this->Recordset->fields('Iuran'));
 			$this->Jenis->setDbValue($this->Recordset->fields('Jenis'));
-			$this->tahunajaran_id->setDbValue($this->Recordset->fields('tahunajaran_id'));
-			$this->TahunAjaran->setDbValue($this->Recordset->fields('TahunAjaran'));
-			$this->sekolah_id->setDbValue($this->Recordset->fields('sekolah_id'));
-			$this->Sekolah->setDbValue($this->Recordset->fields('Sekolah'));
-			$this->kelas_id->setDbValue($this->Recordset->fields('kelas_id'));
-			$this->Kelas->setDbValue($this->Recordset->fields('Kelas'));
-			$this->Potensi->setDbValue($this->Recordset->fields('Potensi'));
-			$this->Terbayar->setDbValue($this->Recordset->fields('Terbayar'));
-			$this->Sisa->setDbValue($this->Recordset->fields('Sisa'));
-			$this->Values[1] = $this->Iuran->CurrentValue;
-			$this->Values[2] = $this->TahunAjaran->CurrentValue;
-			$this->Values[3] = $this->Sekolah->CurrentValue;
-			$this->Values[4] = $this->Kelas->CurrentValue;
-			$this->Values[5] = $this->Potensi->CurrentValue;
-			$this->Values[6] = $this->Terbayar->CurrentValue;
-			$this->Values[7] = $this->Sisa->CurrentValue;
+			$this->Nomor->setDbValue($this->Recordset->fields('Nomor'));
+			$this->Tanggal->setDbValue($this->Recordset->fields('Tanggal'));
+			$this->Periode1->setDbValue($this->Recordset->fields('Periode1'));
+			$this->Periode2->setDbValue($this->Recordset->fields('Periode2'));
+			$this->Jumlah->setDbValue($this->Recordset->fields('Jumlah'));
+			$this->Values[1] = $this->TahunAjaran->CurrentValue;
+			$this->Values[2] = $this->Sekolah->CurrentValue;
+			$this->Values[3] = $this->Kelas->CurrentValue;
+			$this->Values[4] = $this->NIS->CurrentValue;
+			$this->Values[5] = $this->Nama->CurrentValue;
+			$this->Values[6] = $this->Iuran->CurrentValue;
+			$this->Values[7] = $this->Jenis->CurrentValue;
+			$this->Values[8] = $this->Nomor->CurrentValue;
+			$this->Values[9] = $this->Tanggal->CurrentValue;
+			$this->Values[10] = $this->Periode1->CurrentValue;
+			$this->Values[11] = $this->Periode2->CurrentValue;
+			$this->Values[12] = $this->Jumlah->CurrentValue;
 		} else {
-			$this->iuran_id->setDbValue("");
+			$this->TahunAjaran->setDbValue("");
+			$this->Sekolah->setDbValue("");
+			$this->Kelas->setDbValue("");
+			$this->NIS->setDbValue("");
+			$this->Nama->setDbValue("");
 			$this->Iuran->setDbValue("");
 			$this->Jenis->setDbValue("");
-			$this->tahunajaran_id->setDbValue("");
-			$this->TahunAjaran->setDbValue("");
-			$this->sekolah_id->setDbValue("");
-			$this->Sekolah->setDbValue("");
-			$this->kelas_id->setDbValue("");
-			$this->Kelas->setDbValue("");
-			$this->Potensi->setDbValue("");
-			$this->Terbayar->setDbValue("");
-			$this->Sisa->setDbValue("");
+			$this->Nomor->setDbValue("");
+			$this->Tanggal->setDbValue("");
+			$this->Periode1->setDbValue("");
+			$this->Periode2->setDbValue("");
+			$this->Jumlah->setDbValue("");
 		}
 	}
 
@@ -926,11 +938,14 @@ class r0304_potensi_summary extends r0304_potensi
 				$this->GrandCounts[3] = $this->TotalCount;
 				$this->GrandCounts[4] = $this->TotalCount;
 				$this->GrandCounts[5] = $this->TotalCount;
-				$this->GrandSummaries[5] = $rsagg->fields("sum_potensi");
 				$this->GrandCounts[6] = $this->TotalCount;
-				$this->GrandSummaries[6] = $rsagg->fields("sum_terbayar");
 				$this->GrandCounts[7] = $this->TotalCount;
-				$this->GrandSummaries[7] = $rsagg->fields("sum_sisa");
+				$this->GrandCounts[8] = $this->TotalCount;
+				$this->GrandCounts[9] = $this->TotalCount;
+				$this->GrandCounts[10] = $this->TotalCount;
+				$this->GrandCounts[11] = $this->TotalCount;
+				$this->GrandCounts[12] = $this->TotalCount;
+				$this->GrandSummaries[12] = $rsagg->fields("sum_jumlah");
 				$rsagg->close();
 				$hasSummary = TRUE;
 			}
@@ -957,26 +972,11 @@ class r0304_potensi_summary extends r0304_potensi
 		} elseif ($this->RowType == ROWTYPE_TOTAL && !($this->RowTotalType == ROWTOTAL_GROUP && $this->RowTotalSubType == ROWTOTAL_HEADER)) { // Summary row
 			PrependClass($this->RowAttrs["class"], ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : ""); // Set up row class
 
-			// Potensi
-			$this->Potensi->SumViewValue = $this->Potensi->SumValue;
-			$this->Potensi->SumViewValue = FormatNumber($this->Potensi->SumViewValue, 2, -2, -2, -2);
-			$this->Potensi->CellAttrs["class"] = "text-right";
-			$this->Potensi->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
-
-			// Terbayar
-			$this->Terbayar->SumViewValue = $this->Terbayar->SumValue;
-			$this->Terbayar->SumViewValue = FormatNumber($this->Terbayar->SumViewValue, 2, -2, -2, -2);
-			$this->Terbayar->CellAttrs["class"] = "text-right";
-			$this->Terbayar->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
-
-			// Sisa
-			$this->Sisa->SumViewValue = $this->Sisa->SumValue;
-			$this->Sisa->SumViewValue = FormatNumber($this->Sisa->SumViewValue, 2, -2, -2, -2);
-			$this->Sisa->CellAttrs["class"] = "text-right";
-			$this->Sisa->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
-
-			// Iuran
-			$this->Iuran->HrefValue = "";
+			// Jumlah
+			$this->Jumlah->SumViewValue = $this->Jumlah->SumValue;
+			$this->Jumlah->SumViewValue = FormatNumber($this->Jumlah->SumViewValue, 2, -2, -2, -2);
+			$this->Jumlah->CellAttrs["class"] = "text-right";
+			$this->Jumlah->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
 
 			// TahunAjaran
 			$this->TahunAjaran->HrefValue = "";
@@ -987,22 +987,36 @@ class r0304_potensi_summary extends r0304_potensi
 			// Kelas
 			$this->Kelas->HrefValue = "";
 
-			// Potensi
-			$this->Potensi->HrefValue = "";
+			// NIS
+			$this->NIS->HrefValue = "";
 
-			// Terbayar
-			$this->Terbayar->HrefValue = "";
+			// Nama
+			$this->Nama->HrefValue = "";
 
-			// Sisa
-			$this->Sisa->HrefValue = "";
+			// Iuran
+			$this->Iuran->HrefValue = "";
+
+			// Jenis
+			$this->Jenis->HrefValue = "";
+
+			// Nomor
+			$this->Nomor->HrefValue = "";
+
+			// Tanggal
+			$this->Tanggal->HrefValue = "";
+
+			// Periode1
+			$this->Periode1->HrefValue = "";
+
+			// Periode2
+			$this->Periode2->HrefValue = "";
+
+			// Jumlah
+			$this->Jumlah->HrefValue = "";
 		} else {
 			if ($this->RowTotalType == ROWTOTAL_GROUP && $this->RowTotalSubType == ROWTOTAL_HEADER) {
 			} else {
 			}
-
-			// Iuran
-			$this->Iuran->ViewValue = $this->Iuran->CurrentValue;
-			$this->Iuran->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
 			// TahunAjaran
 			$this->TahunAjaran->ViewValue = $this->TahunAjaran->CurrentValue;
@@ -1016,23 +1030,43 @@ class r0304_potensi_summary extends r0304_potensi
 			$this->Kelas->ViewValue = $this->Kelas->CurrentValue;
 			$this->Kelas->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Potensi
-			$this->Potensi->ViewValue = $this->Potensi->CurrentValue;
-			$this->Potensi->ViewValue = FormatNumber($this->Potensi->ViewValue, 2, -2, -2, -2);
-			$this->Potensi->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// NIS
+			$this->NIS->ViewValue = $this->NIS->CurrentValue;
+			$this->NIS->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Terbayar
-			$this->Terbayar->ViewValue = $this->Terbayar->CurrentValue;
-			$this->Terbayar->ViewValue = FormatNumber($this->Terbayar->ViewValue, 2, -2, -2, -2);
-			$this->Terbayar->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
-
-			// Sisa
-			$this->Sisa->ViewValue = $this->Sisa->CurrentValue;
-			$this->Sisa->ViewValue = FormatNumber($this->Sisa->ViewValue, 2, -2, -2, -2);
-			$this->Sisa->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// Nama
+			$this->Nama->ViewValue = $this->Nama->CurrentValue;
+			$this->Nama->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
 			// Iuran
-			$this->Iuran->HrefValue = "";
+			$this->Iuran->ViewValue = $this->Iuran->CurrentValue;
+			$this->Iuran->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+
+			// Jenis
+			$this->Jenis->ViewValue = $this->Jenis->CurrentValue;
+			$this->Jenis->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+
+			// Nomor
+			$this->Nomor->ViewValue = $this->Nomor->CurrentValue;
+			$this->Nomor->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+
+			// Tanggal
+			$this->Tanggal->ViewValue = $this->Tanggal->CurrentValue;
+			$this->Tanggal->ViewValue = FormatDateTime($this->Tanggal->ViewValue, 7);
+			$this->Tanggal->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+
+			// Periode1
+			$this->Periode1->ViewValue = $this->Periode1->CurrentValue;
+			$this->Periode1->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+
+			// Periode2
+			$this->Periode2->ViewValue = $this->Periode2->CurrentValue;
+			$this->Periode2->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+
+			// Jumlah
+			$this->Jumlah->ViewValue = $this->Jumlah->CurrentValue;
+			$this->Jumlah->ViewValue = FormatNumber($this->Jumlah->ViewValue, 2, -2, -2, -2);
+			$this->Jumlah->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
 			// TahunAjaran
 			$this->TahunAjaran->HrefValue = "";
@@ -1043,55 +1077,46 @@ class r0304_potensi_summary extends r0304_potensi
 			// Kelas
 			$this->Kelas->HrefValue = "";
 
-			// Potensi
-			$this->Potensi->HrefValue = "";
+			// NIS
+			$this->NIS->HrefValue = "";
 
-			// Terbayar
-			$this->Terbayar->HrefValue = "";
+			// Nama
+			$this->Nama->HrefValue = "";
 
-			// Sisa
-			$this->Sisa->HrefValue = "";
+			// Iuran
+			$this->Iuran->HrefValue = "";
+
+			// Jenis
+			$this->Jenis->HrefValue = "";
+
+			// Nomor
+			$this->Nomor->HrefValue = "";
+
+			// Tanggal
+			$this->Tanggal->HrefValue = "";
+
+			// Periode1
+			$this->Periode1->HrefValue = "";
+
+			// Periode2
+			$this->Periode2->HrefValue = "";
+
+			// Jumlah
+			$this->Jumlah->HrefValue = "";
 		}
 
 		// Call Cell_Rendered event
 		if ($this->RowType == ROWTYPE_TOTAL) { // Summary row
 
-			// Potensi
-			$currentValue = $this->Potensi->SumValue;
-			$viewValue = &$this->Potensi->SumViewValue;
-			$viewAttrs = &$this->Potensi->ViewAttrs;
-			$cellAttrs = &$this->Potensi->CellAttrs;
-			$hrefValue = &$this->Potensi->HrefValue;
-			$linkAttrs = &$this->Potensi->LinkAttrs;
-			$this->Cell_Rendered($this->Potensi, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
-
-			// Terbayar
-			$currentValue = $this->Terbayar->SumValue;
-			$viewValue = &$this->Terbayar->SumViewValue;
-			$viewAttrs = &$this->Terbayar->ViewAttrs;
-			$cellAttrs = &$this->Terbayar->CellAttrs;
-			$hrefValue = &$this->Terbayar->HrefValue;
-			$linkAttrs = &$this->Terbayar->LinkAttrs;
-			$this->Cell_Rendered($this->Terbayar, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
-
-			// Sisa
-			$currentValue = $this->Sisa->SumValue;
-			$viewValue = &$this->Sisa->SumViewValue;
-			$viewAttrs = &$this->Sisa->ViewAttrs;
-			$cellAttrs = &$this->Sisa->CellAttrs;
-			$hrefValue = &$this->Sisa->HrefValue;
-			$linkAttrs = &$this->Sisa->LinkAttrs;
-			$this->Cell_Rendered($this->Sisa, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// Jumlah
+			$currentValue = $this->Jumlah->SumValue;
+			$viewValue = &$this->Jumlah->SumViewValue;
+			$viewAttrs = &$this->Jumlah->ViewAttrs;
+			$cellAttrs = &$this->Jumlah->CellAttrs;
+			$hrefValue = &$this->Jumlah->HrefValue;
+			$linkAttrs = &$this->Jumlah->LinkAttrs;
+			$this->Cell_Rendered($this->Jumlah, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 		} else {
-
-			// Iuran
-			$currentValue = $this->Iuran->CurrentValue;
-			$viewValue = &$this->Iuran->ViewValue;
-			$viewAttrs = &$this->Iuran->ViewAttrs;
-			$cellAttrs = &$this->Iuran->CellAttrs;
-			$hrefValue = &$this->Iuran->HrefValue;
-			$linkAttrs = &$this->Iuran->LinkAttrs;
-			$this->Cell_Rendered($this->Iuran, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
 			// TahunAjaran
 			$currentValue = $this->TahunAjaran->CurrentValue;
@@ -1120,32 +1145,86 @@ class r0304_potensi_summary extends r0304_potensi
 			$linkAttrs = &$this->Kelas->LinkAttrs;
 			$this->Cell_Rendered($this->Kelas, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Potensi
-			$currentValue = $this->Potensi->CurrentValue;
-			$viewValue = &$this->Potensi->ViewValue;
-			$viewAttrs = &$this->Potensi->ViewAttrs;
-			$cellAttrs = &$this->Potensi->CellAttrs;
-			$hrefValue = &$this->Potensi->HrefValue;
-			$linkAttrs = &$this->Potensi->LinkAttrs;
-			$this->Cell_Rendered($this->Potensi, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// NIS
+			$currentValue = $this->NIS->CurrentValue;
+			$viewValue = &$this->NIS->ViewValue;
+			$viewAttrs = &$this->NIS->ViewAttrs;
+			$cellAttrs = &$this->NIS->CellAttrs;
+			$hrefValue = &$this->NIS->HrefValue;
+			$linkAttrs = &$this->NIS->LinkAttrs;
+			$this->Cell_Rendered($this->NIS, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Terbayar
-			$currentValue = $this->Terbayar->CurrentValue;
-			$viewValue = &$this->Terbayar->ViewValue;
-			$viewAttrs = &$this->Terbayar->ViewAttrs;
-			$cellAttrs = &$this->Terbayar->CellAttrs;
-			$hrefValue = &$this->Terbayar->HrefValue;
-			$linkAttrs = &$this->Terbayar->LinkAttrs;
-			$this->Cell_Rendered($this->Terbayar, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// Nama
+			$currentValue = $this->Nama->CurrentValue;
+			$viewValue = &$this->Nama->ViewValue;
+			$viewAttrs = &$this->Nama->ViewAttrs;
+			$cellAttrs = &$this->Nama->CellAttrs;
+			$hrefValue = &$this->Nama->HrefValue;
+			$linkAttrs = &$this->Nama->LinkAttrs;
+			$this->Cell_Rendered($this->Nama, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Sisa
-			$currentValue = $this->Sisa->CurrentValue;
-			$viewValue = &$this->Sisa->ViewValue;
-			$viewAttrs = &$this->Sisa->ViewAttrs;
-			$cellAttrs = &$this->Sisa->CellAttrs;
-			$hrefValue = &$this->Sisa->HrefValue;
-			$linkAttrs = &$this->Sisa->LinkAttrs;
-			$this->Cell_Rendered($this->Sisa, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// Iuran
+			$currentValue = $this->Iuran->CurrentValue;
+			$viewValue = &$this->Iuran->ViewValue;
+			$viewAttrs = &$this->Iuran->ViewAttrs;
+			$cellAttrs = &$this->Iuran->CellAttrs;
+			$hrefValue = &$this->Iuran->HrefValue;
+			$linkAttrs = &$this->Iuran->LinkAttrs;
+			$this->Cell_Rendered($this->Iuran, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+
+			// Jenis
+			$currentValue = $this->Jenis->CurrentValue;
+			$viewValue = &$this->Jenis->ViewValue;
+			$viewAttrs = &$this->Jenis->ViewAttrs;
+			$cellAttrs = &$this->Jenis->CellAttrs;
+			$hrefValue = &$this->Jenis->HrefValue;
+			$linkAttrs = &$this->Jenis->LinkAttrs;
+			$this->Cell_Rendered($this->Jenis, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+
+			// Nomor
+			$currentValue = $this->Nomor->CurrentValue;
+			$viewValue = &$this->Nomor->ViewValue;
+			$viewAttrs = &$this->Nomor->ViewAttrs;
+			$cellAttrs = &$this->Nomor->CellAttrs;
+			$hrefValue = &$this->Nomor->HrefValue;
+			$linkAttrs = &$this->Nomor->LinkAttrs;
+			$this->Cell_Rendered($this->Nomor, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+
+			// Tanggal
+			$currentValue = $this->Tanggal->CurrentValue;
+			$viewValue = &$this->Tanggal->ViewValue;
+			$viewAttrs = &$this->Tanggal->ViewAttrs;
+			$cellAttrs = &$this->Tanggal->CellAttrs;
+			$hrefValue = &$this->Tanggal->HrefValue;
+			$linkAttrs = &$this->Tanggal->LinkAttrs;
+			$this->Cell_Rendered($this->Tanggal, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+
+			// Periode1
+			$currentValue = $this->Periode1->CurrentValue;
+			$viewValue = &$this->Periode1->ViewValue;
+			$viewAttrs = &$this->Periode1->ViewAttrs;
+			$cellAttrs = &$this->Periode1->CellAttrs;
+			$hrefValue = &$this->Periode1->HrefValue;
+			$linkAttrs = &$this->Periode1->LinkAttrs;
+			$this->Cell_Rendered($this->Periode1, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+
+			// Periode2
+			$currentValue = $this->Periode2->CurrentValue;
+			$viewValue = &$this->Periode2->ViewValue;
+			$viewAttrs = &$this->Periode2->ViewAttrs;
+			$cellAttrs = &$this->Periode2->CellAttrs;
+			$hrefValue = &$this->Periode2->HrefValue;
+			$linkAttrs = &$this->Periode2->LinkAttrs;
+			$this->Cell_Rendered($this->Periode2, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+
+			// Jumlah
+			$currentValue = $this->Jumlah->CurrentValue;
+			$viewValue = &$this->Jumlah->ViewValue;
+			$viewAttrs = &$this->Jumlah->ViewAttrs;
+			$cellAttrs = &$this->Jumlah->CellAttrs;
+			$hrefValue = &$this->Jumlah->HrefValue;
+			$linkAttrs = &$this->Jumlah->LinkAttrs;
+			$this->Cell_Rendered($this->Jumlah, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 		}
 
 		// Call Row_Rendered event
@@ -1237,19 +1316,29 @@ class r0304_potensi_summary extends r0304_potensi
 		$this->GroupColumnCount = 0;
 		$this->SubGroupColumnCount = 0;
 		$this->DetailColumnCount = 0;
-		if ($this->Iuran->Visible)
-			$this->DetailColumnCount += 1;
 		if ($this->TahunAjaran->Visible)
 			$this->DetailColumnCount += 1;
 		if ($this->Sekolah->Visible)
 			$this->DetailColumnCount += 1;
 		if ($this->Kelas->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Potensi->Visible)
+		if ($this->NIS->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Terbayar->Visible)
+		if ($this->Nama->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Sisa->Visible)
+		if ($this->Iuran->Visible)
+			$this->DetailColumnCount += 1;
+		if ($this->Jenis->Visible)
+			$this->DetailColumnCount += 1;
+		if ($this->Nomor->Visible)
+			$this->DetailColumnCount += 1;
+		if ($this->Tanggal->Visible)
+			$this->DetailColumnCount += 1;
+		if ($this->Periode1->Visible)
+			$this->DetailColumnCount += 1;
+		if ($this->Periode2->Visible)
+			$this->DetailColumnCount += 1;
+		if ($this->Jumlah->Visible)
 			$this->DetailColumnCount += 1;
 	}
 
@@ -1506,25 +1595,35 @@ class r0304_potensi_summary extends r0304_potensi
 		if ($resetSort) {
 			$this->setOrderBy("");
 			$this->setStartGroup(1);
-			$this->Iuran->setSort("");
 			$this->TahunAjaran->setSort("");
 			$this->Sekolah->setSort("");
 			$this->Kelas->setSort("");
-			$this->Potensi->setSort("");
-			$this->Terbayar->setSort("");
-			$this->Sisa->setSort("");
+			$this->NIS->setSort("");
+			$this->Nama->setSort("");
+			$this->Iuran->setSort("");
+			$this->Jenis->setSort("");
+			$this->Nomor->setSort("");
+			$this->Tanggal->setSort("");
+			$this->Periode1->setSort("");
+			$this->Periode2->setSort("");
+			$this->Jumlah->setSort("");
 
 		// Check for an Order parameter
 		} elseif ($orderBy <> "") {
 			$this->CurrentOrder = $orderBy;
 			$this->CurrentOrderType = $orderType;
-			$this->updateSort($this->Iuran, $ctrl); // Iuran
 			$this->updateSort($this->TahunAjaran, $ctrl); // TahunAjaran
 			$this->updateSort($this->Sekolah, $ctrl); // Sekolah
 			$this->updateSort($this->Kelas, $ctrl); // Kelas
-			$this->updateSort($this->Potensi, $ctrl); // Potensi
-			$this->updateSort($this->Terbayar, $ctrl); // Terbayar
-			$this->updateSort($this->Sisa, $ctrl); // Sisa
+			$this->updateSort($this->NIS, $ctrl); // NIS
+			$this->updateSort($this->Nama, $ctrl); // Nama
+			$this->updateSort($this->Iuran, $ctrl); // Iuran
+			$this->updateSort($this->Jenis, $ctrl); // Jenis
+			$this->updateSort($this->Nomor, $ctrl); // Nomor
+			$this->updateSort($this->Tanggal, $ctrl); // Tanggal
+			$this->updateSort($this->Periode1, $ctrl); // Periode1
+			$this->updateSort($this->Periode2, $ctrl); // Periode2
+			$this->updateSort($this->Jumlah, $ctrl); // Jumlah
 			$sortSql = $this->sortSql();
 			$this->setOrderBy($sortSql);
 			$this->setStartGroup(1);
@@ -1550,19 +1649,16 @@ class r0304_potensi_summary extends r0304_potensi
 		} elseif (Get("cmd", "") == "reset") {
 
 			// Load default values
-			$this->setSessionFilterValues($this->Iuran->AdvancedSearch->SearchValue, $this->Iuran->AdvancedSearch->SearchOperator, $this->Iuran->AdvancedSearch->SearchCondition, $this->Iuran->AdvancedSearch->SearchValue2, $this->Iuran->AdvancedSearch->SearchOperator2, "Iuran"); // Field Iuran
 			$this->setSessionFilterValues($this->TahunAjaran->AdvancedSearch->SearchValue, $this->TahunAjaran->AdvancedSearch->SearchOperator, $this->TahunAjaran->AdvancedSearch->SearchCondition, $this->TahunAjaran->AdvancedSearch->SearchValue2, $this->TahunAjaran->AdvancedSearch->SearchOperator2, "TahunAjaran"); // Field TahunAjaran
 			$this->setSessionFilterValues($this->Sekolah->AdvancedSearch->SearchValue, $this->Sekolah->AdvancedSearch->SearchOperator, $this->Sekolah->AdvancedSearch->SearchCondition, $this->Sekolah->AdvancedSearch->SearchValue2, $this->Sekolah->AdvancedSearch->SearchOperator2, "Sekolah"); // Field Sekolah
 			$this->setSessionFilterValues($this->Kelas->AdvancedSearch->SearchValue, $this->Kelas->AdvancedSearch->SearchOperator, $this->Kelas->AdvancedSearch->SearchCondition, $this->Kelas->AdvancedSearch->SearchValue2, $this->Kelas->AdvancedSearch->SearchOperator2, "Kelas"); // Field Kelas
+			$this->setSessionFilterValues($this->NIS->AdvancedSearch->SearchValue, $this->NIS->AdvancedSearch->SearchOperator, $this->NIS->AdvancedSearch->SearchCondition, $this->NIS->AdvancedSearch->SearchValue2, $this->NIS->AdvancedSearch->SearchOperator2, "NIS"); // Field NIS
+			$this->setSessionFilterValues($this->Nama->AdvancedSearch->SearchValue, $this->Nama->AdvancedSearch->SearchOperator, $this->Nama->AdvancedSearch->SearchCondition, $this->Nama->AdvancedSearch->SearchValue2, $this->Nama->AdvancedSearch->SearchOperator2, "Nama"); // Field Nama
+			$this->setSessionFilterValues($this->Tanggal->AdvancedSearch->SearchValue, $this->Tanggal->AdvancedSearch->SearchOperator, $this->Tanggal->AdvancedSearch->SearchCondition, $this->Tanggal->AdvancedSearch->SearchValue2, $this->Tanggal->AdvancedSearch->SearchOperator2, "Tanggal"); // Field Tanggal
 
 			//$setupFilter = TRUE; // No need to set up, just use default
 		} else {
 			$restoreSession = !$this->SearchCommand;
-
-			// Field Iuran
-			if ($this->getFilterValues($this->Iuran)) {
-				$setupFilter = TRUE;
-			}
 
 			// Field TahunAjaran
 			if ($this->getFilterValues($this->TahunAjaran)) {
@@ -1578,6 +1674,21 @@ class r0304_potensi_summary extends r0304_potensi
 			if ($this->getFilterValues($this->Kelas)) {
 				$setupFilter = TRUE;
 			}
+
+			// Field NIS
+			if ($this->getFilterValues($this->NIS)) {
+				$setupFilter = TRUE;
+			}
+
+			// Field Nama
+			if ($this->getFilterValues($this->Nama)) {
+				$setupFilter = TRUE;
+			}
+
+			// Field Tanggal
+			if ($this->getFilterValues($this->Tanggal)) {
+				$setupFilter = TRUE;
+			}
 			if (!$this->validateForm()) {
 				$this->setFailureMessage($FormError);
 				return $filter;
@@ -1586,26 +1697,32 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Restore session
 		if ($restoreSession) {
-			$this->getSessionFilterValues($this->Iuran); // Field Iuran
 			$this->getSessionFilterValues($this->TahunAjaran); // Field TahunAjaran
 			$this->getSessionFilterValues($this->Sekolah); // Field Sekolah
 			$this->getSessionFilterValues($this->Kelas); // Field Kelas
+			$this->getSessionFilterValues($this->NIS); // Field NIS
+			$this->getSessionFilterValues($this->Nama); // Field Nama
+			$this->getSessionFilterValues($this->Tanggal); // Field Tanggal
 		}
 
 		// Call page filter validated event
 		$this->Page_FilterValidated();
 
 		// Build SQL
-		$this->buildExtendedFilter($this->Iuran, $filter, FALSE, TRUE); // Field Iuran
 		$this->buildExtendedFilter($this->TahunAjaran, $filter, FALSE, TRUE); // Field TahunAjaran
 		$this->buildExtendedFilter($this->Sekolah, $filter, FALSE, TRUE); // Field Sekolah
 		$this->buildExtendedFilter($this->Kelas, $filter, FALSE, TRUE); // Field Kelas
+		$this->buildExtendedFilter($this->NIS, $filter, FALSE, TRUE); // Field NIS
+		$this->buildExtendedFilter($this->Nama, $filter, FALSE, TRUE); // Field Nama
+		$this->buildExtendedFilter($this->Tanggal, $filter, FALSE, TRUE); // Field Tanggal
 
 		// Save parms to session
-		$this->setSessionFilterValues($this->Iuran->AdvancedSearch->SearchValue, $this->Iuran->AdvancedSearch->SearchOperator, $this->Iuran->AdvancedSearch->SearchCondition, $this->Iuran->AdvancedSearch->SearchValue2, $this->Iuran->AdvancedSearch->SearchOperator2, "Iuran"); // Field Iuran
 		$this->setSessionFilterValues($this->TahunAjaran->AdvancedSearch->SearchValue, $this->TahunAjaran->AdvancedSearch->SearchOperator, $this->TahunAjaran->AdvancedSearch->SearchCondition, $this->TahunAjaran->AdvancedSearch->SearchValue2, $this->TahunAjaran->AdvancedSearch->SearchOperator2, "TahunAjaran"); // Field TahunAjaran
 		$this->setSessionFilterValues($this->Sekolah->AdvancedSearch->SearchValue, $this->Sekolah->AdvancedSearch->SearchOperator, $this->Sekolah->AdvancedSearch->SearchCondition, $this->Sekolah->AdvancedSearch->SearchValue2, $this->Sekolah->AdvancedSearch->SearchOperator2, "Sekolah"); // Field Sekolah
 		$this->setSessionFilterValues($this->Kelas->AdvancedSearch->SearchValue, $this->Kelas->AdvancedSearch->SearchOperator, $this->Kelas->AdvancedSearch->SearchCondition, $this->Kelas->AdvancedSearch->SearchValue2, $this->Kelas->AdvancedSearch->SearchOperator2, "Kelas"); // Field Kelas
+		$this->setSessionFilterValues($this->NIS->AdvancedSearch->SearchValue, $this->NIS->AdvancedSearch->SearchOperator, $this->NIS->AdvancedSearch->SearchCondition, $this->NIS->AdvancedSearch->SearchValue2, $this->NIS->AdvancedSearch->SearchOperator2, "NIS"); // Field NIS
+		$this->setSessionFilterValues($this->Nama->AdvancedSearch->SearchValue, $this->Nama->AdvancedSearch->SearchOperator, $this->Nama->AdvancedSearch->SearchCondition, $this->Nama->AdvancedSearch->SearchValue2, $this->Nama->AdvancedSearch->SearchOperator2, "Nama"); // Field Nama
+		$this->setSessionFilterValues($this->Tanggal->AdvancedSearch->SearchValue, $this->Tanggal->AdvancedSearch->SearchOperator, $this->Tanggal->AdvancedSearch->SearchCondition, $this->Tanggal->AdvancedSearch->SearchValue2, $this->Tanggal->AdvancedSearch->SearchOperator2, "Tanggal"); // Field Tanggal
 
 		// Setup filter
 		if ($setupFilter) {
@@ -1829,19 +1946,19 @@ class r0304_potensi_summary extends r0304_potensi
 	protected function getSessionDropDownValue(&$fld)
 	{
 		$parm = substr($fld->FieldVar, 2);
-		$this->getSessionValue($fld->DropDownValue, 'x_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0304_potensi_' . $parm);
+		$this->getSessionValue($fld->DropDownValue, 'x_r0307_pembayaran_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0307_pembayaran_' . $parm);
 	}
 
 	// Get filter values from session
 	protected function getSessionFilterValues(&$fld)
 	{
 		$parm = substr($fld->FieldVar, 2);
-		$this->getSessionValue($fld->AdvancedSearch->SearchValue, 'x_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchCondition, 'v_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchValue2, 'y_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchOperator2, 'w_r0304_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchValue, 'x_r0307_pembayaran_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0307_pembayaran_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchCondition, 'v_r0307_pembayaran_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchValue2, 'y_r0307_pembayaran_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchOperator2, 'w_r0307_pembayaran_' . $parm);
 	}
 
 	// Get value from session
@@ -1854,18 +1971,18 @@ class r0304_potensi_summary extends r0304_potensi
 	// Set dropdown value to session
 	protected function setSessionDropDownValue($sv, $so, $parm)
 	{
-		$_SESSION['x_r0304_potensi_' . $parm] = $sv;
-		$_SESSION['z_r0304_potensi_' . $parm] = $so;
+		$_SESSION['x_r0307_pembayaran_' . $parm] = $sv;
+		$_SESSION['z_r0307_pembayaran_' . $parm] = $so;
 	}
 
 	// Set filter values to session
 	protected function setSessionFilterValues($sv1, $so1, $sc, $sv2, $so2, $parm)
 	{
-		$_SESSION['x_r0304_potensi_' . $parm] = $sv1;
-		$_SESSION['z_r0304_potensi_' . $parm] = $so1;
-		$_SESSION['v_r0304_potensi_' . $parm] = $sc;
-		$_SESSION['y_r0304_potensi_' . $parm] = $sv2;
-		$_SESSION['w_r0304_potensi_' . $parm] = $so2;
+		$_SESSION['x_r0307_pembayaran_' . $parm] = $sv1;
+		$_SESSION['z_r0307_pembayaran_' . $parm] = $so1;
+		$_SESSION['v_r0307_pembayaran_' . $parm] = $sc;
+		$_SESSION['y_r0307_pembayaran_' . $parm] = $sv2;
+		$_SESSION['w_r0307_pembayaran_' . $parm] = $so2;
 	}
 
 	// Check if has session filter values
@@ -1903,6 +2020,12 @@ class r0304_potensi_summary extends r0304_potensi
 		// Check if validation required
 		if (!SERVER_VALIDATE)
 			return ($FormError == "");
+		if (!EURODATE($this->Tanggal->AdvancedSearch->SearchValue)) {
+			AddMessage($FormError, $this->Tanggal->errorMessage());
+		}
+		if (!EURODATE($this->Tanggal->AdvancedSearch->SearchValue2)) {
+			AddMessage($FormError, $this->Tanggal->errorMessage());
+		}
 
 		// Return validate result
 		$validateForm = ($FormError == "");
@@ -1920,9 +2043,9 @@ class r0304_potensi_summary extends r0304_potensi
 	// Clear selection stored in session
 	protected function clearSessionSelection($parm)
 	{
-		$_SESSION["sel_r0304_potensi_$parm"] = "";
-		$_SESSION["rf_r0304_potensi_$parm"] = "";
-		$_SESSION["rt_r0304_potensi_$parm"] = "";
+		$_SESSION["sel_r0307_pembayaran_$parm"] = "";
+		$_SESSION["rf_r0307_pembayaran_$parm"] = "";
+		$_SESSION["rt_r0307_pembayaran_$parm"] = "";
 	}
 
 	// Load selection from session
@@ -1930,9 +2053,9 @@ class r0304_potensi_summary extends r0304_potensi
 	{
 		foreach ($this->fields as $fld) {
 			if ($fld->Param == $parm) {
-				$fld->SelectionList = @$_SESSION["sel_r0304_potensi_$parm"];
-				$fld->RangeFrom = @$_SESSION["rf_r0304_potensi_$parm"];
-				$fld->RangeTo = @$_SESSION["rt_r0304_potensi_$parm"];
+				$fld->SelectionList = @$_SESSION["sel_r0307_pembayaran_$parm"];
+				$fld->RangeFrom = @$_SESSION["rf_r0307_pembayaran_$parm"];
+				$fld->RangeTo = @$_SESSION["rt_r0307_pembayaran_$parm"];
 				break;
 			}
 		}
@@ -1957,13 +2080,8 @@ class r0304_potensi_summary extends r0304_potensi
 		* $so2 - Default search operator 2 (if operator 2 is enabled)
 		* $sv2 - Default ext filter value 2 (if operator 2 is enabled)
 		*/
-		// Field Iuran
-
-		$this->setDefaultExtFilter($this->Iuran, "=", NULL, 'AND', "=", NULL);
-		if (!$this->SearchCommand)
-			$this->applyDefaultExtFilter($this->Iuran);
-
 		// Field TahunAjaran
+
 		$this->setDefaultExtFilter($this->TahunAjaran, "=", NULL, 'AND', "=", NULL);
 		if (!$this->SearchCommand)
 			$this->applyDefaultExtFilter($this->TahunAjaran);
@@ -1978,6 +2096,21 @@ class r0304_potensi_summary extends r0304_potensi
 		if (!$this->SearchCommand)
 			$this->applyDefaultExtFilter($this->Kelas);
 
+		// Field NIS
+		$this->setDefaultExtFilter($this->NIS, "=", NULL, 'AND', "=", NULL);
+		if (!$this->SearchCommand)
+			$this->applyDefaultExtFilter($this->NIS);
+
+		// Field Nama
+		$this->setDefaultExtFilter($this->Nama, "=", NULL, 'AND', "=", NULL);
+		if (!$this->SearchCommand)
+			$this->applyDefaultExtFilter($this->Nama);
+
+		// Field Tanggal
+		$this->setDefaultExtFilter($this->Tanggal, "BETWEEN", NULL, 'AND', "=", NULL);
+		if (!$this->SearchCommand)
+			$this->applyDefaultExtFilter($this->Tanggal);
+
 		/**
 		* Set up default values for popup filters
 		*/
@@ -1986,10 +2119,6 @@ class r0304_potensi_summary extends r0304_potensi
 	// Check if filter applied
 	protected function checkFilter()
 	{
-
-		// Check Iuran text filter
-		if ($this->textFilterApplied($this->Iuran))
-			return TRUE;
 
 		// Check TahunAjaran text filter
 		if ($this->textFilterApplied($this->TahunAjaran))
@@ -2001,6 +2130,18 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Check Kelas text filter
 		if ($this->textFilterApplied($this->Kelas))
+			return TRUE;
+
+		// Check NIS text filter
+		if ($this->textFilterApplied($this->NIS))
+			return TRUE;
+
+		// Check Nama text filter
+		if ($this->textFilterApplied($this->Nama))
+			return TRUE;
+
+		// Check Tanggal text filter
+		if ($this->textFilterApplied($this->Tanggal))
 			return TRUE;
 		return FALSE;
 	}
@@ -2014,18 +2155,6 @@ class r0304_potensi_summary extends r0304_potensi
 		$filterList = "";
 		$captionClass = $this->isExport("email") ? "ew-filter-caption-email" : "ew-filter-caption";
 		$captionSuffix = $this->isExport("email") ? ": " : "";
-
-		// Field Iuran
-		$extWrk = "";
-		$wrk = "";
-		$this->buildExtendedFilter($this->Iuran, $extWrk);
-		$filter = "";
-		if ($extWrk <> "")
-			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
-		elseif ($wrk <> "")
-			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
-		if ($filter <> "")
-			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Iuran->caption() . "</span>" . $captionSuffix . $filter . "</div>";
 
 		// Field TahunAjaran
 		$extWrk = "";
@@ -2062,6 +2191,42 @@ class r0304_potensi_summary extends r0304_potensi
 			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
 		if ($filter <> "")
 			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Kelas->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+
+		// Field NIS
+		$extWrk = "";
+		$wrk = "";
+		$this->buildExtendedFilter($this->NIS, $extWrk);
+		$filter = "";
+		if ($extWrk <> "")
+			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
+		elseif ($wrk <> "")
+			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
+		if ($filter <> "")
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->NIS->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+
+		// Field Nama
+		$extWrk = "";
+		$wrk = "";
+		$this->buildExtendedFilter($this->Nama, $extWrk);
+		$filter = "";
+		if ($extWrk <> "")
+			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
+		elseif ($wrk <> "")
+			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
+		if ($filter <> "")
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Nama->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+
+		// Field Tanggal
+		$extWrk = "";
+		$wrk = "";
+		$this->buildExtendedFilter($this->Tanggal, $extWrk);
+		$filter = "";
+		if ($extWrk <> "")
+			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
+		elseif ($wrk <> "")
+			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
+		if ($filter <> "")
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Tanggal->caption() . "</span>" . $captionSuffix . $filter . "</div>";
 		$divdataclass = "";
 
 		// Show Filters
@@ -2083,20 +2248,6 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Initialize
 		$filterList = "";
-
-		// Field Iuran
-		$wrk = "";
-		if ($this->Iuran->AdvancedSearch->SearchValue <> "" || $this->Iuran->AdvancedSearch->SearchValue2 <> "") {
-			$wrk = "\"x_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchValue) . "\"," .
-				"\"z_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchOperator) . "\"," .
-				"\"v_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchCondition) . "\"," .
-				"\"y_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchValue2) . "\"," .
-				"\"w_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchOperator2) . "\"";
-		}
-		if ($wrk <> "") {
-			if ($filterList <> "") $filterList .= ",";
-			$filterList .= $wrk;
-		}
 
 		// Field TahunAjaran
 		$wrk = "";
@@ -2140,6 +2291,48 @@ class r0304_potensi_summary extends r0304_potensi
 			$filterList .= $wrk;
 		}
 
+		// Field NIS
+		$wrk = "";
+		if ($this->NIS->AdvancedSearch->SearchValue <> "" || $this->NIS->AdvancedSearch->SearchValue2 <> "") {
+			$wrk = "\"x_NIS\":\"" . JsEncode($this->NIS->AdvancedSearch->SearchValue) . "\"," .
+				"\"z_NIS\":\"" . JsEncode($this->NIS->AdvancedSearch->SearchOperator) . "\"," .
+				"\"v_NIS\":\"" . JsEncode($this->NIS->AdvancedSearch->SearchCondition) . "\"," .
+				"\"y_NIS\":\"" . JsEncode($this->NIS->AdvancedSearch->SearchValue2) . "\"," .
+				"\"w_NIS\":\"" . JsEncode($this->NIS->AdvancedSearch->SearchOperator2) . "\"";
+		}
+		if ($wrk <> "") {
+			if ($filterList <> "") $filterList .= ",";
+			$filterList .= $wrk;
+		}
+
+		// Field Nama
+		$wrk = "";
+		if ($this->Nama->AdvancedSearch->SearchValue <> "" || $this->Nama->AdvancedSearch->SearchValue2 <> "") {
+			$wrk = "\"x_Nama\":\"" . JsEncode($this->Nama->AdvancedSearch->SearchValue) . "\"," .
+				"\"z_Nama\":\"" . JsEncode($this->Nama->AdvancedSearch->SearchOperator) . "\"," .
+				"\"v_Nama\":\"" . JsEncode($this->Nama->AdvancedSearch->SearchCondition) . "\"," .
+				"\"y_Nama\":\"" . JsEncode($this->Nama->AdvancedSearch->SearchValue2) . "\"," .
+				"\"w_Nama\":\"" . JsEncode($this->Nama->AdvancedSearch->SearchOperator2) . "\"";
+		}
+		if ($wrk <> "") {
+			if ($filterList <> "") $filterList .= ",";
+			$filterList .= $wrk;
+		}
+
+		// Field Tanggal
+		$wrk = "";
+		if ($this->Tanggal->AdvancedSearch->SearchValue <> "" || $this->Tanggal->AdvancedSearch->SearchValue2 <> "") {
+			$wrk = "\"x_Tanggal\":\"" . JsEncode($this->Tanggal->AdvancedSearch->SearchValue) . "\"," .
+				"\"z_Tanggal\":\"" . JsEncode($this->Tanggal->AdvancedSearch->SearchOperator) . "\"," .
+				"\"v_Tanggal\":\"" . JsEncode($this->Tanggal->AdvancedSearch->SearchCondition) . "\"," .
+				"\"y_Tanggal\":\"" . JsEncode($this->Tanggal->AdvancedSearch->SearchValue2) . "\"," .
+				"\"w_Tanggal\":\"" . JsEncode($this->Tanggal->AdvancedSearch->SearchOperator2) . "\"";
+		}
+		if ($wrk <> "") {
+			if ($filterList <> "") $filterList .= ",";
+			$filterList .= $wrk;
+		}
+
 		// Return filter list in json
 		if ($filterList <> "")
 			return "{\"data\":{" . $filterList . "}}";
@@ -2163,18 +2356,6 @@ class r0304_potensi_summary extends r0304_potensi
 	{
 		if (!is_array($filter))
 			return FALSE;
-
-		// Field Iuran
-		$restoreFilter = FALSE;
-		if (array_key_exists("x_Iuran", $filter) || array_key_exists("z_Iuran", $filter) ||
-			array_key_exists("v_Iuran", $filter) ||
-			array_key_exists("y_Iuran", $filter) || array_key_exists("w_Iuran", $filter)) {
-			$this->setSessionFilterValues(@$filter["x_Iuran"], @$filter["z_Iuran"], @$filter["v_Iuran"], @$filter["y_Iuran"], @$filter["w_Iuran"], "Iuran");
-			$restoreFilter = TRUE;
-		}
-		if (!$restoreFilter) { // Clear filter
-			$this->setSessionFilterValues("", "=", "AND", "", "=", "Iuran");
-		}
 
 		// Field TahunAjaran
 		$restoreFilter = FALSE;
@@ -2210,6 +2391,42 @@ class r0304_potensi_summary extends r0304_potensi
 		}
 		if (!$restoreFilter) { // Clear filter
 			$this->setSessionFilterValues("", "=", "AND", "", "=", "Kelas");
+		}
+
+		// Field NIS
+		$restoreFilter = FALSE;
+		if (array_key_exists("x_NIS", $filter) || array_key_exists("z_NIS", $filter) ||
+			array_key_exists("v_NIS", $filter) ||
+			array_key_exists("y_NIS", $filter) || array_key_exists("w_NIS", $filter)) {
+			$this->setSessionFilterValues(@$filter["x_NIS"], @$filter["z_NIS"], @$filter["v_NIS"], @$filter["y_NIS"], @$filter["w_NIS"], "NIS");
+			$restoreFilter = TRUE;
+		}
+		if (!$restoreFilter) { // Clear filter
+			$this->setSessionFilterValues("", "=", "AND", "", "=", "NIS");
+		}
+
+		// Field Nama
+		$restoreFilter = FALSE;
+		if (array_key_exists("x_Nama", $filter) || array_key_exists("z_Nama", $filter) ||
+			array_key_exists("v_Nama", $filter) ||
+			array_key_exists("y_Nama", $filter) || array_key_exists("w_Nama", $filter)) {
+			$this->setSessionFilterValues(@$filter["x_Nama"], @$filter["z_Nama"], @$filter["v_Nama"], @$filter["y_Nama"], @$filter["w_Nama"], "Nama");
+			$restoreFilter = TRUE;
+		}
+		if (!$restoreFilter) { // Clear filter
+			$this->setSessionFilterValues("", "=", "AND", "", "=", "Nama");
+		}
+
+		// Field Tanggal
+		$restoreFilter = FALSE;
+		if (array_key_exists("x_Tanggal", $filter) || array_key_exists("z_Tanggal", $filter) ||
+			array_key_exists("v_Tanggal", $filter) ||
+			array_key_exists("y_Tanggal", $filter) || array_key_exists("w_Tanggal", $filter)) {
+			$this->setSessionFilterValues(@$filter["x_Tanggal"], @$filter["z_Tanggal"], @$filter["v_Tanggal"], @$filter["y_Tanggal"], @$filter["w_Tanggal"], "Tanggal");
+			$restoreFilter = TRUE;
+		}
+		if (!$restoreFilter) { // Clear filter
+			$this->setSessionFilterValues("", "=", "AND", "", "=", "Tanggal");
 		}
 		return TRUE;
 	}

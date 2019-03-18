@@ -2,9 +2,9 @@
 namespace PHPMaker2019\spp_prj;
 
 /**
- * Page class (r0304_potensi_summary)
+ * Page class (r0305_potensi_summary)
  */
-class r0304_potensi_summary extends r0304_potensi
+class r0305_potensi_summary extends r0305_potensi
 {
 
 	// Page ID
@@ -14,7 +14,7 @@ class r0304_potensi_summary extends r0304_potensi
 	public $ProjectID = "{1E3116C6-C701-420A-A6D6-A123DF9E6EED}";
 
 	// Page object name
-	public $PageObjName = 'r0304_potensi_summary';
+	public $PageObjName = 'r0305_potensi_summary';
 	public $Token = "";
 	public $TokenTimeout = 0;
 	public $CheckToken = CHECK_TOKEN;
@@ -282,10 +282,10 @@ class r0304_potensi_summary extends r0304_potensi
 		// Parent constuctor
 		parent::__construct();
 
-		// Table object (r0304_potensi)
-		if (!isset($GLOBALS["r0304_potensi"])) {
-			$GLOBALS["r0304_potensi"] = &$this;
-			$GLOBALS["Table"] = &$GLOBALS["r0304_potensi"];
+		// Table object (r0305_potensi)
+		if (!isset($GLOBALS["r0305_potensi"])) {
+			$GLOBALS["r0305_potensi"] = &$this;
+			$GLOBALS["Table"] = &$GLOBALS["r0305_potensi"];
 		}
 
 		// Initialize URLs
@@ -301,7 +301,7 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Table name (for backward compatibility)
 		if (!defined(PROJECT_NAMESPACE . "TABLE_NAME"))
-			define(PROJECT_NAMESPACE . "TABLE_NAME", 'r0304_potensi');
+			define(PROJECT_NAMESPACE . "TABLE_NAME", 'r0305_potensi');
 
 		// Start timer
 		if (!isset($GLOBALS["DebugTimer"]))
@@ -333,7 +333,7 @@ class r0304_potensi_summary extends r0304_potensi
 		// Filter options
 		$this->FilterOptions = new ListOptions();
 		$this->FilterOptions->Tag = "div";
-		$this->FilterOptions->TagClassName = "ew-filter-option fr0304_potensisummary";
+		$this->FilterOptions->TagClassName = "ew-filter-option fr0305_potensisummary";
 
 		// Generate report options
 		$this->GenerateOptions = new ListOptions();
@@ -364,7 +364,7 @@ class r0304_potensi_summary extends r0304_potensi
 		} elseif (SameText($type, "pdf")) {
 			return "<a class=\"ew-export-link ew-pdf\" title=\"" . HtmlEncode($ReportLanguage->phrase("ExportToPDF", TRUE)) . "\" data-caption=\"" . HtmlEncode($ReportLanguage->phrase("ExportToPDF", TRUE)) . "\" href=\"" . $this->ExportPdfUrl . "\">" . $ReportLanguage->phrase("ExportToPDF") . "</a>";
 		} elseif (SameText($type, "email")) {
-			return "<a class=\"ew-export-link ew-email\" title=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" data-caption=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" id=\"emf_r0304_potensi\" href=\"#\" onclick=\"ew.emailDialogShow({ lnk: 'emf_r0304_potensi', hdr: ew.language.phrase('ExportToEmail'), url: '$this->ExportEmailUrl', exportid: '$exportId', el: this }); return false;\">" . $ReportLanguage->phrase("ExportToEmail") . "</a>";
+			return "<a class=\"ew-export-link ew-email\" title=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" data-caption=\"" . HtmlEncode($ReportLanguage->phrase("ExportToEmail", TRUE)) . "\" id=\"emf_r0305_potensi\" href=\"#\" onclick=\"ew.emailDialogShow({ lnk: 'emf_r0305_potensi', hdr: ew.language.phrase('ExportToEmail'), url: '$this->ExportEmailUrl', exportid: '$exportId', el: this }); return false;\">" . $ReportLanguage->phrase("ExportToEmail") . "</a>";
 		}
 	}
 
@@ -422,10 +422,10 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Filter button
 		$item = &$this->FilterOptions->add("savecurrentfilter");
-		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fr0304_potensisummary\" href=\"#\">" . $ReportLanguage->phrase("SaveCurrentFilter") . "</a>";
+		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fr0305_potensisummary\" href=\"#\">" . $ReportLanguage->phrase("SaveCurrentFilter") . "</a>";
 		$item->Visible = TRUE;
 		$item = &$this->FilterOptions->add("deletefilter");
-		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fr0304_potensisummary\" href=\"#\">" . $ReportLanguage->phrase("DeleteFilter") . "</a>";
+		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fr0305_potensisummary\" href=\"#\">" . $ReportLanguage->phrase("DeleteFilter") . "</a>";
 		$item->Visible = TRUE;
 		$this->FilterOptions->UseDropDownButton = TRUE;
 		$this->FilterOptions->UseButtonGroup = !$this->FilterOptions->UseDropDownButton; // v8
@@ -460,7 +460,7 @@ class r0304_potensi_summary extends r0304_potensi
 		// Filter panel button
 		$item = &$this->SearchOptions->add("searchtoggle");
 		$searchToggleClass = $this->FilterApplied ? " active" : " active";
-		$item->Body = "<button type=\"button\" class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" title=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-caption=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-toggle=\"button\" data-form=\"fr0304_potensisummary\">" . $ReportLanguage->phrase("SearchBtn") . "</button>";
+		$item->Body = "<button type=\"button\" class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" title=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-caption=\"" . $ReportLanguage->phrase("SearchBtn", TRUE) . "\" data-toggle=\"button\" data-form=\"fr0305_potensisummary\">" . $ReportLanguage->phrase("SearchBtn") . "</button>";
 		$item->Visible = TRUE;
 
 		// Reset filter
@@ -604,7 +604,7 @@ class r0304_potensi_summary extends r0304_potensi
 		$Security = new AdvancedSecurity();
 		if (!$Security->isLoggedIn()) $Security->autoLogin(); // Auto login
 		$Security->TablePermission_Loading();
-		$Security->loadCurrentUserLevel($this->ProjectID . 'r0304_potensi');
+		$Security->loadCurrentUserLevel($this->ProjectID . 'r0305_potensi');
 		$Security->TablePermission_Loaded();
 		if (!$Security->canList()) {
 			$Security->saveLastUrl();
@@ -627,12 +627,8 @@ class r0304_potensi_summary extends r0304_potensi
 		$ExportFileName = $this->TableVar; // Get export file, used in header
 
 		// Setup placeholder
-		$this->Iuran->PlaceHolder = $this->Iuran->caption();
-		$this->TahunAjaran->PlaceHolder = $this->TahunAjaran->caption();
-		$this->Sekolah->PlaceHolder = $this->Sekolah->caption();
-		$this->Kelas->PlaceHolder = $this->Kelas->caption();
-
 		// Setup export options
+
 		$this->setupExportOptions();
 
 		// Global Page Loading event (in userfn*.php)
@@ -652,21 +648,24 @@ class r0304_potensi_summary extends r0304_potensi
 		$this->createToken();
 
 		// Set up lookup cache
-		// Set field visibility for detail fields
+		$this->setupLookupOptions($this->iuran);
+		$this->setupLookupOptions($this->tahunajaran);
+		$this->setupLookupOptions($this->sekolah);
+		$this->setupLookupOptions($this->kelas);
 
-		$this->Iuran->setVisibility();
-		$this->TahunAjaran->setVisibility();
-		$this->Sekolah->setVisibility();
-		$this->Kelas->setVisibility();
-		$this->Potensi->setVisibility();
-		$this->Terbayar->setVisibility();
-		$this->Sisa->setVisibility();
+		// Set field visibility for detail fields
+		$this->iuran->setVisibility();
+		$this->jenis->setVisibility();
+		$this->tahunajaran->setVisibility();
+		$this->sekolah->setVisibility();
+		$this->kelas->setVisibility();
+		$this->sisa->setVisibility();
 
 		// Aggregate variables
 		// 1st dimension = no of groups (level 0 used for grand total)
 		// 2nd dimension = no of fields
 
-		$fieldCount = 8;
+		$fieldCount = 7;
 		$groupCount = 1;
 		$this->Values = &InitArray($fieldCount, 0);
 		$this->Counts = &Init2DArray($groupCount, $fieldCount, 0);
@@ -679,7 +678,7 @@ class r0304_potensi_summary extends r0304_potensi
 		$this->GrandMaximums = &InitArray($fieldCount, NULL);
 
 		// Set up array if accumulation required: [Accum, SkipNullOrZero]
-		$this->Columns = [[FALSE, FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [TRUE,FALSE], [TRUE,FALSE], [TRUE,FALSE]];
+		$this->Columns = [[FALSE, FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [FALSE,FALSE], [TRUE,FALSE]];
 
 		// Set up groups per page dynamically
 		$this->setupDisplayGroups();
@@ -845,54 +844,41 @@ class r0304_potensi_summary extends r0304_potensi
 			return;
 		if ($firstRow) { // Get first row
 				$this->FirstRowData = [];
-				$this->FirstRowData["iuran_id"] = $this->Recordset->fields('iuran_id');
-				$this->FirstRowData["Iuran"] = $this->Recordset->fields('Iuran');
-				$this->FirstRowData["Jenis"] = $this->Recordset->fields('Jenis');
-				$this->FirstRowData["tahunajaran_id"] = $this->Recordset->fields('tahunajaran_id');
-				$this->FirstRowData["TahunAjaran"] = $this->Recordset->fields('TahunAjaran');
-				$this->FirstRowData["sekolah_id"] = $this->Recordset->fields('sekolah_id');
-				$this->FirstRowData["Sekolah"] = $this->Recordset->fields('Sekolah');
-				$this->FirstRowData["kelas_id"] = $this->Recordset->fields('kelas_id');
-				$this->FirstRowData["Kelas"] = $this->Recordset->fields('Kelas');
-				$this->FirstRowData["Potensi"] = $this->Recordset->fields('Potensi');
-				$this->FirstRowData["Terbayar"] = $this->Recordset->fields('Terbayar');
-				$this->FirstRowData["Sisa"] = $this->Recordset->fields('Sisa');
+				$this->FirstRowData["iuran"] = $this->Recordset->fields('iuran');
+				$this->FirstRowData["jenis"] = $this->Recordset->fields('jenis');
+				$this->FirstRowData["tahunajaran"] = $this->Recordset->fields('tahunajaran');
+				$this->FirstRowData["sekolah"] = $this->Recordset->fields('sekolah');
+				$this->FirstRowData["kelas"] = $this->Recordset->fields('kelas');
+				$this->FirstRowData["potensi"] = $this->Recordset->fields('potensi');
+				$this->FirstRowData["terbayar"] = $this->Recordset->fields('terbayar');
+				$this->FirstRowData["sisa"] = $this->Recordset->fields('sisa');
 		} else { // Get next row
 			$this->Recordset->moveNext();
 		}
 		if (!$this->Recordset->EOF) {
-			$this->iuran_id->setDbValue($this->Recordset->fields('iuran_id'));
-			$this->Iuran->setDbValue($this->Recordset->fields('Iuran'));
-			$this->Jenis->setDbValue($this->Recordset->fields('Jenis'));
-			$this->tahunajaran_id->setDbValue($this->Recordset->fields('tahunajaran_id'));
-			$this->TahunAjaran->setDbValue($this->Recordset->fields('TahunAjaran'));
-			$this->sekolah_id->setDbValue($this->Recordset->fields('sekolah_id'));
-			$this->Sekolah->setDbValue($this->Recordset->fields('Sekolah'));
-			$this->kelas_id->setDbValue($this->Recordset->fields('kelas_id'));
-			$this->Kelas->setDbValue($this->Recordset->fields('Kelas'));
-			$this->Potensi->setDbValue($this->Recordset->fields('Potensi'));
-			$this->Terbayar->setDbValue($this->Recordset->fields('Terbayar'));
-			$this->Sisa->setDbValue($this->Recordset->fields('Sisa'));
-			$this->Values[1] = $this->Iuran->CurrentValue;
-			$this->Values[2] = $this->TahunAjaran->CurrentValue;
-			$this->Values[3] = $this->Sekolah->CurrentValue;
-			$this->Values[4] = $this->Kelas->CurrentValue;
-			$this->Values[5] = $this->Potensi->CurrentValue;
-			$this->Values[6] = $this->Terbayar->CurrentValue;
-			$this->Values[7] = $this->Sisa->CurrentValue;
+			$this->iuran->setDbValue($this->Recordset->fields('iuran'));
+			$this->jenis->setDbValue($this->Recordset->fields('jenis'));
+			$this->tahunajaran->setDbValue($this->Recordset->fields('tahunajaran'));
+			$this->sekolah->setDbValue($this->Recordset->fields('sekolah'));
+			$this->kelas->setDbValue($this->Recordset->fields('kelas'));
+			$this->potensi->setDbValue($this->Recordset->fields('potensi'));
+			$this->terbayar->setDbValue($this->Recordset->fields('terbayar'));
+			$this->sisa->setDbValue($this->Recordset->fields('sisa'));
+			$this->Values[1] = $this->iuran->CurrentValue;
+			$this->Values[2] = $this->jenis->CurrentValue;
+			$this->Values[3] = $this->tahunajaran->CurrentValue;
+			$this->Values[4] = $this->sekolah->CurrentValue;
+			$this->Values[5] = $this->kelas->CurrentValue;
+			$this->Values[6] = $this->sisa->CurrentValue;
 		} else {
-			$this->iuran_id->setDbValue("");
-			$this->Iuran->setDbValue("");
-			$this->Jenis->setDbValue("");
-			$this->tahunajaran_id->setDbValue("");
-			$this->TahunAjaran->setDbValue("");
-			$this->sekolah_id->setDbValue("");
-			$this->Sekolah->setDbValue("");
-			$this->kelas_id->setDbValue("");
-			$this->Kelas->setDbValue("");
-			$this->Potensi->setDbValue("");
-			$this->Terbayar->setDbValue("");
-			$this->Sisa->setDbValue("");
+			$this->iuran->setDbValue("");
+			$this->jenis->setDbValue("");
+			$this->tahunajaran->setDbValue("");
+			$this->sekolah->setDbValue("");
+			$this->kelas->setDbValue("");
+			$this->potensi->setDbValue("");
+			$this->terbayar->setDbValue("");
+			$this->sisa->setDbValue("");
 		}
 	}
 
@@ -926,11 +912,8 @@ class r0304_potensi_summary extends r0304_potensi
 				$this->GrandCounts[3] = $this->TotalCount;
 				$this->GrandCounts[4] = $this->TotalCount;
 				$this->GrandCounts[5] = $this->TotalCount;
-				$this->GrandSummaries[5] = $rsagg->fields("sum_potensi");
 				$this->GrandCounts[6] = $this->TotalCount;
-				$this->GrandSummaries[6] = $rsagg->fields("sum_terbayar");
-				$this->GrandCounts[7] = $this->TotalCount;
-				$this->GrandSummaries[7] = $rsagg->fields("sum_sisa");
+				$this->GrandSummaries[6] = $rsagg->fields("sum_sisa");
 				$rsagg->close();
 				$hasSummary = TRUE;
 			}
@@ -954,198 +937,195 @@ class r0304_potensi_summary extends r0304_potensi
 		// Call Row_Rendering event
 		$this->Row_Rendering();
 		if ($this->RowType == ROWTYPE_SEARCH) { // Search row
+			$ar = [];
+			if (is_array($this->iuran->AdvancedFilters)) {
+				foreach ($this->iuran->AdvancedFilters as $filter)
+					if ($filter->Enabled)
+						$ar[] = [$filter->ID, $filter->Name];
+			}
+			if (is_array($this->iuran->DropDownList)) {
+				foreach ($this->iuran->DropDownList as $val)
+					$ar[] = [$val, GetDropDownDisplayValue($val, "", 0)];
+			}
+			$this->iuran->EditValue = $ar;
+			$this->iuran->AdvancedSearch->SearchValue = is_array($this->iuran->DropDownValue) ? implode(",", $this->iuran->DropDownValue) : $this->iuran->DropDownValue;
+			$ar = [];
+			if (is_array($this->tahunajaran->AdvancedFilters)) {
+				foreach ($this->tahunajaran->AdvancedFilters as $filter)
+					if ($filter->Enabled)
+						$ar[] = [$filter->ID, $filter->Name];
+			}
+			if (is_array($this->tahunajaran->DropDownList)) {
+				foreach ($this->tahunajaran->DropDownList as $val)
+					$ar[] = [$val, GetDropDownDisplayValue($val, "", 0)];
+			}
+			$this->tahunajaran->EditValue = $ar;
+			$this->tahunajaran->AdvancedSearch->SearchValue = is_array($this->tahunajaran->DropDownValue) ? implode(",", $this->tahunajaran->DropDownValue) : $this->tahunajaran->DropDownValue;
+			$ar = [];
+			if (is_array($this->sekolah->AdvancedFilters)) {
+				foreach ($this->sekolah->AdvancedFilters as $filter)
+					if ($filter->Enabled)
+						$ar[] = [$filter->ID, $filter->Name];
+			}
+			if (is_array($this->sekolah->DropDownList)) {
+				foreach ($this->sekolah->DropDownList as $val)
+					$ar[] = [$val, GetDropDownDisplayValue($val, "", 0)];
+			}
+			$this->sekolah->EditValue = $ar;
+			$this->sekolah->AdvancedSearch->SearchValue = is_array($this->sekolah->DropDownValue) ? implode(",", $this->sekolah->DropDownValue) : $this->sekolah->DropDownValue;
+			$ar = [];
+			if (is_array($this->kelas->AdvancedFilters)) {
+				foreach ($this->kelas->AdvancedFilters as $filter)
+					if ($filter->Enabled)
+						$ar[] = [$filter->ID, $filter->Name];
+			}
+			if (is_array($this->kelas->DropDownList)) {
+				foreach ($this->kelas->DropDownList as $val)
+					$ar[] = [$val, GetDropDownDisplayValue($val, "", 0)];
+			}
+			$this->kelas->EditValue = $ar;
+			$this->kelas->AdvancedSearch->SearchValue = is_array($this->kelas->DropDownValue) ? implode(",", $this->kelas->DropDownValue) : $this->kelas->DropDownValue;
 		} elseif ($this->RowType == ROWTYPE_TOTAL && !($this->RowTotalType == ROWTOTAL_GROUP && $this->RowTotalSubType == ROWTOTAL_HEADER)) { // Summary row
 			PrependClass($this->RowAttrs["class"], ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : ""); // Set up row class
 
-			// Potensi
-			$this->Potensi->SumViewValue = $this->Potensi->SumValue;
-			$this->Potensi->SumViewValue = FormatNumber($this->Potensi->SumViewValue, 2, -2, -2, -2);
-			$this->Potensi->CellAttrs["class"] = "text-right";
-			$this->Potensi->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
+			// sisa
+			$this->sisa->SumViewValue = $this->sisa->SumValue;
+			$this->sisa->SumViewValue = FormatNumber($this->sisa->SumViewValue, 2, -2, -2, -2);
+			$this->sisa->CellAttrs["class"] = "text-right";
+			$this->sisa->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
 
-			// Terbayar
-			$this->Terbayar->SumViewValue = $this->Terbayar->SumValue;
-			$this->Terbayar->SumViewValue = FormatNumber($this->Terbayar->SumViewValue, 2, -2, -2, -2);
-			$this->Terbayar->CellAttrs["class"] = "text-right";
-			$this->Terbayar->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
+			// iuran
+			$this->iuran->HrefValue = "";
 
-			// Sisa
-			$this->Sisa->SumViewValue = $this->Sisa->SumValue;
-			$this->Sisa->SumViewValue = FormatNumber($this->Sisa->SumViewValue, 2, -2, -2, -2);
-			$this->Sisa->CellAttrs["class"] = "text-right";
-			$this->Sisa->CellAttrs["class"] = ($this->RowTotalType == ROWTOTAL_PAGE || $this->RowTotalType == ROWTOTAL_GRAND) ? "ew-rpt-grp-aggregate" : "ew-rpt-grp-summary-" . $this->RowGroupLevel;
+			// jenis
+			$this->jenis->HrefValue = "";
 
-			// Iuran
-			$this->Iuran->HrefValue = "";
+			// tahunajaran
+			$this->tahunajaran->HrefValue = "";
 
-			// TahunAjaran
-			$this->TahunAjaran->HrefValue = "";
+			// sekolah
+			$this->sekolah->HrefValue = "";
 
-			// Sekolah
-			$this->Sekolah->HrefValue = "";
+			// kelas
+			$this->kelas->HrefValue = "";
 
-			// Kelas
-			$this->Kelas->HrefValue = "";
-
-			// Potensi
-			$this->Potensi->HrefValue = "";
-
-			// Terbayar
-			$this->Terbayar->HrefValue = "";
-
-			// Sisa
-			$this->Sisa->HrefValue = "";
+			// sisa
+			$this->sisa->HrefValue = "";
 		} else {
 			if ($this->RowTotalType == ROWTOTAL_GROUP && $this->RowTotalSubType == ROWTOTAL_HEADER) {
 			} else {
 			}
 
-			// Iuran
-			$this->Iuran->ViewValue = $this->Iuran->CurrentValue;
-			$this->Iuran->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// iuran
+			$this->iuran->ViewValue = $this->iuran->CurrentValue;
+			$this->iuran->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// TahunAjaran
-			$this->TahunAjaran->ViewValue = $this->TahunAjaran->CurrentValue;
-			$this->TahunAjaran->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// jenis
+			$this->jenis->ViewValue = $this->jenis->CurrentValue;
+			$this->jenis->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Sekolah
-			$this->Sekolah->ViewValue = $this->Sekolah->CurrentValue;
-			$this->Sekolah->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// tahunajaran
+			$this->tahunajaran->ViewValue = $this->tahunajaran->CurrentValue;
+			$this->tahunajaran->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Kelas
-			$this->Kelas->ViewValue = $this->Kelas->CurrentValue;
-			$this->Kelas->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// sekolah
+			$this->sekolah->ViewValue = $this->sekolah->CurrentValue;
+			$this->sekolah->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Potensi
-			$this->Potensi->ViewValue = $this->Potensi->CurrentValue;
-			$this->Potensi->ViewValue = FormatNumber($this->Potensi->ViewValue, 2, -2, -2, -2);
-			$this->Potensi->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// kelas
+			$this->kelas->ViewValue = $this->kelas->CurrentValue;
+			$this->kelas->CellAttrs["class"] = ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Terbayar
-			$this->Terbayar->ViewValue = $this->Terbayar->CurrentValue;
-			$this->Terbayar->ViewValue = FormatNumber($this->Terbayar->ViewValue, 2, -2, -2, -2);
-			$this->Terbayar->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// sisa
+			$this->sisa->ViewValue = $this->sisa->CurrentValue;
+			$this->sisa->ViewValue = FormatNumber($this->sisa->ViewValue, 2, -2, -2, -2);
+			$this->sisa->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
 
-			// Sisa
-			$this->Sisa->ViewValue = $this->Sisa->CurrentValue;
-			$this->Sisa->ViewValue = FormatNumber($this->Sisa->ViewValue, 2, -2, -2, -2);
-			$this->Sisa->CellAttrs["class"] = "text-right " . ($this->RecordCount % 2 <> 1 ? "ew-table-alt-row" : "ew-table-row");
+			// iuran
+			$this->iuran->HrefValue = "";
 
-			// Iuran
-			$this->Iuran->HrefValue = "";
+			// jenis
+			$this->jenis->HrefValue = "";
 
-			// TahunAjaran
-			$this->TahunAjaran->HrefValue = "";
+			// tahunajaran
+			$this->tahunajaran->HrefValue = "";
 
-			// Sekolah
-			$this->Sekolah->HrefValue = "";
+			// sekolah
+			$this->sekolah->HrefValue = "";
 
-			// Kelas
-			$this->Kelas->HrefValue = "";
+			// kelas
+			$this->kelas->HrefValue = "";
 
-			// Potensi
-			$this->Potensi->HrefValue = "";
-
-			// Terbayar
-			$this->Terbayar->HrefValue = "";
-
-			// Sisa
-			$this->Sisa->HrefValue = "";
+			// sisa
+			$this->sisa->HrefValue = "";
 		}
 
 		// Call Cell_Rendered event
 		if ($this->RowType == ROWTYPE_TOTAL) { // Summary row
 
-			// Potensi
-			$currentValue = $this->Potensi->SumValue;
-			$viewValue = &$this->Potensi->SumViewValue;
-			$viewAttrs = &$this->Potensi->ViewAttrs;
-			$cellAttrs = &$this->Potensi->CellAttrs;
-			$hrefValue = &$this->Potensi->HrefValue;
-			$linkAttrs = &$this->Potensi->LinkAttrs;
-			$this->Cell_Rendered($this->Potensi, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
-
-			// Terbayar
-			$currentValue = $this->Terbayar->SumValue;
-			$viewValue = &$this->Terbayar->SumViewValue;
-			$viewAttrs = &$this->Terbayar->ViewAttrs;
-			$cellAttrs = &$this->Terbayar->CellAttrs;
-			$hrefValue = &$this->Terbayar->HrefValue;
-			$linkAttrs = &$this->Terbayar->LinkAttrs;
-			$this->Cell_Rendered($this->Terbayar, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
-
-			// Sisa
-			$currentValue = $this->Sisa->SumValue;
-			$viewValue = &$this->Sisa->SumViewValue;
-			$viewAttrs = &$this->Sisa->ViewAttrs;
-			$cellAttrs = &$this->Sisa->CellAttrs;
-			$hrefValue = &$this->Sisa->HrefValue;
-			$linkAttrs = &$this->Sisa->LinkAttrs;
-			$this->Cell_Rendered($this->Sisa, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// sisa
+			$currentValue = $this->sisa->SumValue;
+			$viewValue = &$this->sisa->SumViewValue;
+			$viewAttrs = &$this->sisa->ViewAttrs;
+			$cellAttrs = &$this->sisa->CellAttrs;
+			$hrefValue = &$this->sisa->HrefValue;
+			$linkAttrs = &$this->sisa->LinkAttrs;
+			$this->Cell_Rendered($this->sisa, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 		} else {
 
-			// Iuran
-			$currentValue = $this->Iuran->CurrentValue;
-			$viewValue = &$this->Iuran->ViewValue;
-			$viewAttrs = &$this->Iuran->ViewAttrs;
-			$cellAttrs = &$this->Iuran->CellAttrs;
-			$hrefValue = &$this->Iuran->HrefValue;
-			$linkAttrs = &$this->Iuran->LinkAttrs;
-			$this->Cell_Rendered($this->Iuran, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// iuran
+			$currentValue = $this->iuran->CurrentValue;
+			$viewValue = &$this->iuran->ViewValue;
+			$viewAttrs = &$this->iuran->ViewAttrs;
+			$cellAttrs = &$this->iuran->CellAttrs;
+			$hrefValue = &$this->iuran->HrefValue;
+			$linkAttrs = &$this->iuran->LinkAttrs;
+			$this->Cell_Rendered($this->iuran, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// TahunAjaran
-			$currentValue = $this->TahunAjaran->CurrentValue;
-			$viewValue = &$this->TahunAjaran->ViewValue;
-			$viewAttrs = &$this->TahunAjaran->ViewAttrs;
-			$cellAttrs = &$this->TahunAjaran->CellAttrs;
-			$hrefValue = &$this->TahunAjaran->HrefValue;
-			$linkAttrs = &$this->TahunAjaran->LinkAttrs;
-			$this->Cell_Rendered($this->TahunAjaran, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// jenis
+			$currentValue = $this->jenis->CurrentValue;
+			$viewValue = &$this->jenis->ViewValue;
+			$viewAttrs = &$this->jenis->ViewAttrs;
+			$cellAttrs = &$this->jenis->CellAttrs;
+			$hrefValue = &$this->jenis->HrefValue;
+			$linkAttrs = &$this->jenis->LinkAttrs;
+			$this->Cell_Rendered($this->jenis, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Sekolah
-			$currentValue = $this->Sekolah->CurrentValue;
-			$viewValue = &$this->Sekolah->ViewValue;
-			$viewAttrs = &$this->Sekolah->ViewAttrs;
-			$cellAttrs = &$this->Sekolah->CellAttrs;
-			$hrefValue = &$this->Sekolah->HrefValue;
-			$linkAttrs = &$this->Sekolah->LinkAttrs;
-			$this->Cell_Rendered($this->Sekolah, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// tahunajaran
+			$currentValue = $this->tahunajaran->CurrentValue;
+			$viewValue = &$this->tahunajaran->ViewValue;
+			$viewAttrs = &$this->tahunajaran->ViewAttrs;
+			$cellAttrs = &$this->tahunajaran->CellAttrs;
+			$hrefValue = &$this->tahunajaran->HrefValue;
+			$linkAttrs = &$this->tahunajaran->LinkAttrs;
+			$this->Cell_Rendered($this->tahunajaran, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Kelas
-			$currentValue = $this->Kelas->CurrentValue;
-			$viewValue = &$this->Kelas->ViewValue;
-			$viewAttrs = &$this->Kelas->ViewAttrs;
-			$cellAttrs = &$this->Kelas->CellAttrs;
-			$hrefValue = &$this->Kelas->HrefValue;
-			$linkAttrs = &$this->Kelas->LinkAttrs;
-			$this->Cell_Rendered($this->Kelas, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// sekolah
+			$currentValue = $this->sekolah->CurrentValue;
+			$viewValue = &$this->sekolah->ViewValue;
+			$viewAttrs = &$this->sekolah->ViewAttrs;
+			$cellAttrs = &$this->sekolah->CellAttrs;
+			$hrefValue = &$this->sekolah->HrefValue;
+			$linkAttrs = &$this->sekolah->LinkAttrs;
+			$this->Cell_Rendered($this->sekolah, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Potensi
-			$currentValue = $this->Potensi->CurrentValue;
-			$viewValue = &$this->Potensi->ViewValue;
-			$viewAttrs = &$this->Potensi->ViewAttrs;
-			$cellAttrs = &$this->Potensi->CellAttrs;
-			$hrefValue = &$this->Potensi->HrefValue;
-			$linkAttrs = &$this->Potensi->LinkAttrs;
-			$this->Cell_Rendered($this->Potensi, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// kelas
+			$currentValue = $this->kelas->CurrentValue;
+			$viewValue = &$this->kelas->ViewValue;
+			$viewAttrs = &$this->kelas->ViewAttrs;
+			$cellAttrs = &$this->kelas->CellAttrs;
+			$hrefValue = &$this->kelas->HrefValue;
+			$linkAttrs = &$this->kelas->LinkAttrs;
+			$this->Cell_Rendered($this->kelas, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 
-			// Terbayar
-			$currentValue = $this->Terbayar->CurrentValue;
-			$viewValue = &$this->Terbayar->ViewValue;
-			$viewAttrs = &$this->Terbayar->ViewAttrs;
-			$cellAttrs = &$this->Terbayar->CellAttrs;
-			$hrefValue = &$this->Terbayar->HrefValue;
-			$linkAttrs = &$this->Terbayar->LinkAttrs;
-			$this->Cell_Rendered($this->Terbayar, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
-
-			// Sisa
-			$currentValue = $this->Sisa->CurrentValue;
-			$viewValue = &$this->Sisa->ViewValue;
-			$viewAttrs = &$this->Sisa->ViewAttrs;
-			$cellAttrs = &$this->Sisa->CellAttrs;
-			$hrefValue = &$this->Sisa->HrefValue;
-			$linkAttrs = &$this->Sisa->LinkAttrs;
-			$this->Cell_Rendered($this->Sisa, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
+			// sisa
+			$currentValue = $this->sisa->CurrentValue;
+			$viewValue = &$this->sisa->ViewValue;
+			$viewAttrs = &$this->sisa->ViewAttrs;
+			$cellAttrs = &$this->sisa->CellAttrs;
+			$hrefValue = &$this->sisa->HrefValue;
+			$linkAttrs = &$this->sisa->LinkAttrs;
+			$this->Cell_Rendered($this->sisa, $currentValue, $viewValue, $viewAttrs, $cellAttrs, $hrefValue, $linkAttrs);
 		}
 
 		// Call Row_Rendered event
@@ -1237,19 +1217,17 @@ class r0304_potensi_summary extends r0304_potensi
 		$this->GroupColumnCount = 0;
 		$this->SubGroupColumnCount = 0;
 		$this->DetailColumnCount = 0;
-		if ($this->Iuran->Visible)
+		if ($this->iuran->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->TahunAjaran->Visible)
+		if ($this->jenis->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Sekolah->Visible)
+		if ($this->tahunajaran->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Kelas->Visible)
+		if ($this->sekolah->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Potensi->Visible)
+		if ($this->kelas->Visible)
 			$this->DetailColumnCount += 1;
-		if ($this->Terbayar->Visible)
-			$this->DetailColumnCount += 1;
-		if ($this->Sisa->Visible)
+		if ($this->sisa->Visible)
 			$this->DetailColumnCount += 1;
 	}
 
@@ -1494,7 +1472,7 @@ class r0304_potensi_summary extends r0304_potensi
 	protected function getSort()
 	{
 		if ($this->DrillDown)
-			return "";
+			return "`jenis` DESC, `iuran` ASC";
 		$resetSort = ReportParam("cmd") === "resetsort";
 		$orderBy = ReportParam("order", "");
 		$orderType = ReportParam("ordertype", "");
@@ -1506,28 +1484,33 @@ class r0304_potensi_summary extends r0304_potensi
 		if ($resetSort) {
 			$this->setOrderBy("");
 			$this->setStartGroup(1);
-			$this->Iuran->setSort("");
-			$this->TahunAjaran->setSort("");
-			$this->Sekolah->setSort("");
-			$this->Kelas->setSort("");
-			$this->Potensi->setSort("");
-			$this->Terbayar->setSort("");
-			$this->Sisa->setSort("");
+			$this->iuran->setSort("");
+			$this->jenis->setSort("");
+			$this->tahunajaran->setSort("");
+			$this->sekolah->setSort("");
+			$this->kelas->setSort("");
+			$this->sisa->setSort("");
 
 		// Check for an Order parameter
 		} elseif ($orderBy <> "") {
 			$this->CurrentOrder = $orderBy;
 			$this->CurrentOrderType = $orderType;
-			$this->updateSort($this->Iuran, $ctrl); // Iuran
-			$this->updateSort($this->TahunAjaran, $ctrl); // TahunAjaran
-			$this->updateSort($this->Sekolah, $ctrl); // Sekolah
-			$this->updateSort($this->Kelas, $ctrl); // Kelas
-			$this->updateSort($this->Potensi, $ctrl); // Potensi
-			$this->updateSort($this->Terbayar, $ctrl); // Terbayar
-			$this->updateSort($this->Sisa, $ctrl); // Sisa
+			$this->updateSort($this->iuran, $ctrl); // iuran
+			$this->updateSort($this->jenis, $ctrl); // jenis
+			$this->updateSort($this->tahunajaran, $ctrl); // tahunajaran
+			$this->updateSort($this->sekolah, $ctrl); // sekolah
+			$this->updateSort($this->kelas, $ctrl); // kelas
+			$this->updateSort($this->sisa, $ctrl); // sisa
 			$sortSql = $this->sortSql();
 			$this->setOrderBy($sortSql);
 			$this->setStartGroup(1);
+		}
+
+		// Set up default sort
+		if ($this->getOrderBy() == "") {
+			$this->setOrderBy("`jenis` DESC, `iuran` ASC");
+			$this->jenis->setSort("DESC");
+			$this->iuran->setSort("ASC");
 		}
 		return $this->getOrderBy();
 	}
@@ -1550,32 +1533,40 @@ class r0304_potensi_summary extends r0304_potensi
 		} elseif (Get("cmd", "") == "reset") {
 
 			// Load default values
-			$this->setSessionFilterValues($this->Iuran->AdvancedSearch->SearchValue, $this->Iuran->AdvancedSearch->SearchOperator, $this->Iuran->AdvancedSearch->SearchCondition, $this->Iuran->AdvancedSearch->SearchValue2, $this->Iuran->AdvancedSearch->SearchOperator2, "Iuran"); // Field Iuran
-			$this->setSessionFilterValues($this->TahunAjaran->AdvancedSearch->SearchValue, $this->TahunAjaran->AdvancedSearch->SearchOperator, $this->TahunAjaran->AdvancedSearch->SearchCondition, $this->TahunAjaran->AdvancedSearch->SearchValue2, $this->TahunAjaran->AdvancedSearch->SearchOperator2, "TahunAjaran"); // Field TahunAjaran
-			$this->setSessionFilterValues($this->Sekolah->AdvancedSearch->SearchValue, $this->Sekolah->AdvancedSearch->SearchOperator, $this->Sekolah->AdvancedSearch->SearchCondition, $this->Sekolah->AdvancedSearch->SearchValue2, $this->Sekolah->AdvancedSearch->SearchOperator2, "Sekolah"); // Field Sekolah
-			$this->setSessionFilterValues($this->Kelas->AdvancedSearch->SearchValue, $this->Kelas->AdvancedSearch->SearchOperator, $this->Kelas->AdvancedSearch->SearchCondition, $this->Kelas->AdvancedSearch->SearchValue2, $this->Kelas->AdvancedSearch->SearchOperator2, "Kelas"); // Field Kelas
+			$this->setSessionDropDownValue($this->iuran->DropDownValue, $this->iuran->AdvancedSearch->SearchOperator, "iuran"); // Field iuran
+			$this->setSessionDropDownValue($this->tahunajaran->DropDownValue, $this->tahunajaran->AdvancedSearch->SearchOperator, "tahunajaran"); // Field tahunajaran
+			$this->setSessionDropDownValue($this->sekolah->DropDownValue, $this->sekolah->AdvancedSearch->SearchOperator, "sekolah"); // Field sekolah
+			$this->setSessionDropDownValue($this->kelas->DropDownValue, $this->kelas->AdvancedSearch->SearchOperator, "kelas"); // Field kelas
 
 			//$setupFilter = TRUE; // No need to set up, just use default
 		} else {
 			$restoreSession = !$this->SearchCommand;
 
-			// Field Iuran
-			if ($this->getFilterValues($this->Iuran)) {
+			// Field iuran
+			if ($this->getDropDownValue($this->iuran)) {
+				$setupFilter = TRUE;
+			} elseif ($this->iuran->DropDownValue <> INIT_VALUE && !isset($_SESSION["x_r0305_potensi_iuran"])) {
 				$setupFilter = TRUE;
 			}
 
-			// Field TahunAjaran
-			if ($this->getFilterValues($this->TahunAjaran)) {
+			// Field tahunajaran
+			if ($this->getDropDownValue($this->tahunajaran)) {
+				$setupFilter = TRUE;
+			} elseif ($this->tahunajaran->DropDownValue <> INIT_VALUE && !isset($_SESSION["x_r0305_potensi_tahunajaran"])) {
 				$setupFilter = TRUE;
 			}
 
-			// Field Sekolah
-			if ($this->getFilterValues($this->Sekolah)) {
+			// Field sekolah
+			if ($this->getDropDownValue($this->sekolah)) {
+				$setupFilter = TRUE;
+			} elseif ($this->sekolah->DropDownValue <> INIT_VALUE && !isset($_SESSION["x_r0305_potensi_sekolah"])) {
 				$setupFilter = TRUE;
 			}
 
-			// Field Kelas
-			if ($this->getFilterValues($this->Kelas)) {
+			// Field kelas
+			if ($this->getDropDownValue($this->kelas)) {
+				$setupFilter = TRUE;
+			} elseif ($this->kelas->DropDownValue <> INIT_VALUE && !isset($_SESSION["x_r0305_potensi_kelas"])) {
 				$setupFilter = TRUE;
 			}
 			if (!$this->validateForm()) {
@@ -1586,30 +1577,42 @@ class r0304_potensi_summary extends r0304_potensi
 
 		// Restore session
 		if ($restoreSession) {
-			$this->getSessionFilterValues($this->Iuran); // Field Iuran
-			$this->getSessionFilterValues($this->TahunAjaran); // Field TahunAjaran
-			$this->getSessionFilterValues($this->Sekolah); // Field Sekolah
-			$this->getSessionFilterValues($this->Kelas); // Field Kelas
+			$this->getSessionDropDownValue($this->iuran); // Field iuran
+			$this->getSessionDropDownValue($this->tahunajaran); // Field tahunajaran
+			$this->getSessionDropDownValue($this->sekolah); // Field sekolah
+			$this->getSessionDropDownValue($this->kelas); // Field kelas
 		}
 
 		// Call page filter validated event
 		$this->Page_FilterValidated();
 
 		// Build SQL
-		$this->buildExtendedFilter($this->Iuran, $filter, FALSE, TRUE); // Field Iuran
-		$this->buildExtendedFilter($this->TahunAjaran, $filter, FALSE, TRUE); // Field TahunAjaran
-		$this->buildExtendedFilter($this->Sekolah, $filter, FALSE, TRUE); // Field Sekolah
-		$this->buildExtendedFilter($this->Kelas, $filter, FALSE, TRUE); // Field Kelas
+		$this->buildDropDownFilter($this->iuran, $filter, $this->iuran->AdvancedSearch->SearchOperator, FALSE, TRUE); // Field iuran
+		$this->buildDropDownFilter($this->tahunajaran, $filter, $this->tahunajaran->AdvancedSearch->SearchOperator, FALSE, TRUE); // Field tahunajaran
+		$this->buildDropDownFilter($this->sekolah, $filter, $this->sekolah->AdvancedSearch->SearchOperator, FALSE, TRUE); // Field sekolah
+		$this->buildDropDownFilter($this->kelas, $filter, $this->kelas->AdvancedSearch->SearchOperator, FALSE, TRUE); // Field kelas
 
 		// Save parms to session
-		$this->setSessionFilterValues($this->Iuran->AdvancedSearch->SearchValue, $this->Iuran->AdvancedSearch->SearchOperator, $this->Iuran->AdvancedSearch->SearchCondition, $this->Iuran->AdvancedSearch->SearchValue2, $this->Iuran->AdvancedSearch->SearchOperator2, "Iuran"); // Field Iuran
-		$this->setSessionFilterValues($this->TahunAjaran->AdvancedSearch->SearchValue, $this->TahunAjaran->AdvancedSearch->SearchOperator, $this->TahunAjaran->AdvancedSearch->SearchCondition, $this->TahunAjaran->AdvancedSearch->SearchValue2, $this->TahunAjaran->AdvancedSearch->SearchOperator2, "TahunAjaran"); // Field TahunAjaran
-		$this->setSessionFilterValues($this->Sekolah->AdvancedSearch->SearchValue, $this->Sekolah->AdvancedSearch->SearchOperator, $this->Sekolah->AdvancedSearch->SearchCondition, $this->Sekolah->AdvancedSearch->SearchValue2, $this->Sekolah->AdvancedSearch->SearchOperator2, "Sekolah"); // Field Sekolah
-		$this->setSessionFilterValues($this->Kelas->AdvancedSearch->SearchValue, $this->Kelas->AdvancedSearch->SearchOperator, $this->Kelas->AdvancedSearch->SearchCondition, $this->Kelas->AdvancedSearch->SearchValue2, $this->Kelas->AdvancedSearch->SearchOperator2, "Kelas"); // Field Kelas
+		$this->setSessionDropDownValue($this->iuran->DropDownValue, $this->iuran->AdvancedSearch->SearchOperator, "iuran"); // Field iuran
+		$this->setSessionDropDownValue($this->tahunajaran->DropDownValue, $this->tahunajaran->AdvancedSearch->SearchOperator, "tahunajaran"); // Field tahunajaran
+		$this->setSessionDropDownValue($this->sekolah->DropDownValue, $this->sekolah->AdvancedSearch->SearchOperator, "sekolah"); // Field sekolah
+		$this->setSessionDropDownValue($this->kelas->DropDownValue, $this->kelas->AdvancedSearch->SearchOperator, "kelas"); // Field kelas
 
 		// Setup filter
 		if ($setupFilter) {
 		}
+
+		// Field iuran
+		LoadDropDownList($this->iuran->DropDownList, $this->iuran->DropDownValue);
+
+		// Field tahunajaran
+		LoadDropDownList($this->tahunajaran->DropDownList, $this->tahunajaran->DropDownValue);
+
+		// Field sekolah
+		LoadDropDownList($this->sekolah->DropDownList, $this->sekolah->DropDownValue);
+
+		// Field kelas
+		LoadDropDownList($this->kelas->DropDownList, $this->kelas->DropDownValue);
 		return $filter;
 	}
 
@@ -1829,19 +1832,19 @@ class r0304_potensi_summary extends r0304_potensi
 	protected function getSessionDropDownValue(&$fld)
 	{
 		$parm = substr($fld->FieldVar, 2);
-		$this->getSessionValue($fld->DropDownValue, 'x_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0304_potensi_' . $parm);
+		$this->getSessionValue($fld->DropDownValue, 'x_r0305_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0305_potensi_' . $parm);
 	}
 
 	// Get filter values from session
 	protected function getSessionFilterValues(&$fld)
 	{
 		$parm = substr($fld->FieldVar, 2);
-		$this->getSessionValue($fld->AdvancedSearch->SearchValue, 'x_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchCondition, 'v_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchValue2, 'y_r0304_potensi_' . $parm);
-		$this->getSessionValue($fld->AdvancedSearch->SearchOperator2, 'w_r0304_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchValue, 'x_r0305_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchOperator, 'z_r0305_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchCondition, 'v_r0305_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchValue2, 'y_r0305_potensi_' . $parm);
+		$this->getSessionValue($fld->AdvancedSearch->SearchOperator2, 'w_r0305_potensi_' . $parm);
 	}
 
 	// Get value from session
@@ -1854,18 +1857,18 @@ class r0304_potensi_summary extends r0304_potensi
 	// Set dropdown value to session
 	protected function setSessionDropDownValue($sv, $so, $parm)
 	{
-		$_SESSION['x_r0304_potensi_' . $parm] = $sv;
-		$_SESSION['z_r0304_potensi_' . $parm] = $so;
+		$_SESSION['x_r0305_potensi_' . $parm] = $sv;
+		$_SESSION['z_r0305_potensi_' . $parm] = $so;
 	}
 
 	// Set filter values to session
 	protected function setSessionFilterValues($sv1, $so1, $sc, $sv2, $so2, $parm)
 	{
-		$_SESSION['x_r0304_potensi_' . $parm] = $sv1;
-		$_SESSION['z_r0304_potensi_' . $parm] = $so1;
-		$_SESSION['v_r0304_potensi_' . $parm] = $sc;
-		$_SESSION['y_r0304_potensi_' . $parm] = $sv2;
-		$_SESSION['w_r0304_potensi_' . $parm] = $so2;
+		$_SESSION['x_r0305_potensi_' . $parm] = $sv1;
+		$_SESSION['z_r0305_potensi_' . $parm] = $so1;
+		$_SESSION['v_r0305_potensi_' . $parm] = $sc;
+		$_SESSION['y_r0305_potensi_' . $parm] = $sv2;
+		$_SESSION['w_r0305_potensi_' . $parm] = $so2;
 	}
 
 	// Check if has session filter values
@@ -1920,9 +1923,9 @@ class r0304_potensi_summary extends r0304_potensi
 	// Clear selection stored in session
 	protected function clearSessionSelection($parm)
 	{
-		$_SESSION["sel_r0304_potensi_$parm"] = "";
-		$_SESSION["rf_r0304_potensi_$parm"] = "";
-		$_SESSION["rt_r0304_potensi_$parm"] = "";
+		$_SESSION["sel_r0305_potensi_$parm"] = "";
+		$_SESSION["rf_r0305_potensi_$parm"] = "";
+		$_SESSION["rt_r0305_potensi_$parm"] = "";
 	}
 
 	// Load selection from session
@@ -1930,9 +1933,9 @@ class r0304_potensi_summary extends r0304_potensi
 	{
 		foreach ($this->fields as $fld) {
 			if ($fld->Param == $parm) {
-				$fld->SelectionList = @$_SESSION["sel_r0304_potensi_$parm"];
-				$fld->RangeFrom = @$_SESSION["rf_r0304_potensi_$parm"];
-				$fld->RangeTo = @$_SESSION["rt_r0304_potensi_$parm"];
+				$fld->SelectionList = @$_SESSION["sel_r0305_potensi_$parm"];
+				$fld->RangeFrom = @$_SESSION["rf_r0305_potensi_$parm"];
+				$fld->RangeTo = @$_SESSION["rt_r0305_potensi_$parm"];
 				break;
 			}
 		}
@@ -1945,6 +1948,26 @@ class r0304_potensi_summary extends r0304_potensi
 		/**
 		* Set up default values for non Text filters
 		*/
+		// Field iuran
+
+		$this->iuran->DefaultDropDownValue = INIT_VALUE;
+		if (!$this->SearchCommand)
+			$this->iuran->DropDownValue = $this->iuran->DefaultDropDownValue;
+
+		// Field tahunajaran
+		$this->tahunajaran->DefaultDropDownValue = INIT_VALUE;
+		if (!$this->SearchCommand)
+			$this->tahunajaran->DropDownValue = $this->tahunajaran->DefaultDropDownValue;
+
+		// Field sekolah
+		$this->sekolah->DefaultDropDownValue = INIT_VALUE;
+		if (!$this->SearchCommand)
+			$this->sekolah->DropDownValue = $this->sekolah->DefaultDropDownValue;
+
+		// Field kelas
+		$this->kelas->DefaultDropDownValue = INIT_VALUE;
+		if (!$this->SearchCommand)
+			$this->kelas->DropDownValue = $this->kelas->DefaultDropDownValue;
 
 		/**
 		* Set up default values for extended filters
@@ -1957,26 +1980,6 @@ class r0304_potensi_summary extends r0304_potensi
 		* $so2 - Default search operator 2 (if operator 2 is enabled)
 		* $sv2 - Default ext filter value 2 (if operator 2 is enabled)
 		*/
-		// Field Iuran
-
-		$this->setDefaultExtFilter($this->Iuran, "=", NULL, 'AND', "=", NULL);
-		if (!$this->SearchCommand)
-			$this->applyDefaultExtFilter($this->Iuran);
-
-		// Field TahunAjaran
-		$this->setDefaultExtFilter($this->TahunAjaran, "=", NULL, 'AND', "=", NULL);
-		if (!$this->SearchCommand)
-			$this->applyDefaultExtFilter($this->TahunAjaran);
-
-		// Field Sekolah
-		$this->setDefaultExtFilter($this->Sekolah, "=", NULL, 'AND', "=", NULL);
-		if (!$this->SearchCommand)
-			$this->applyDefaultExtFilter($this->Sekolah);
-
-		// Field Kelas
-		$this->setDefaultExtFilter($this->Kelas, "=", NULL, 'AND', "=", NULL);
-		if (!$this->SearchCommand)
-			$this->applyDefaultExtFilter($this->Kelas);
 
 		/**
 		* Set up default values for popup filters
@@ -1987,20 +1990,20 @@ class r0304_potensi_summary extends r0304_potensi
 	protected function checkFilter()
 	{
 
-		// Check Iuran text filter
-		if ($this->textFilterApplied($this->Iuran))
+		// Check iuran extended filter
+		if ($this->nonTextFilterApplied($this->iuran))
 			return TRUE;
 
-		// Check TahunAjaran text filter
-		if ($this->textFilterApplied($this->TahunAjaran))
+		// Check tahunajaran extended filter
+		if ($this->nonTextFilterApplied($this->tahunajaran))
 			return TRUE;
 
-		// Check Sekolah text filter
-		if ($this->textFilterApplied($this->Sekolah))
+		// Check sekolah extended filter
+		if ($this->nonTextFilterApplied($this->sekolah))
 			return TRUE;
 
-		// Check Kelas text filter
-		if ($this->textFilterApplied($this->Kelas))
+		// Check kelas extended filter
+		if ($this->nonTextFilterApplied($this->kelas))
 			return TRUE;
 		return FALSE;
 	}
@@ -2015,53 +2018,53 @@ class r0304_potensi_summary extends r0304_potensi
 		$captionClass = $this->isExport("email") ? "ew-filter-caption-email" : "ew-filter-caption";
 		$captionSuffix = $this->isExport("email") ? ": " : "";
 
-		// Field Iuran
+		// Field iuran
 		$extWrk = "";
 		$wrk = "";
-		$this->buildExtendedFilter($this->Iuran, $extWrk);
+		$this->buildDropDownFilter($this->iuran, $extWrk, $this->iuran->AdvancedSearch->SearchOperator);
 		$filter = "";
 		if ($extWrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
 		elseif ($wrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
 		if ($filter <> "")
-			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Iuran->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->iuran->caption() . "</span>" . $captionSuffix . $filter . "</div>";
 
-		// Field TahunAjaran
+		// Field tahunajaran
 		$extWrk = "";
 		$wrk = "";
-		$this->buildExtendedFilter($this->TahunAjaran, $extWrk);
+		$this->buildDropDownFilter($this->tahunajaran, $extWrk, $this->tahunajaran->AdvancedSearch->SearchOperator);
 		$filter = "";
 		if ($extWrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
 		elseif ($wrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
 		if ($filter <> "")
-			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->TahunAjaran->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->tahunajaran->caption() . "</span>" . $captionSuffix . $filter . "</div>";
 
-		// Field Sekolah
+		// Field sekolah
 		$extWrk = "";
 		$wrk = "";
-		$this->buildExtendedFilter($this->Sekolah, $extWrk);
+		$this->buildDropDownFilter($this->sekolah, $extWrk, $this->sekolah->AdvancedSearch->SearchOperator);
 		$filter = "";
 		if ($extWrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
 		elseif ($wrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
 		if ($filter <> "")
-			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Sekolah->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->sekolah->caption() . "</span>" . $captionSuffix . $filter . "</div>";
 
-		// Field Kelas
+		// Field kelas
 		$extWrk = "";
 		$wrk = "";
-		$this->buildExtendedFilter($this->Kelas, $extWrk);
+		$this->buildDropDownFilter($this->kelas, $extWrk, $this->kelas->AdvancedSearch->SearchOperator);
 		$filter = "";
 		if ($extWrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$extWrk</span>";
 		elseif ($wrk <> "")
 			$filter .= "<span class=\"ew-filter-value\">$wrk</span>";
 		if ($filter <> "")
-			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->Kelas->caption() . "</span>" . $captionSuffix . $filter . "</div>";
+			$filterList .= "<div><span class=\"" . $captionClass . "\">" . $this->kelas->caption() . "</span>" . $captionSuffix . $filter . "</div>";
 		$divdataclass = "";
 
 		// Show Filters
@@ -2084,57 +2087,49 @@ class r0304_potensi_summary extends r0304_potensi
 		// Initialize
 		$filterList = "";
 
-		// Field Iuran
+		// Field iuran
 		$wrk = "";
-		if ($this->Iuran->AdvancedSearch->SearchValue <> "" || $this->Iuran->AdvancedSearch->SearchValue2 <> "") {
-			$wrk = "\"x_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchValue) . "\"," .
-				"\"z_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchOperator) . "\"," .
-				"\"v_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchCondition) . "\"," .
-				"\"y_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchValue2) . "\"," .
-				"\"w_Iuran\":\"" . JsEncode($this->Iuran->AdvancedSearch->SearchOperator2) . "\"";
-		}
+		$wrk = ($this->iuran->DropDownValue <> INIT_VALUE) ? $this->iuran->DropDownValue : "";
+		if (is_array($wrk))
+			$wrk = implode("||", $wrk);
+		if ($wrk <> "")
+			$wrk = "\"x_iuran\":\"" . JsEncode($wrk) . "\"";
 		if ($wrk <> "") {
 			if ($filterList <> "") $filterList .= ",";
 			$filterList .= $wrk;
 		}
 
-		// Field TahunAjaran
+		// Field tahunajaran
 		$wrk = "";
-		if ($this->TahunAjaran->AdvancedSearch->SearchValue <> "" || $this->TahunAjaran->AdvancedSearch->SearchValue2 <> "") {
-			$wrk = "\"x_TahunAjaran\":\"" . JsEncode($this->TahunAjaran->AdvancedSearch->SearchValue) . "\"," .
-				"\"z_TahunAjaran\":\"" . JsEncode($this->TahunAjaran->AdvancedSearch->SearchOperator) . "\"," .
-				"\"v_TahunAjaran\":\"" . JsEncode($this->TahunAjaran->AdvancedSearch->SearchCondition) . "\"," .
-				"\"y_TahunAjaran\":\"" . JsEncode($this->TahunAjaran->AdvancedSearch->SearchValue2) . "\"," .
-				"\"w_TahunAjaran\":\"" . JsEncode($this->TahunAjaran->AdvancedSearch->SearchOperator2) . "\"";
-		}
+		$wrk = ($this->tahunajaran->DropDownValue <> INIT_VALUE) ? $this->tahunajaran->DropDownValue : "";
+		if (is_array($wrk))
+			$wrk = implode("||", $wrk);
+		if ($wrk <> "")
+			$wrk = "\"x_tahunajaran\":\"" . JsEncode($wrk) . "\"";
 		if ($wrk <> "") {
 			if ($filterList <> "") $filterList .= ",";
 			$filterList .= $wrk;
 		}
 
-		// Field Sekolah
+		// Field sekolah
 		$wrk = "";
-		if ($this->Sekolah->AdvancedSearch->SearchValue <> "" || $this->Sekolah->AdvancedSearch->SearchValue2 <> "") {
-			$wrk = "\"x_Sekolah\":\"" . JsEncode($this->Sekolah->AdvancedSearch->SearchValue) . "\"," .
-				"\"z_Sekolah\":\"" . JsEncode($this->Sekolah->AdvancedSearch->SearchOperator) . "\"," .
-				"\"v_Sekolah\":\"" . JsEncode($this->Sekolah->AdvancedSearch->SearchCondition) . "\"," .
-				"\"y_Sekolah\":\"" . JsEncode($this->Sekolah->AdvancedSearch->SearchValue2) . "\"," .
-				"\"w_Sekolah\":\"" . JsEncode($this->Sekolah->AdvancedSearch->SearchOperator2) . "\"";
-		}
+		$wrk = ($this->sekolah->DropDownValue <> INIT_VALUE) ? $this->sekolah->DropDownValue : "";
+		if (is_array($wrk))
+			$wrk = implode("||", $wrk);
+		if ($wrk <> "")
+			$wrk = "\"x_sekolah\":\"" . JsEncode($wrk) . "\"";
 		if ($wrk <> "") {
 			if ($filterList <> "") $filterList .= ",";
 			$filterList .= $wrk;
 		}
 
-		// Field Kelas
+		// Field kelas
 		$wrk = "";
-		if ($this->Kelas->AdvancedSearch->SearchValue <> "" || $this->Kelas->AdvancedSearch->SearchValue2 <> "") {
-			$wrk = "\"x_Kelas\":\"" . JsEncode($this->Kelas->AdvancedSearch->SearchValue) . "\"," .
-				"\"z_Kelas\":\"" . JsEncode($this->Kelas->AdvancedSearch->SearchOperator) . "\"," .
-				"\"v_Kelas\":\"" . JsEncode($this->Kelas->AdvancedSearch->SearchCondition) . "\"," .
-				"\"y_Kelas\":\"" . JsEncode($this->Kelas->AdvancedSearch->SearchValue2) . "\"," .
-				"\"w_Kelas\":\"" . JsEncode($this->Kelas->AdvancedSearch->SearchOperator2) . "\"";
-		}
+		$wrk = ($this->kelas->DropDownValue <> INIT_VALUE) ? $this->kelas->DropDownValue : "";
+		if (is_array($wrk))
+			$wrk = implode("||", $wrk);
+		if ($wrk <> "")
+			$wrk = "\"x_kelas\":\"" . JsEncode($wrk) . "\"";
 		if ($wrk <> "") {
 			if ($filterList <> "") $filterList .= ",";
 			$filterList .= $wrk;
@@ -2164,52 +2159,56 @@ class r0304_potensi_summary extends r0304_potensi
 		if (!is_array($filter))
 			return FALSE;
 
-		// Field Iuran
+		// Field iuran
 		$restoreFilter = FALSE;
-		if (array_key_exists("x_Iuran", $filter) || array_key_exists("z_Iuran", $filter) ||
-			array_key_exists("v_Iuran", $filter) ||
-			array_key_exists("y_Iuran", $filter) || array_key_exists("w_Iuran", $filter)) {
-			$this->setSessionFilterValues(@$filter["x_Iuran"], @$filter["z_Iuran"], @$filter["v_Iuran"], @$filter["y_Iuran"], @$filter["w_Iuran"], "Iuran");
+		if (array_key_exists("x_iuran", $filter)) {
+			$wrk = $filter["x_iuran"];
+			if (strpos($wrk, "||") !== FALSE)
+				$wrk = explode("||", $wrk);
+			$this->setSessionDropDownValue($wrk, @$filter["z_iuran"], "iuran");
 			$restoreFilter = TRUE;
 		}
 		if (!$restoreFilter) { // Clear filter
-			$this->setSessionFilterValues("", "=", "AND", "", "=", "Iuran");
+			$this->setSessionDropDownValue(INIT_VALUE, "", "iuran");
 		}
 
-		// Field TahunAjaran
+		// Field tahunajaran
 		$restoreFilter = FALSE;
-		if (array_key_exists("x_TahunAjaran", $filter) || array_key_exists("z_TahunAjaran", $filter) ||
-			array_key_exists("v_TahunAjaran", $filter) ||
-			array_key_exists("y_TahunAjaran", $filter) || array_key_exists("w_TahunAjaran", $filter)) {
-			$this->setSessionFilterValues(@$filter["x_TahunAjaran"], @$filter["z_TahunAjaran"], @$filter["v_TahunAjaran"], @$filter["y_TahunAjaran"], @$filter["w_TahunAjaran"], "TahunAjaran");
+		if (array_key_exists("x_tahunajaran", $filter)) {
+			$wrk = $filter["x_tahunajaran"];
+			if (strpos($wrk, "||") !== FALSE)
+				$wrk = explode("||", $wrk);
+			$this->setSessionDropDownValue($wrk, @$filter["z_tahunajaran"], "tahunajaran");
 			$restoreFilter = TRUE;
 		}
 		if (!$restoreFilter) { // Clear filter
-			$this->setSessionFilterValues("", "=", "AND", "", "=", "TahunAjaran");
+			$this->setSessionDropDownValue(INIT_VALUE, "", "tahunajaran");
 		}
 
-		// Field Sekolah
+		// Field sekolah
 		$restoreFilter = FALSE;
-		if (array_key_exists("x_Sekolah", $filter) || array_key_exists("z_Sekolah", $filter) ||
-			array_key_exists("v_Sekolah", $filter) ||
-			array_key_exists("y_Sekolah", $filter) || array_key_exists("w_Sekolah", $filter)) {
-			$this->setSessionFilterValues(@$filter["x_Sekolah"], @$filter["z_Sekolah"], @$filter["v_Sekolah"], @$filter["y_Sekolah"], @$filter["w_Sekolah"], "Sekolah");
+		if (array_key_exists("x_sekolah", $filter)) {
+			$wrk = $filter["x_sekolah"];
+			if (strpos($wrk, "||") !== FALSE)
+				$wrk = explode("||", $wrk);
+			$this->setSessionDropDownValue($wrk, @$filter["z_sekolah"], "sekolah");
 			$restoreFilter = TRUE;
 		}
 		if (!$restoreFilter) { // Clear filter
-			$this->setSessionFilterValues("", "=", "AND", "", "=", "Sekolah");
+			$this->setSessionDropDownValue(INIT_VALUE, "", "sekolah");
 		}
 
-		// Field Kelas
+		// Field kelas
 		$restoreFilter = FALSE;
-		if (array_key_exists("x_Kelas", $filter) || array_key_exists("z_Kelas", $filter) ||
-			array_key_exists("v_Kelas", $filter) ||
-			array_key_exists("y_Kelas", $filter) || array_key_exists("w_Kelas", $filter)) {
-			$this->setSessionFilterValues(@$filter["x_Kelas"], @$filter["z_Kelas"], @$filter["v_Kelas"], @$filter["y_Kelas"], @$filter["w_Kelas"], "Kelas");
+		if (array_key_exists("x_kelas", $filter)) {
+			$wrk = $filter["x_kelas"];
+			if (strpos($wrk, "||") !== FALSE)
+				$wrk = explode("||", $wrk);
+			$this->setSessionDropDownValue($wrk, @$filter["z_kelas"], "kelas");
 			$restoreFilter = TRUE;
 		}
 		if (!$restoreFilter) { // Clear filter
-			$this->setSessionFilterValues("", "=", "AND", "", "=", "Kelas");
+			$this->setSessionDropDownValue(INIT_VALUE, "", "kelas");
 		}
 		return TRUE;
 	}
